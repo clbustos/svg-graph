@@ -551,7 +551,7 @@ module SVG
               if rotate_x_labels
                 text.attributes["transform"] = 
                   "rotate( 90 #{x} #{y-x_label_font_size} )"+
-                  " translate( 0 -#{x_label_font_size/2} )"
+                  " translate( 0 -#{x_label_font_size/4} )"
                 text.attributes["style"] = "text-anchor: start"
               else
                 text.attributes["style"] = "text-anchor: middle"
