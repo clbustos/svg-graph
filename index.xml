@@ -16,14 +16,6 @@
 
       <email>serATgermaneHYPHENsoftwareDOTcom</email>
     </author>
-
-    <revhistory>
-      <revision>
-        <revnumber>0.1.0</revnumber>
-
-        <date>+2004/100</date>
-      </revision>
-    </revhistory>
   </articleinfo>
 
   <sect1>
@@ -32,11 +24,12 @@
     <para>SVG:::Graph is a pure Ruby library for generating charts, which are
     a type of graph where the values of one axis are not scalar. SVG::Graph
     has a verry similar API to the Perl library SVG::TT::Graph, and the
-    resulting charts also look the same.</para>
+    resulting charts also look the same. This isn't surprising, because
+    SVG::Graph started as a loose port of SVG::TT::Graph, although the
+    internal code no longer resembles the Perl original at all.</para>
 
-    <para>This isn't surprising, because SVG::Graph started as a loose port of
-    SVG::TT::Graph, although the internal code no longer resembles the Perl
-    original at all.</para>
+    <para>SVG::Graph isn't only for charts. With version 0.4.0, support for
+    Plot charts was added, so scalar data may now be charted.</para>
   </sect1>
 
   <sect1>
@@ -174,6 +167,10 @@
       <listitem>
         <para>Pie</para>
       </listitem>
+
+      <listitem>
+        <para>Plot (this is scalar data)</para>
+      </listitem>
     </itemizedlist>
   </sect1>
 
@@ -221,7 +218,7 @@
 
       <para>The bar charts PNGs tend to be smaller than the uncompressed SVGs.
       In the best case (for PNG), the PNG is 66% of the size of the
-      uncompressed SVG. </para>
+      uncompressed SVG.</para>
 
       <para>For line and pie charts, which are a little more visually complex,
       the SVGs are smaller than the PNGs. In the best case, the PNG is 130%

@@ -2,7 +2,7 @@ require 'SVG/Graph/Graph'
 
 module SVG
   module Graph
-    # = SVG::TT::Graph::Line 
+    # = SVG::Graph::Line 
     #
     # == @ANT_VERSION@
     #
@@ -59,6 +59,7 @@ module SVG
     # * SVG::Graph::BarLine
     # * SVG::Graph::Bar
     # * SVG::Graph::Pie
+    # * SVG::Graph::Plot
     # * SVG::Graph::TimeSeries
     class Line < SVG::Graph::Graph
       #    Show a small circle on the graph where the line

@@ -13,18 +13,42 @@
         <imageobject>
           <imagedata fileref="images/bar.svg" format="SVG" />
         </imageobject>
+
+        <caption>
+          <para>SVG::Chart::Bar</para>
+        </caption>
       </mediaobject><mediaobject>
         <imageobject>
           <imagedata fileref="images/barhorizontal.svg" format="SVG" />
         </imageobject>
+
+        <caption>
+          <para>SVG::Chart::BarHorizontal</para>
+        </caption>
       </mediaobject><mediaobject>
         <imageobject>
           <imagedata fileref="images/line.svg" format="SVG" />
         </imageobject>
+
+        <caption>
+          <para>SVG::Chart::Line</para>
+        </caption>
       </mediaobject><mediaobject>
         <imageobject>
           <imagedata fileref="images/pie.svg" format="SVG" />
         </imageobject>
+
+        <caption>
+          <para>SVG::Chart::Pie</para>
+        </caption>
+      </mediaobject><mediaobject>
+        <imageobject>
+          <imagedata fileref="images/plot.svg" format="SVG" />
+        </imageobject>
+
+        <caption>
+          <para>SVG::Chart::Plot</para>
+        </caption>
       </mediaobject></para>
   </sect1>
 
@@ -39,24 +63,50 @@
       <imageobject>
         <imagedata fileref="images/bar.png" format="PNG" />
       </imageobject>
+
+      <caption>
+        <para>SVG::Chart::Bar</para>
+      </caption>
     </mediaobject>
 
     <mediaobject>
       <imageobject>
         <imagedata fileref="images/barhorizontal.png" format="PNG" />
       </imageobject>
+
+      <caption>
+        <para>SVG::Chart::BarHorizontal</para>
+      </caption>
     </mediaobject>
 
     <mediaobject>
       <imageobject>
         <imagedata fileref="images/line.png" format="PNG" />
       </imageobject>
+
+      <caption>
+        <para>SVG::Chart::Line</para>
+      </caption>
     </mediaobject>
 
     <mediaobject>
       <imageobject>
         <imagedata fileref="images/pie.png" format="PNG" />
       </imageobject>
+
+      <caption>
+        <para>SVG::Chart::Pie</para>
+      </caption>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/plot.png" format="PNG" />
+      </imageobject>
+
+      <caption>
+        <para>SVG::Chart::Plot</para>
+      </caption>
     </mediaobject>
   </sect1>
 </article>
