@@ -109,6 +109,24 @@
   </target>
 
 
+	<target name='logs'>
+		<echo>Generating logs...</echo>	
+		<echo file='log.xml'><![CDATA[<log><previous>]]></echo>
+		<exec executable='svn' output='log.xml' append='true'>
+			<arg line='log --xml --incremental'/>
+		</exec>
+    <echo file='log.xml' append='true'><![CDATA[</previous></log>]]></echo>
+
+		<echo>Creating release document...</echo>
+		<style in='log.xml' out='release.html' style='style/release_html.xsl'>
+			<param name='release' expression='${release}'/>
+		</style>
+
+		<echo>Cleaning up...</echo>
+		<delete><fileset dir='.' includes='log.xml'/></delete>
+	</target>
+
+
 	<target name='clean'>
 		<delete>
       <fileset dir='.' includes='dist.xml,*.tgz,*.zip,*~,index.html'/>
