@@ -42,6 +42,22 @@ module SVG
 
 			protected
 
+      def max_value
+        return @data.collect{|x| x[:data].max}.max
+      end
+
+      def min_value
+        min = 0
+
+        if (min_scale_value.nil? == false) then
+          min = min_scale_value
+        else
+          min = @data.collect{|x| x[:data].min}.min
+        end
+
+        return min
+      end
+
       def get_css
         return <<EOL
 /* default fill styles for multiple datasets (probably only use a single dataset on this graph though) */

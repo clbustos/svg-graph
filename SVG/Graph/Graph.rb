@@ -72,6 +72,8 @@ module SVG
       # [show_x_labels] true
       # [stagger_x_labels] false
       # [rotate_x_labels] false
+      # [step_x_labels] 1
+      # [step_include_first_x_label] true
       # [show_y_labels] true
       # [rotate_y_labels] false
       # [scale_integers] false
@@ -113,6 +115,8 @@ module SVG
           :show_x_labels        => true,
           :stagger_x_labels     => false,
           :rotate_x_labels      => false,
+          :step_x_labels        => 1,
+          :step_include_first_x_label => true,
 
           :show_y_labels        => true,
           :rotate_y_labels      => false,
@@ -259,6 +263,17 @@ module SVG
       #   This turns the Y axis labels by 90 degrees.
       #   Default it false, to turn on set to true.
       attr_accessor :rotate_y_labels
+      #   How many "steps" to use between displayed X axis labels,
+      #   a step of one means display every label, a step of two results
+      #   in every other label being displayed (label <gap> label <gap> label),
+      #   a step of three results in every third label being displayed
+      #   (label <gap> <gap> label <gap> <gap> label) and so on.
+      attr_accessor :step_x_labels
+      #   Whether to (when taking "steps" between X axis labels) step from 
+      #   the first label (i.e. always include the first label) or step from
+      #   the X axis origin (i.e. start with a gap if step_x_labels is greater
+      #   than one).
+      attr_accessor :step_include_first_x_label
       #   Whether to show labels on the Y axis or not, defaults
       #   to true, set to false if you want to turn them off.
       attr_accessor :show_y_labels
@@ -508,33 +523,41 @@ module SVG
 
           count = 0
           for label in get_x_labels
-            text = @graph.add_element( "text" )
-            text.attributes["class"] = "xAxisLabels"
-            text.text = label.to_s
-
-            x = count * label_width + x_label_offset( label_width )
-            y = @graph_height + x_label_font_size + 3
-            t = 0 - (font_size / 2)
-
-            if stagger_x_labels and count % 2 == 1
-              y += stagger
-              @graph.add_element( "path", {
-                "d" => "M#{x} #@graph_height v#{stagger}",
-                "class" => "staggerGuideLine"
-              })
-            end
-
-            text.attributes["x"] = x.to_s
-            text.attributes["y"] = y.to_s
-            if rotate_x_labels
-              text.attributes["transform"] = 
-                "rotate( 90 #{x} #{y-x_label_font_size} )"+
-                " translate( 0 -#{x_label_font_size/2} )"
-              text.attributes["style"] = "text-anchor: start"
+            if step_include_first_x_label == true then
+              step = count % step_x_labels
             else
-              text.attributes["style"] = "text-anchor: middle"
+              step = (count + 1) % step_x_labels
             end
-            
+
+            if step == 0 then
+              text = @graph.add_element( "text" )
+              text.attributes["class"] = "xAxisLabels"
+              text.text = label.to_s
+
+              x = count * label_width + x_label_offset( label_width )
+              y = @graph_height + x_label_font_size + 3
+              t = 0 - (font_size / 2)
+
+              if stagger_x_labels and count % 2 == 1
+                y += stagger
+                @graph.add_element( "path", {
+                  "d" => "M#{x} #@graph_height v#{stagger}",
+                  "class" => "staggerGuideLine"
+                })
+              end
+
+              text.attributes["x"] = x.to_s
+              text.attributes["y"] = y.to_s
+              if rotate_x_labels
+                text.attributes["transform"] = 
+                  "rotate( 90 #{x} #{y-x_label_font_size} )"+
+                  " translate( 0 -#{x_label_font_size/2} )"
+                text.attributes["style"] = "text-anchor: start"
+              else
+                text.attributes["style"] = "text-anchor: middle"
+              end
+            end
+
             draw_x_guidelines( label_width, count ) if show_x_guidelines
             count += 1
           end

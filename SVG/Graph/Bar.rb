@@ -71,11 +71,12 @@ module SVG
       end
 
       def get_y_labels
-        max_value = @data.collect{|x| x[:data].max }.max
-        min_value = @data.collect{|x| x[:data].min}.min
-        range = max_value - min_value
+        maxvalue = max_value
+        minvalue = min_value
+        range = maxvalue - minvalue
+
         top_pad = range == 0 ? 10 : range / 20.0
-        scale_range = (max_value + top_pad) - min_value
+        scale_range = (maxvalue + top_pad) - minvalue
 
         scale_division = scale_divisions || (scale_range / 10.0)
 
@@ -84,9 +85,9 @@ module SVG
         end
 
         rv = []
-        max_value = max_value%scale_division == 0 ? 
-          max_value : max_value + scale_division
-        min_value.step( max_value, scale_division ) {|v| rv << v}
+        maxvalue = maxvalue%scale_division == 0 ? 
+          maxvalue : maxvalue + scale_division
+        minvalue.step( maxvalue, scale_division ) {|v| rv << v}
         return rv
       end
 
@@ -96,8 +97,9 @@ module SVG
 
       def draw_data
         fieldwidth = field_width
-        max_value = @data.collect{|x| x[:data].max }.max
-        min_value = @data.collect{|x| x[:data].min}.min
+        maxvalue = max_value
+        minvalue = min_value
+
         fieldheight =  (@graph_height.to_f - font_size*2*top_font) / 
                           (get_y_labels.max - get_y_labels.min)
         bargap = bar_gap ? (fieldwidth < 10 ? fieldwidth / 2 : 10) : 0
@@ -115,7 +117,7 @@ module SVG
             # X1
             p1 = (fieldwidth * field_count)
             # to Y2
-            p3 = @graph_height - (dataset[:data][i] * fieldheight)
+            p3 = @graph_height - ((dataset[:data][i] - minvalue) * fieldheight)
             p1 += subbar_width * dataset_count if stack == :side
             @graph.add_element( "path", {
               "class" => "fill#{dataset_count+1}",

@@ -107,6 +107,40 @@ module SVG
 
       protected
 
+      def max_value
+        max = 0
+        
+        if (stacked == true) then
+          sums = Array.new(@config[:fields].length).fill(0)
+
+          @data.each do |data|
+            sums.each_index do |i|
+              sums[i] += data[:data][i].to_f
+            end
+          end
+          
+          max = sums.max
+        else
+          max = @data.collect{|x| x[:data].max}.max
+        end
+
+        return max
+      end
+
+      def min_value
+        min = 0
+        
+        if (min_scale_value.nil? == false) then
+          min = min_scale_value
+        elsif (stacked == true) then
+          min = @data[-1][:data].min
+        else
+          min = @data.collect{|x| x[:data].min}.min
+        end
+
+        return min
+      end
+
       def get_x_labels
         @config[:fields]
       end
@@ -118,11 +152,11 @@ module SVG
       end
 
       def get_y_labels
-        max_value = @data.collect{|x| x[:data].max}.max
-        min_value = @data.collect{|x| x[:data].min}.min
-        range = max_value - min_value
+        maxvalue = max_value
+        minvalue = min_value
+        range = maxvalue - minvalue
         top_pad = range == 0 ? 10 : range / 20.0
-        scale_range = (max_value + top_pad) - min_value
+        scale_range = (maxvalue + top_pad) - minvalue
 
         scale_division = scale_divisions || (scale_range / 10.0)
 
@@ -131,58 +165,88 @@ module SVG
         end
 
         rv = []
-        max_value = max_value%scale_division == 0 ? 
-          max_value : max_value + scale_division
-        min_value.step( max_value, scale_division ) {|v| rv << v}
+        maxvalue = maxvalue%scale_division == 0 ? 
+          maxvalue : maxvalue + scale_division
+        minvalue.step( maxvalue, scale_division ) {|v| rv << v}
         return rv
       end
 
+      def calc_coords(field, value, width = field_width, height = field_height)
+        coords = {:x => 0, :y => 0}
+        coords[:x] = width * field
+        coords[:y] = @graph_height - value * height
+      
+        return coords
+      end
+
       def draw_data
-        fieldheight = field_height
+        minvalue = min_value
+        fieldheight = (@graph_height.to_f - font_size*2*top_font) / 
+                         (get_y_labels.max - get_y_labels.min)
         fieldwidth = field_width
         line = @data.length
-        
-        for data in @data.reverse
-          lpath = "M0 #@graph_height L"
-          field_count = 0
-          data[:data].each { |field|
-            x = fieldwidth * field_count
-            y = @graph_height - field * fieldheight
-            lpath << "#{x} #{y} "
-            field_count += 1
-          }
 
+        prev_sum = Array.new(@config[:fields].length).fill(0)
+        cum_sum = Array.new(@config[:fields].length).fill(-minvalue)
+
+        for data in @data.reverse
+          lpath = ""
+          apath = ""
+
+          if not stacked then cum_sum.fill(-minvalue) end
+          
+          data[:data].each_index do |i|
+            cum_sum[i] += data[:data][i]
+            
+            c = calc_coords(i, cum_sum[i], fieldwidth, fieldheight)
+            
+            lpath << "#{c[:x]} #{c[:y]} "
+          end
+        
           if area_fill
-            field_count = 0
-            @graph.add_element( "path", {
-              "d" => "#{lpath} V#@graph_height Z",
+            if stacked then
+              (prev_sum.length - 1).downto 0 do |i|
+                c = calc_coords(i, prev_sum[i], fieldwidth, fieldheight)
+                
+                apath << "#{c[:x]} #{c[:y]} "
+              end
+          
+              c = calc_coords(0, prev_sum[0], fieldwidth, fieldheight)
+            else
+              apath = "V#@graph_height"
+              c = calc_coords(0, 0, fieldwidth, fieldheight)
+            end
+              
+            @graph.add_element("path", {
+              "d" => "M#{c[:x]} #{c[:y]} L" + lpath + apath + "Z",
               "class" => "fill#{line}"
             })
           end
-
-          @graph.add_element( "path", {
-            "d" => "M0 #@graph_height #{lpath}",
+        
+          @graph.add_element("path", {
+            "d" => "M0 #@graph_height L" + lpath,
             "class" => "line#{line}"
           })
-
+          
           if show_data_points || show_data_values
-            field_count = 0
-            data[:data].each { |field|
+            cum_sum.each_index do |i|
               if show_data_points
                 @graph.add_element( "circle", {
-                  "cx" => (fieldwidth * field_count).to_s,
-                  "cy" => (@graph_height - field * fieldheight).to_s,
+                  "cx" => (fieldwidth * i).to_s,
+                  "cy" => (@graph_height - cum_sum[i] * fieldheight).to_s,
                   "r" => "2.5",
                   "class" => "dataPoint#{line}"
                 })
               end
               make_datapoint_text( 
-                fieldwidth * field_count, 
-                @graph_height - field*fieldheight - 6,
-                field )
-              field_count += 1
-            }
+                fieldwidth * i, 
+                @graph_height - cum_sum[i] * fieldheight - 6,
+                cum_sum[i] + minvalue
+              )
+            end
           end
+
+          prev_sum = cum_sum.dup
           line -= 1
         end
       end

@@ -73,11 +73,11 @@ module SVG
       protected
 
       def get_x_labels
-        max_value = @data.collect{|x| x[:data].max}.max
-        min_value = @data.collect{|x| x[:data].min}.min
-        range = max_value - min_value
+        maxvalue = max_value
+        minvalue = min_value
+        range = maxvalue - minvalue
         top_pad = range == 0 ? 10 : range / 20.0
-        scale_range = (max_value + top_pad) - min_value
+        scale_range = (maxvalue + top_pad) - minvalue
 
         scale_division = scale_divisions || (scale_range / 10.0)
 
@@ -86,9 +86,9 @@ module SVG
         end
 
         rv = []
-        max_value = max_value%scale_division == 0 ? 
-          max_value : max_value + scale_division
-        min_value.step( max_value, scale_division ) {|v| rv << v}
+        maxvalue = maxvalue%scale_division == 0 ? 
+          maxvalue : maxvalue + scale_division
+        minvalue.step( maxvalue, scale_division ) {|v| rv << v}
         return rv
       end
 
@@ -101,6 +101,7 @@ module SVG
       end
 
       def draw_data
+        minvalue = min_value
         fieldheight = field_height
         fieldwidth = (@graph_width.to_f - font_size*2*right_font ) /
                         (get_x_labels.max - get_x_labels.min )
@@ -116,7 +117,7 @@ module SVG
           for dataset in @data
             y = @graph_height - (fieldheight * field_count)
             y += (subbar_height * dataset_count) if stack == :side
-            x = dataset[:data][i] * fieldwidth
+            x = (dataset[:data][i] - minvalue) * fieldwidth
 
             @graph.add_element( "path", {
               "d" => "M0 #{y} H#{x} v#{subbar_height} H0 Z",
