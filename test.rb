@@ -6,7 +6,7 @@ require 'SVG/Graph/Pie'
 def gen klass, args, title, fields, female_data, male_data
   args[ :width ] = 640
   args[ :height ] = 480
-  args[ :compress ] = true
+  #args[ :compress ] = true
   args[ :fields ] = fields
   args[ :graph_title ] = title
   args[ :show_graph_title ] = true
@@ -39,7 +39,7 @@ File.open( "data.txt" ) { |fin|
     [ "pie", SVG::Graph::Pie, 
       { :expand_greatest => true, :show_data_labels => true,} ],
     ]
-    File.open("#{file}.svgz", "w") {|fout| 
+    File.open("#{file}.svg", "w") {|fout| 
       fout.print( gen(klass, args, title, fields, female_data, male_data ) )
     }
   end

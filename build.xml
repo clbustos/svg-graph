@@ -111,7 +111,7 @@
 
 	<target name='clean'>
 		<delete>
-      <fileset dir='.' includes='*.tgz,*.zip,*~,index.html'/>
+      <fileset dir='.' includes='dist.xml,*.tgz,*.zip,*~,index.html'/>
       <fileset dir='doc'/>
 		</delete>
 	</target>

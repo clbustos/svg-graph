@@ -29,17 +29,14 @@
   <sect1>
     <title>What is it?</title>
 
-    <para>SVG::Graph is a loose port of the Perl SVG::TT:Graph package. It is
-    a toolkit for generating SVG data graphs, which are a species of plot that
-    are oriented toward displaying statistical data.</para>
+    <para>SVG:::Graph is a pure Ruby library for generating charts, which are
+    a type of graph where the values of one axis are not scalar. SVG::Graph
+    has a verry similar API to the Perl library SVG::TT::Graph, and the
+    resulting charts also look the same.</para>
 
-    <para>Actually, I just made all of that up. Graphs are a specialization of
-    plots in which the data points on one axis are not scalar. That is, the
-    columns tend to be names rather than numbers, and if they
-    <emphasis>are</emphasis> numbers, the screen representation doesn't insert
-    missing data points on that axis. That is, if you only have data for 1, 2,
-    and 5, then you'll only get three points, and 5 won't be displayed further
-    away from 2 than 2 is from 1.</para>
+    <para>This isn't surprising, because SVG::Graph started as a loose port of
+    SVG::TT::Graph, although the internal code no longer resembles the Perl
+    original at all.</para>
   </sect1>
 
   <sect1>
@@ -199,6 +196,47 @@
     pretty comprehensive (Leo Lapworth did a really good job on the docs, and
     I stole most of them), and there's an example application in the main
     directory.</para>
+  </sect1>
+
+  <sect1>
+    <title>Notes</title>
+
+    <sect2>
+      <title>SVG feature support</title>
+
+      <para>Some SVG renderers (librsvg) do not understand CSS. This is a
+      problem with Perl's SVG::TT::Graph, because <emphasis>all</emphasis> of
+      the styling of the charts it generates is done with CSS. SVG::Graph is
+      able to inline the styles, rendering graphs that are compatible with
+      more viewers.</para>
+
+      <para>The Pie chart uses the feGaussianBlur filter to generate the
+      shadow, whiich is also unsupperted by some renderers (librsvg). The
+      shadow will not look as smooth on those displays, although it will
+      render.</para>
+    </sect2>
+
+    <sect2>
+      <title>Sizes</title>
+
+      <para>The bar charts PNGs tend to be smaller than the uncompressed SVGs.
+      In the best case (for PNG), the PNG is 66% of the size of the
+      uncompressed SVG. </para>
+
+      <para>For line and pie charts, which are a little more visually complex,
+      the SVGs are smaller than the PNGs. In the best case, the PNG is 130%
+      the size of the SVG. In the worst case, the PNG is 220% the size of the
+      uncompressed SVG.</para>
+
+      <para>The compressed SVGs are always much smaller than the PNGs. In the
+      best case (a vertical bar chart), the PNG is 4.4 times the size of the
+      compressed SVG, and in the worst case (for a pie chart), it is over 12
+      times the size of the compressed SVG.</para>
+
+      <para>These values were measured with inline styled SVGs, and the PNGs
+      were reduced to 8-bit, indexed images, and were crushed with
+      pngcrush.</para>
+    </sect2>
   </sect1>
 
   <sect1>

@@ -19,9 +19,9 @@
 	<!-- A short description for the index page. Can contain HTML -->
 	<description>
 		<p>
-SVG::Graph is a loose port of the Perl SVG::TT:Graph package.  It is a toolkit
-for generating SVG data graphs, which are a species of plot that are oriented
-toward displaying statistical data.
+      SVG:::Graph is a pure Ruby library for generating charts, which are a type of graph 
+      where the values of one axis are not scalar.  SVG::Graph has a verry similar API
+      to the Perl library SVG::TT::Graph, and the resulting charts also look the same.
 		</p>
 
 		<p>This software is distribute under the Ruby license.</p>
