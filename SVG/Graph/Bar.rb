@@ -1,73 +1,157 @@
 require 'rexml/document'
 require 'SVG/Graph/Graph'
 
-=begin
-
-SVG::Graph::Bar - Create presentation quality SVG bar graphs easily
-
-=SYNOPSIS
-
-  require 'SVG/Graph/Bar'
-
-  fields = %w(Jan Feb Mar);
-  data_sales_02 = %w(12 45 21)
-
-  graph = SVG::Graph::Bar.new({
-    :height => 500,
-    :width => 300,
-    :fields => fields
-  })
-  
-  graph.add_data({
-    :data => data_sales_02,
-    :title => 'Sales 2002'
-  })
-  
-  print "Content-type: image/svg+xml\r\n\r\n"
-  print graph.burn
-
-=DESCRIPTION
-
-This object aims to allow you to easily create high quality
-SVG bar graphs. You can either use the default style sheet
-or supply your own. Either way there are many options which can
-be configured to give you control over how the graph is
-generated - with or without a key, data elements at each point,
-title, subtitle etc.
-
-Copyright 2004 Sean E. Russell
-
-=NOTES
-
-The default stylesheet handles upto 12 data sets, if you
-use more you must create your own stylesheet and add the
-additional settings for the extra data sets. You will know
-if you go over 12 data sets as they will have no style and
-be in black.
-
-=EXAMPLES
-
-* http://germane-software.com/repositories/public/SVG/test.rb
-
-=ACKNOWLEDGEMENTS
-
-Leo Lapworth for creating the SVG::TT::Graph package which this Ruby
-port is based on.
-
-Stephen Morgan for creating the TT template and SVG.
-
-=AUTHOR
-
-Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
-
-=SEE ALSO
-
-* SVG::Graph::Graph
-* SVG::Graph::BarHorizontal
-
-=end
 module SVG
   module Graph
+    # =SVG::Graph::Bar 
+    #
+    # ===Create presentation quality SVG bar graphs easily
+    #
+    # ==Synopsis
+    #
+    #   require 'SVG/Graph/Bar'
+    #
+    #   fields = %w(Jan Feb Mar);
+    #   data_sales_02 = %w(12 45 21)
+    #
+    #   graph = SVG::Graph::Bar.new({
+    #     :height => 500,
+    #     :width => 300,
+    #     :fields => fields
+    #   })
+    #
+    #   graph.add_data({
+    #     :data => data_sales_02,
+    #     :title => 'Sales 2002'
+    #   })
+    #
+    #   print "Content-type: image/svg+xml\r\n\r\n"
+    #   print graph.burn
+    #
+    # ==Description
+    #
+    # This object aims to allow you to easily create high quality
+    # SVG bar graphs. You can either use the default style sheet
+    # or supply your own. Either way there are many options which can
+    # be configured to give you control over how the graph is
+    # generated - with or without a key, data elements at each point,
+    # title, subtitle etc.
+    #
+    # Copyright 2004 Sean E. Russell
+    #
+    # ==Notes
+    #
+    # The default stylesheet handles upto 12 data sets, if you
+    # use more you must create your own stylesheet and add the
+    # additional settings for the extra data sets. You will know
+    # if you go over 12 data sets as they will have no style and
+    # be in black.
+    #
+    # ==Examples
+    #
+    # * http://germane-software.com/repositories/public/SVG/test.rb
+    #
+    # ==Acknowledgements
+    #
+    # Leo Lapworth for creating the SVG::TT::Graph package which this Ruby
+    # port is based on.
+    #
+    # Stephen Morgan for creating the TT template and SVG.
+    #
+    # ==Author
+    #
+    # Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
+    #
+    # ==See also
+    #
+    # * SVG::Graph::Graph
+    # * SVG::Graph::BarHorizontal
+    #
+    # =Options
+    #
+    # These options can be set in the config passed to the initializer,
+    # or they can be set via "=" methods after object instantiation.
+    #
+    # [height] 
+    #   Set the height of the graph box, this is the total height
+    #   of the SVG box created - not the graph it self which auto
+    #   scales to fix the space.
+    # [width] 
+    #   Set the width of the graph box, this is the total width
+    #   of the SVG box created - not the graph it self which auto
+    #   scales to fix the space.
+    # [style_sheet]
+    #   Set the path to an external stylesheet, set to '' if
+    #   you want to revert back to using the defaut internal version.
+    #
+    #   To create an external stylesheet create a graph using the
+    #   default internal version and copy the stylesheet section to
+    #   an external file and edit from there.
+    # [show_data_values]
+    #   (Bool) Show the value of each element of data on the graph
+    # [bar_gap]
+    #   Whether to have a gap between the bars or not, default
+    #   is true, set to false if you don't want gaps.
+    # [min_scale_value]
+    #   The point at which the Y axis starts, defaults to '0',
+    #   if set to nil it will default to the minimum data value.
+    # [show_x_labels]
+    #   Whether to show labels on the X axis or not, defaults
+    #   to true, set to false if you want to turn them off.
+    # [stagger_x_labels]
+    #   This puts the labels at alternative levels so if they
+    #   are long field names they will not overlap so easily.
+    #   Default it false, to turn on set to true.
+    # [rotate_x_labels]
+    #   This turns the X axis labels by 90 degrees.
+    #   Default it false, to turn on set to true.
+    # [show_y_labels]
+    #   Whether to show labels on the Y axis or not, defaults
+    #   to true, set to false if you want to turn them off.
+    # [scale_integers]
+    #   Ensures only whole numbers are used as the scale divisions.
+    #   Default it false, to turn on set to true. This has no effect if 
+    #   scale divisions are less than 1.
+    # [scale_divisions]
+    #   This defines the gap between markers on the Y axis,
+    #   default is a 10th of the max_value, e.g. you will have
+    #   10 markers on the Y axis. NOTE: do not set this too
+    #   low - you are limited to 999 markers, after that the
+    #   graph won't generate.
+    # [show_x_title]
+    #   Whether to show the title under the X axis labels,
+    #   default is false, set to true to show.
+    # [x_title]
+    #   What the title under X axis should be, e.g. 'Months'.
+    # [show_y_title]
+    #   Whether to show the title under the Y axis labels,
+    #   default is false, set to true to show.
+    # [y_title_text_direction]
+    #   Aligns writing mode for Y axis label. 
+    #   Defaults to :bt (Bottom to Top).
+    #   Change to :tb (Top to Bottom) to reverse.
+    # [y_title]
+    #   What the title under Y axis should be, e.g. 'Sales in thousands'.
+    # [show_graph_title]
+    #   Whether to show a title on the graph, defaults
+    #   to false, set to true to show.
+    # [graph_title]
+    #   What the title on the graph should be.
+    # [show_graph_subtitle]
+    #   Whether to show a subtitle on the graph, defaults
+    #   to false, set to true to show.
+    # [graph_subtitle]
+    #   What the subtitle on the graph should be.
+    # [key]
+    #   Whether to show a key, defaults to false, set to
+    #   true if you want to show it.
+    # [key_position]
+    #   Where the key should be positioned, defaults to
+    #   :right, set to :bottom if you want to move it.
+    # [stack]
+    #   How to stack data sets.  :overlap overlaps bars with
+    #   transparent colors, :top stacks bars on top of one another,
+    #   :side stacks the bars side-by-side. Defaults to :overlap.
     class Bar < SVG::Graph::Graph
       include REXML
       # The constructor takes a hash reference, fields (the names for each
@@ -526,96 +610,7 @@ module SVG
         return d
       end
 
-      ##########################################################################
-      # The following is a list of the methods which are available
-      # to change the config of the graph object after it has been
-      # created.
-      #   
-      #   value = graph.method
-      #   graph.method = value
-      ##########################################################################
 
-
-      # [height] 
-      #   Set the height of the graph box, this is the total height
-      #   of the SVG box created - not the graph it self which auto
-      #   scales to fix the space.
-      # [width] 
-      #   Set the width of the graph box, this is the total width
-      #   of the SVG box created - not the graph it self which auto
-      #   scales to fix the space.
-      # [style_sheet]
-      #   Set the path to an external stylesheet, set to '' if
-      #   you want to revert back to using the defaut internal version.
-      #
-      #   To create an external stylesheet create a graph using the
-      #   default internal version and copy the stylesheet section to
-      #   an external file and edit from there.
-      # [show_data_values]
-      #   (Bool) Show the value of each element of data on the graph
-      # [bar_gap]
-      #   Whether to have a gap between the bars or not, default
-      #   is true, set to false if you don't want gaps.
-      # [min_scale_value]
-      #   The point at which the Y axis starts, defaults to '0',
-      #   if set to nil it will default to the minimum data value.
-      # [show_x_labels]
-      #   Whether to show labels on the X axis or not, defaults
-      #   to true, set to false if you want to turn them off.
-      # [stagger_x_labels]
-      #   This puts the labels at alternative levels so if they
-      #   are long field names they will not overlap so easily.
-      #   Default it false, to turn on set to true.
-      # [rotate_x_labels]
-      #   This turns the X axis labels by 90 degrees.
-      #   Default it false, to turn on set to true.
-      # [show_y_labels]
-      #   Whether to show labels on the Y axis or not, defaults
-      #   to true, set to false if you want to turn them off.
-      # [scale_integers]
-      #   Ensures only whole numbers are used as the scale divisions.
-      #   Default it false, to turn on set to true. This has no effect if 
-      #   scale divisions are less than 1.
-      # [scale_divisions]
-      #   This defines the gap between markers on the Y axis,
-      #   default is a 10th of the max_value, e.g. you will have
-      #   10 markers on the Y axis. NOTE: do not set this too
-      #   low - you are limited to 999 markers, after that the
-      #   graph won't generate.
-      # [show_x_title]
-      #   Whether to show the title under the X axis labels,
-      #   default is false, set to true to show.
-      # [x_title]
-      #   What the title under X axis should be, e.g. 'Months'.
-      # [show_y_title]
-      #   Whether to show the title under the Y axis labels,
-      #   default is false, set to true to show.
-      # [y_title_text_direction]
-      #   Aligns writing mode for Y axis label. 
-      #   Defaults to :bt (Bottom to Top).
-      #   Change to :tb (Top to Bottom) to reverse.
-      # [y_title]
-      #   What the title under Y axis should be, e.g. 'Sales in thousands'.
-      # [show_graph_title]
-      #   Whether to show a title on the graph, defaults
-      #   to false, set to true to show.
-      # [graph_title]
-      #   What the title on the graph should be.
-      # [show_graph_subtitle]
-      #   Whether to show a subtitle on the graph, defaults
-      #   to false, set to true to show.
-      # [graph_subtitle]
-      #   What the subtitle on the graph should be.
-      # [key]
-      #   Whether to show a key, defaults to false, set to
-      #   true if you want to show it.
-      # [key_position]
-      #   Where the key should be positioned, defaults to
-      #   :right, set to :bottom if you want to move it.
-      # [stack]
-      #   How to stack data sets.  :overlap overlaps bars with
-      #   transparent colors, :top stacks bars on top of one another,
-      #   :side stacks the bars side-by-side. Defaults to :overlap.
       attr_accessor :height, :width, :style_sheet, :show_data_values, :bar_gap, :min_scale_value, :show_x_labels, :stagger_x_labels, :rotate_x_labels, :show_y_labels, :scale_integers, :scale_divisions, :show_x_title, :x_title, :show_y_title, :y_title_text_direction, :y_title, :show_graph_title, :graph_title, :show_graph_subtitle, :graph_subtitle, :key, :key_position, :stack
 
 

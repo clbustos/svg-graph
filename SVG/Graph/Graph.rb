@@ -4,69 +4,69 @@ begin
 rescue
   @@__have_zlib = false
 end
-=begin
-= SVG::Graph - Base object for generating SVG Graphs
 
-== SYNOPSIS
-
-  module SVG::Graph::Graph_Type
-    include SVG::Graph
-
-    def set_defaults
-      default = { 'keys' => 'value }
-      default.each { |key, value|
-        this.config[ key ] = value
-      }
-    end
-
-    def get_template
-      template = 'set the template'
-      return template
-    end
-
-    def _init
-      # any testing you want to do
-    end
-  end
-  
-In your script...
-  
-  require 'SVG/Graph/Graph_Type'
-
-  width = 500
-  height = 300
-  fields = %w{ field_1 field_2 field_3 )
-
-  graph = SVG::Graph::Graph_Type.new( {
-    :fields => fields,
-    # ... other config options
-    :height => height
-  })
-
-  data = [ 23, 56, 32 ]
-
-  graph.add_data( {
-    :data => data,
-    :title => 'Sales 2002'
-  })
-
-  config_value = graph.config_option
-  graph.config_option = config_value
-
-  graph.compress = true
-
-  print "Content-type: image/svg+xml\r\n"
-  print graph.burn
-
-== DESCRIPTION
-
-This package should be used as a base for creating SVG graphs.
-
-See SVG::TT::Graph::Line for an example.
-
-=end
 module SVG
   module Graph
+    # = SVG::Graph 
+    #
+    # ===Base object for generating SVG Graphs
+    # 
+    # == Synopsis
+    # 
+    #   module SVG::Graph::Graph_Type
+    #     include SVG::Graph
+    # 
+    #     def set_defaults
+    #       default = { 'keys' => 'value }
+    #       default.each { |key, value|
+    #         this.config[ key ] = value
+    #       }
+    #     end
+    # 
+    #     def get_template
+    #       template = 'set the template'
+    #       return template
+    #     end
+    # 
+    #     def _init
+    #       # any testing you want to do
+    #     end
+    #   end
+    #   
+    # In your script...
+    #   
+    #   require 'SVG/Graph/Graph_Type'
+    # 
+    #   width = 500
+    #   height = 300
+    #   fields = %w{ field_1 field_2 field_3 )
+    # 
+    #   graph = SVG::Graph::Graph_Type.new( {
+    #     :fields => fields,
+    #     # ... other config options
+    #     :height => height
+    #   })
+    # 
+    #   data = [ 23, 56, 32 ]
+    # 
+    #   graph.add_data( {
+    #     :data => data,
+    #     :title => 'Sales 2002'
+    #   })
+    # 
+    #   config_value = graph.config_option
+    #   graph.config_option = config_value
+    # 
+    #   graph.compress = true
+    # 
+    #   print "Content-type: image/svg+xml\r\n"
+    #   print graph.burn
+    # 
+    # == Description
+    # 
+    # This package should be used as a base for creating SVG graphs.
+    # 
+    # See SVG::Graph::Bar for an example.
     class Graph
       VERSION = '0.06'
 

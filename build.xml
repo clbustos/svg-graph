@@ -8,9 +8,9 @@
 		<filter token='ANT_DATE' value='${date}'/>
 		<delete dir='doc'/>
     <mkdir dir='temp'/>
-    <copy todir='temp' filtering='true'> <fileset dir='src/rexml'/> </copy>
+    <copy todir='temp' filtering='true'> <fileset dir='SVG'/> </copy>
 		<exec executable='rdoc'>
-      <arg line='--main temp/Graph.rb --op doc --exclude .svn temp'/>
+      <arg line='--main SVG::Graph::Graph --op doc --exclude .svn temp'/>
 		</exec>
     <delete dir='temp'/>
 	</target>
@@ -27,9 +27,7 @@
 		<gzip zipfile='svg_graph_api_${release}.tgz' src='svg_graph_api_${release}.tar'/>
     <zip zipfile='svg_graph_api_${release}.zip' basedir='dist'/>
 		<delete dir='dist'/>
-		<delete>
-			<fileset dir='.' includes='*.tar'/>
-		</delete>
+		<delete> <fileset dir='.' includes='*.tar'/> </delete>
 	</target>
 
 	<target name='dist.xml'>
@@ -40,21 +38,23 @@
 
 
 	<!-- Builds the distribution archive -->
-	<target name='dist' depends='dist.xml,docs,api'>
-		<mkdir dir='dist'/>
-		<mkdir dir='dist/svg_graph_${release}'/>
+	<target name='dist' depends='dist.xml,api'>
 		<filter token='ANT_VERSION' value='${release}'/>
 		<filter token='ANT_DATE' value='${date}'/>
+
 		<copy todir='dist/svg_graph_${release}' filtering='true'>
 			<fileset dir='.' excludes='**/.svn/**,*~'
-				includes='dist.xml,SVG,README.txt'/>
+				includes='README.txt,test.rb,data.txt'/>
 		</copy>
 		<copy todir='dist/svg_graph_${release}'> 
-			<fileset dir='.' includes='doc/**'/> 
+      <fileset dir='.' includes='doc/**,SVG/**'/> 
 		</copy>
+
 		<tar tarfile='svg_graph_${release}.tar' basedir='dist'/>
 		<gzip zipfile='svg_graph_${release}.tgz' src='svg_graph_${release}.tar'/>
 		<zip zipfile='svg_graph_${release}.zip' basedir='dist'/>
+
+    <!-- clean up -->
 		<delete dir='dist'/>
 		<delete>
 			<fileset dir='.' includes='*.tar'/>
@@ -62,7 +62,7 @@
 	</target>
 
 
-	<target name='web' depends='docs,api'>
+	<target name='web' depends='api'>
 		<delete dir='dist'/>
 		<mkdir dir='dist'/>
 		<filter token='ANT_VERSION' value='${release}'/>
@@ -81,12 +81,12 @@
 
 	<target name='clean'>
 		<delete>
-			<fileset dir='.' includes='*.tgz,*.zip,*~'/>
+      <fileset dir='.' includes='*.tgz,*.zip,*~,dist.xml'/>
 		</delete>
 		<delete> <fileset dir='doc'/> </delete>
 	</target>
 
 	<!-- The main task.  We don't have to compile anything, so we just
 			build a bunch of documentation and some distribution archives. -->
-	<target name='build-dist' depends='api-dist,dist,docs,web'/>
+	<target name='build-dist' depends='api-dist,dist,web'/>
 </project>
