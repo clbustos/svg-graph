@@ -35,7 +35,7 @@
   <sect1>
     <title>What's new?</title>
     <para>You can find that out in the <ulink 
-        href='changelog.html'>change log.</ulink></para>
+        url='changelog.html'>change log.</ulink></para>
   </sect1>
 
   <sect1>
@@ -117,7 +117,7 @@
     <para>The SVG::TT:Graph package is just fine. It lacked a couple of
     features that I wanted, and it was in Perl<footnote>
         <para>Perl is from Hell. The language is bad enough, but working with
-        the package system -- CPAN, etc. -- is an excercize in masochism. I'd
+        the package system -- CPAN, etc. -- is an exercize in masochism. I'd
         rather chew on glass.</para>
       </footnote>, so I re-implemented it.</para>
 
