@@ -53,12 +53,8 @@
       </imageobject>
     </mediaobject>
 
-    <para>The SVG output by SVG::Graph uses CSS for styling, and a depressing
-    number of SVG viewers don't do CSS correctly yet. If the above image is
-    entirely black, your SVG viewer doesn't handle CSS properly. If the above
-    image doesn't display at all, your browser probably doesn't understand
-    SVG. The Adobe plugin does, as does Batik. In any case, here's a PNG
-    version of the above image for the SVG-challenged:</para>
+    <para>Here's a PNG version of the above image for the
+    SVG-challenged:</para>
 
     <mediaobject>
       <imageobject>
@@ -79,6 +75,9 @@
     <para>If you want one of the features that this package has that the Perl
     version doesn't, and you don't mind doing your graph code in Ruby, then
     this package is for you.</para>
+
+    <para>If you want to generate SVGs that aren't CSS styled (and work with
+    more SVG renderers), use this package.</para>
 
     <para>If you're a Perl wienie or you have something against Ruby, use
     SVG::TT::Graph. If it doesn't provide you with the features you want, hack
@@ -151,8 +150,16 @@
     allows you to place the data bars from multiple data sets on the same
     graph side-by-side, rather than overlapping.</para>
 
-    <para>SVG::Graph is probably incomplete. The currently supported graph
-    types are:</para>
+    <para>SVG::Graph also has an option to disable CSS styling of the graphs.
+    This has a number of consequences, both positive and negative. The SVGs
+    generated can be larger without CSS, and they are harder to dynamically
+    style (you can't use your own styles with CSS disabled). However, a number
+    of SVG renderers do not support or do not fully support CSS in SVG (KSVG
+    in Konqueror and librsvg, for instance). Adobe and Batik both support CSS,
+    so if those are your targets, you can use CSS. For maximum compatability,
+    disable CSS with the :no_css attriibute.</para>
+
+    <para>The currently supported graph types are:</para>
 
     <itemizedlist>
       <listitem>
