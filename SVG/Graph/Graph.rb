@@ -7,7 +7,11 @@ end
 
 module SVG
   module Graph
+    VERSION = '@ANT_VERSION@'
+
     # = SVG::Graph 
+    #
+    # ==@ANT_VERSION@
     #
     # ===Base object for generating SVG Graphs
     # 
@@ -68,8 +72,6 @@ module SVG
     # 
     # See SVG::Graph::Bar for an example.
     class Graph
-      VERSION = '0.06'
-
       def initialize( config )
         @config = config
 

@@ -5,6 +5,9 @@ module SVG
   module Graph
     # =SVG::Graph::BarHorizontal
     #
+    # ==@ANT_VERSION@
+    #
+    #
     # ===Create presentation quality SVG horitonzal bar graphs easily
     # 
     # ==Synopsis

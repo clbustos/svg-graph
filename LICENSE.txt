@@ -1,4 +1,4 @@
-REXML is copyrighted free software by Sean Russell <ser@germane-software.com>.
+@ANT_PROJECT@ is copyrighted free software by Sean Russell <ser@germane-software.com>.
 You can redistribute it and/or modify it under either the terms of the GPL
 (see GPL.txt file), or the conditions below:
 

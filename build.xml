@@ -46,7 +46,8 @@
 			<fileset dir='.' excludes='**/.svn/**,*~'
 				includes='README.txt,test.rb,data.txt'/>
 		</copy>
-    <copy tofile='dist/svg_graph_${release}/install.rb' file='install.rb'/>
+    <copy filtering='true'
+      tofile='dist/svg_graph_${release}/install.rb' file='install.rb'/>
 		<copy todir='dist/svg_graph_${release}'> 
       <fileset dir='.' includes='SVG/**'/> 
 		</copy>
@@ -84,17 +85,19 @@
   <target name='docs'>
 		<filter token='ANT_VERSION' value='${release}'/>
 		<filter token='ANT_DATE' value='${date}'/>
+    <filter token='ANT_PROJECT' value='SVG::Graph'/>
 
     <copy tofile='${destdir}/index.xml' file='index.xml' filtering='true'/>
+    <copy todir='${destdir}' overwrite='yes' filtering='true'>
+      <fileset dir='.' includes='screenshot.svg,LICENSE.txt,GPL.txt'/>
+		</copy>
+
     <get dest='index.xsl'
       src='http://germane-software.com/~ser/styles/common.xsl'/>
     <style in='${destdir}/index.xml' out='${destdir}/index.html' 
       style='index.xsl'/>
 
-    <copy todir='${destdir}' overwrite='yes' filtering='true'>
-      <fileset dir='.' 
-        includes='screenshot.svg,index.html,LICENSE.txt,GPL.txt'/>
-		</copy>
+    <delete file='${destdir}/index.xml'/>
   </target>
 
 

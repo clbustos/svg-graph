@@ -5,6 +5,8 @@ module SVG
   module Graph
     # =SVG::Graph::Bar 
     #
+    # ==@ANT_VERSION@
+    #
     # ===Create presentation quality SVG bar graphs easily
     #
     # ==Synopsis
