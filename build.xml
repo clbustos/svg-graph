@@ -116,7 +116,7 @@
 		</delete>
 	</target>
 
-	<!-- The main task.  We don't have to compile anything, so we just
-			build a bunch of documentation and some distribution archives. -->
+  <!-- The main task.  We don't have to compile anything, so we just build a 
+       bunch of documentation and some distribution archives. -->
 	<target name='build-dist' depends='api-dist,dist,web'/>
 </project>

@@ -4,6 +4,14 @@ require 'SVG/Graph/Graph'
 module SVG
   module Graph
     class BarBase < SVG::Graph::Graph
+      def initialize config
+        raise "fields was not supplied or is empty" unless config[:fields] &&
+        config[:fields].kind_of?(Array) &&
+        config[:fields].length > 0
+
+        super
+      end
+
       #   Whether to have a gap between the bars or not, default
       #   is true, set to false if you don't want gaps.
       attr_accessor :bar_gap

@@ -54,6 +54,54 @@ module SVG
     #
     # * http://germane-software.com/repositories/public/SVG/test.rb
     #
+    # The constructor takes a hash reference, fields (the names for each
+    # field on the X axis) MUST be set, all other values are defaulted to 
+    # those shown above - with the exception of style_sheet which defaults
+    # to using the internal style sheet.
+    #
+    #    require 'SVG/Graph/Bar'
+    #    
+    #    # Field names along the X axis
+    #    fields = %w(Jan Feb Mar)
+    #    
+    #    graph = SVG::Graph::Bar.new({
+    #       # Required
+    #       :fields => fields,
+    #       
+    #       # Optional - defaults shown
+    #       :height            => 500,
+    #       :width             => 300,
+    #       :show_data_values  => true,
+    #       
+    #       :min_scale_value   => 0,
+    #       :stagger_x_labels  => false,
+    #       :rotate_x_labels   => false,
+    #       :bar_gap           => true,
+    #       
+    #       :show_x_labels     => true,
+    #       :show_y_labels     => true,
+    #       :scale_integers    => false,
+    #       :scale_divisions   => 0,
+    #       
+    #       :show_x_title      => false,
+    #       :x_title           => 'X Field names',
+    #       
+    #       :show_y_title      => false,
+    #       :y_title_text_direction => :bt,
+    #       :y_title           => 'Y Scale',
+    #       
+    #       :show_graph_title  => false,
+    #       :graph_title       => 'Graph Title',
+    #       :show_graph_subtitle   => false,
+    #       :graph_subtitle        => 'Graph Sub Title',
+    #       
+    #       :key                   => false,
+    #       :key_position          => :right,
+    #       
+    #       # Optional - defaults to using internal stylesheet
+    #       :style_sheet       => '/includes/graph.css'
+    #    })
+    #
     # == Acknowledgements
     #
     # Leo Lapworth for creating the SVG::TT::Graph package which this Ruby
@@ -75,55 +123,10 @@ module SVG
     # * SVG::Graph::TimeSeries
     class Bar < BarBase
       include REXML
-      # The constructor takes a hash reference, fields (the names for each
-      # field on the X axis) MUST be set, all other values are defaulted to 
-      # those shown above - with the exception of style_sheet which defaults
-      # to using the internal style sheet.
-      #
-      #    require 'SVG/Graph/Bar'
-      #    
-      #    # Field names along the X axis
-      #    fields = %w(Jan Feb Mar)
-      #    
-      #    graph = SVG::Graph::Bar.new({
-      #       # Required
-      #       :fields => fields,
-      #       
-      #       # Optional - defaults shown
-      #       :height            => 500,
-      #       :width             => 300,
-      #       :show_data_values  => true,
-      #       
-      #       :min_scale_value   => 0,
-      #       :stagger_x_labels  => false,
-      #       :rotate_x_labels   => false,
-      #       :bar_gap           => true,
-      #       
-      #       :show_x_labels     => true,
-      #       :show_y_labels     => true,
-      #       :scale_integers    => false,
-      #       :scale_divisions   => 0,
-      #       
-      #       :show_x_title      => false,
-      #       :x_title           => 'X Field names',
-      #       
-      #       :show_y_title      => false,
-      #       :y_title_text_direction => :bt,
-      #       :y_title           => 'Y Scale',
-      #       
-      #       :show_graph_title  => false,
-      #       :graph_title       => 'Graph Title',
-      #       :show_graph_subtitle   => false,
-      #       :graph_subtitle        => 'Graph Sub Title',
-      #       
-      #       :key                   => false,
-      #       :key_position          => :right,
-      #       
-      #       # Optional - defaults to using internal stylesheet
-      #       :style_sheet       => '/includes/graph.css'
-      #    })
-      def initialize config
+
+      def set_defaults
         super
+        self.top_align = self.top_font = 1
       end
 
       def get_x_labels
@@ -144,6 +147,8 @@ module SVG
         end
 
         rv = []
+        max_value = max_value%scale_division == 0 ? 
+          max_value : max_value + scale_division
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
       end
@@ -151,11 +156,6 @@ module SVG
       def x_label_offset( width )
         width / 2.0
       end
-
-      def top_align
-        1
-      end
-      alias :top_font :top_align
 
       def draw_data
         fieldwidth = field_width
@@ -181,13 +181,10 @@ module SVG
               "class" => "fill#{dataset_count+1}",
               "d" => "M#{p1} #{p2} V#{p3} h#{subbar_width} V#{p2} Z"
             })
-            if show_data_values
-              @graph.add_element( "text", {
-                "x" => p1 + subbar_width/2,
-                "y" => p3 - 6,
-                "class" => "dataPointLabel"
-              } ).text = dataset[:data][i].to_s
-            end
+            make_datapoint_text(
+              p1 + subbar_width/2.0,
+              p3 - 6,
+              dataset[:data][i].to_s)
             dataset_count += 1
           end
           field_count += 1

@@ -267,6 +267,12 @@ module SVG
               "x" => tx,
               "y" => ty,
               "class" => "dataPointLabel",
+              "style" => "stroke: #fff; stroke-width: 2;"
+            }).text = label
+            foreground.add_element( "text", {
+              "x" => tx,
+              "y" => ty,
+              "class" => "dataPointLabel",
             }).text = label
           end
 

@@ -11,6 +11,7 @@ def gen klass, args, title, fields, female_data, male_data
   args[ :graph_title ] = title
   args[ :show_graph_title ] = true
   args[ :no_css ] = true
+  puts klass.name
   graph = klass.new( args )
   graph.add_data( {
       :data => female_data,

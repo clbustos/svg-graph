@@ -77,9 +77,7 @@ module SVG
       def initialize( config )
         @config = config
 
-        raise "fields was not supplied or is empty" unless @config[:fields] &&
-        @config[:fields].kind_of?(Array) &&
-        @config[:fields].length > 0
+        self.top_align = self.top_font = self.right_align = self.right_font = 0
 
         init_with({
           :width				        => 500,
@@ -312,6 +310,8 @@ module SVG
 
       protected
 
+      attr_accessor :top_align, :top_font, :right_align, :right_font
+
       KEY_BOX_SIZE = 12
 
       # Override this (and call super) to change the margin to the left
@@ -325,7 +325,7 @@ module SVG
             a.to_s.length<=>b.to_s.length
           }.to_s.length * y_label_font_size * 0.6
         @border_left += max_y_label_height_px if show_y_labels
-        @border_left += y_title_font_size if show_y_title
+        @border_left += y_title_font_size + 5 if show_y_title
       end
 
 
@@ -376,6 +376,7 @@ module SVG
           @border_bottom += max_x_label_height_px 
         end
         @border_bottom += x_label_font_size + 5 if stagger_x_labels
+        @border_bottom += x_title_font_size +  5 if show_x_title
       end
 
 
@@ -415,6 +416,24 @@ module SVG
       # Centered in the field, should be width/2.  Start, 0.
       def x_label_offset( width )
         0
+      end
+
+      def make_datapoint_text( x, y, value, style="" )
+        if show_data_values
+          @graph.add_element( "text", {
+            "x" => x,
+            "y" => y,
+            "class" => "dataPointLabel",
+            "style" => "#{style} stroke: #fff; stroke-width: 2;"
+          }).text = value
+          text = @graph.add_element( "text", {
+            "x" => x,
+            "y" => y,
+            "class" => "dataPointLabel"
+          })
+          text.text = value
+          text.attributes["style"] = style if style.length > 0
+        end
       end
 
 
@@ -467,42 +486,14 @@ module SVG
       end
 
 
-      # Override this to leave space at the right of the plot for text
-      # returns 0 by default; change to 1.
-      def right_font
-        0
-      end
-
-
-      # Override this to leave space at the top of the plot for text
-      # returns 0 by default; change to 1.
-      def top_font
-        0
-      end
-
-
-      # Override this to align data to the right of the graph;
-      # returns 0 by default; change to 1.
-      def right_align
-        0
-      end
-
-
-      # Override this to align data to the top of the graph;
-      # returns 0 by default; change to 1.
-      def top_align
-        0
-      end
-
-
       def field_width
-        (@graph_width - font_size*2*right_font) /
+        (@graph_width.to_f - font_size*2*right_font) /
            (get_x_labels.length - right_align)
       end
 
 
       def field_height
-        (@graph_height - font_size*2*top_font) /
+        (@graph_height.to_f - font_size*2*top_font) /
            (get_y_labels.length - top_align)
       end
 
@@ -514,7 +505,7 @@ module SVG
 
           count = 0
           y_offset = @graph_height + y_label_offset( label_height ) +
-                    (font_size * 0.5)
+                    (font_size)
           for label in get_y_labels
             y = y_offset - (label_height * count)
             text = @graph.add_element( "text", {
@@ -579,6 +570,34 @@ module SVG
             "y" => y_subtitle,
             "class" => "subTitle"
           }).text = graph_subtitle
+        end
+
+        if show_x_title
+          y = height - 5
+          x = width / 2
+
+          @root.add_element("text", {
+            "x" => x,
+            "y" => y,
+            "class" => "xAxisTitle",
+          }).text = x_title
+        end
+
+        if show_y_title
+          x = y_title_font_size + (y_title_text_direction==:bt ? 3 : -3)
+          y = height / 2
+
+          text = @root.add_element("text", {
+            "x" => x,
+            "y" => y,
+            "class" => "yAxisTitle",
+          })
+          text.text = y_title
+          if y_title_text_direction == :bt
+            text.attributes["transform"] = "rotate( -90, #{x}, #{y} )"
+          else
+            text.attributes["transform"] = "rotate( 90, #{x}, #{y} )"
+          end
         end
       end
 

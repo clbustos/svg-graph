@@ -140,6 +140,7 @@ module SVG
           :show_x_guidelines  => true,
           :show_y_guidelines  => false
         })
+        self.right_align = self.right_font = 1
       end
   
       def get_x_labels
@@ -156,6 +157,8 @@ module SVG
         end
 
         rv = []
+        max_value = max_value%scale_division == 0 ? 
+          max_value : max_value + scale_division
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
       end
@@ -167,11 +170,6 @@ module SVG
       def y_label_offset( height )
         height / -2.0
       end
-
-      def right_align
-        1
-      end
-      alias :right_font :right_align
 
       def draw_data
         fieldheight = field_height
@@ -194,14 +192,9 @@ module SVG
               "d" => "M0 #{y} H#{x} v#{subbar_height} H0 Z",
               "class" => "fill#{dataset_count+1}"
             })
-            if show_data_values
-              @graph.add_element( "text", {
-                "x" => x + 5,
-                "y" => y + y_mod,
-                "class" => "dataPointLabel",
-                "style" => "text-anchor: start;"
-              }).text = dataset[:data][i]
-            end
+            make_datapoint_text( 
+              x+5, y+y_mod, dataset[:data][i], "text-anchor: start; "
+              )
             dataset_count += 1
           end
           field_count += 1

@@ -118,6 +118,10 @@ module SVG
       # those shown above - with the exception of style_sheet which defaults
       # to using the internal style sheet.
       def initialize config
+        raise "fields was not supplied or is empty" unless config[:fields] &&
+        config[:fields].kind_of?(Array) &&
+        config[:fields].length > 0
+
         super
       end
 
@@ -128,6 +132,8 @@ module SVG
           :stacked            => false,
           :area_fill          => false,
         })
+
+        self.top_align = self.top_font = self.right_align = self.right_font = 1
       end
 
       def get_x_labels
@@ -154,18 +160,11 @@ module SVG
         end
 
         rv = []
+        max_value = max_value%scale_division == 0 ? 
+          max_value : max_value + scale_division
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
       end
-
-      def right_align
-        1
-      end
-
-      def top_align
-        1
-      end
-      alias :top_font :top_align
 
       def draw_data
         fieldheight = field_height
@@ -206,13 +205,10 @@ module SVG
                   "class" => "dataPoint#{line}"
                 })
               end
-              if show_data_values
-                @graph.add_element( "text", {
-                  "x" => fieldwidth * field_count,
-                  "y" => @graph_height - field * fieldheight - 6,
-                  "class" => "dataPointLabel"
-                }).text = field
-              end
+              make_datapoint_text( 
+                fieldwidth * field_count, 
+                @graph_height - field*fieldheight - 6,
+                field )
               field_count += 1
             }
           end
