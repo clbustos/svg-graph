@@ -3,10 +3,6 @@ require 'parsedate'
 
 module SVG
   module Graph
-    # = SVG::Graph::TimeSeries 
-    #
-    # == @ANT_VERSION@
-    #
     # === For creating SVG plots of scalar temporal data
     # 
     # = Synopsis
@@ -53,10 +49,14 @@ module SVG
     #   })
     #   
     #   print graph.burn()
-    # 
+    #
     # = Description
     # 
     # Produces a graph of temporal scalar data.
+    # 
+    # = Examples
+    #
+    # http://www.germane-software/repositories/public/SVG/test/timeseries.rb
     # 
     # = Notes
     # 
@@ -70,7 +70,7 @@ module SVG
     #
     #   [ "12:30", 2 ]          # A data set with 1 point: ("12:30",2)
     #   [ "01:00",2, "14:20",6] # A data set with 2 points: ("01:00",2) and 
-    #                                                       ("14:20",6)  
+    #                           #                           ("14:20",6)  
     #
     # Note that multiple data sets within the same chart can differ in length, 
     # and that the data in the datasets needn't be in order; they will be ordered
@@ -87,12 +87,22 @@ module SVG
     # * SVG::Graph::Line
     # * SVG::Graph::Pie
     # * SVG::Graph::Plot
+    #
+    # == Author
+    #
+    # Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
+    #
+    # Copyright 2004 Sean E. Russell
+    # This software is available under the Ruby license[LICENSE.txt]
+    #
     class TimeSeries < Plot
-      # In addition to the defaults set by Graph and Plot, sets:
+      # In addition to the defaults set by Graph::initialize and
+      # Plot::set_defaults, sets:
       # [x_label_format] '%Y-%m-%d %H:%M:%S'
+      # [popup_format]  '%Y-%m-%d %H:%M:%S'
       def set_defaults
         super
-        init_with( 
+        init_with(
           #:max_time_span     => '',
           :x_label_format     => '%Y-%m-%d %H:%M:%S',
           :popup_format       => '%Y-%m-%d %H:%M:%S'
@@ -103,7 +113,8 @@ module SVG
       # See Time::strformat
       attr_accessor :x_label_format
       # Use this to set the spacing between dates on the axis.  The value
-      # must be of the form "\d+ ?(days|weeks|months|years|hours|minutes|seconds)?"
+      # must be of the form 
+      # "\d+ ?(days|weeks|months|years|hours|minutes|seconds)?"
       # 
       # EG:
       #
@@ -115,6 +126,22 @@ module SVG
       # The formatting used for the popups.  See x_label_format
       attr_accessor :popup_format
 
+      # Add data to the plot.
+      #
+      #   d1 = [ "12:30", 2 ]          # A data set with 1 point: ("12:30",2)
+      #   d2 = [ "01:00",2, "14:20",6] # A data set with 2 points: ("01:00",2) and 
+      #                                #                           ("14:20",6)  
+      #   graph.add_data( 
+      #     :data => d1,
+      #     :title => 'One'
+      #   )
+      #   graph.add_data(
+      #     :data => d2,
+      #     :title => 'Two'
+      #   )
+      #
+      # Note that the data must be in time,value pairs, and that the date format
+      # may be any date that is parseable by ParseDate.
       def add_data data
         @data = [] unless @data
         if not(data[:data] and data[:data].kind_of? Array)
@@ -138,13 +165,14 @@ module SVG
       end
 
 
+      protected
+
       def min_x_value=(value)
         arr = ParseDate.parsedate( value )
         @min_x_value = Time.local( *arr[0,6].compact ).to_i
       end
 
 
-      protected
       def format x, y
         Time.at( x ).strftime( popup_format )
       end

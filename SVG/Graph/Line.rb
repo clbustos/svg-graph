@@ -2,10 +2,6 @@ require 'SVG/Graph/Graph'
 
 module SVG
   module Graph
-    # = SVG::Graph::Line 
-    #
-    # == @ANT_VERSION@
-    #
     # === Create presentation quality SVG line graphs easily
     # 
     # = Synopsis
@@ -13,8 +9,8 @@ module SVG
     #   require 'SVG/Graph/Line'
     # 
     #   fields = %w(Jan Feb Mar);
-    #   data_sales_02 = %w(12 45 21);
-    #   data_sales_03 = %w(15 30 40);
+    #   data_sales_02 = [12, 45, 21]
+    #   data_sales_03 = [15, 30, 40]
     #   
     #   graph = SVG::Graph::Line.new({
     #   	:height => 500,
@@ -44,6 +40,10 @@ module SVG
     # generated - with or without a key, data elements at each point,
     # title, subtitle etc.
     # 
+    # = Examples
+    # 
+    # http://www.germane-software/repositories/public/SVG/test/single.rb
+    # 
     # = Notes
     # 
     # The default stylesheet handles upto 10 data sets, if you
@@ -60,6 +60,14 @@ module SVG
     # * SVG::Graph::Pie
     # * SVG::Graph::Plot
     # * SVG::Graph::TimeSeries
+    #
+    # == Author
+    #
+    # Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
+    #
+    # Copyright 2004 Sean E. Russell
+    # This software is available under the Ruby license[LICENSE.txt]
+    #
     class Line < SVG::Graph::Graph
       #    Show a small circle on the graph where the line
       #    goes from one point to the next.
@@ -70,49 +78,6 @@ module SVG
       # Fill in the area under the plot if true
       attr_accessor :area_fill
 
-      #   require 'SVG/Graph/Line'
-      #   
-      #   # Field names along the X axis
-      #   fields = %w(Jan Feb Mar);
-      #   
-      #   graph = SVG::Graph::Line.new({
-      #     # Required
-      #     :fields => fields,
-      #   
-      #     # Optional - defaults shown
-      #     :height            => '500',
-      #     :width             => '300',
-      #     'show_data_points: => true,
-      #     :show_data_values  => true,
-      #     :stacked           => false,
-      # 
-      #     :min_scale_value   => false,
-      #     :area_fill         => false,
-      #     :show_x_labels     => true,
-      #     :stagger_x_labels  => false,
-      #     :rotate_x_labels   => false,
-      #     :show_y_labels     => true,
-      #     :scale_integers    => false,
-      #     :scale_divisions   => 20,
-      # 	
-      #     :show_x_title      => false,
-      #     :x_title           => 'X Field names',
-      # 
-      #     :show_y_title      => false,
-      #     :y_title_text_direction => :bt,
-      #     :y_title           => 'Y Scale',
-      # 
-      #     :show_graph_title      => false,
-      #     :graph_title           => 'Graph Title',
-      #     :show_graph_subtitle   => false,
-      #     :graph_subtitle        => 'Graph Sub Title',
-      #     :key                   => false,
-      #     :key_position          => :right,
-      # 
-      #     # Optional - defaults to using internal stylesheet
-      #     :style_sheet       => '/includes/graph.css',
-      #   });
-      # 
       # The constructor takes a hash reference, fields (the names for each
       # field on the X axis) MUST be set, all other values are defaulted to 
       # those shown above - with the exception of style_sheet which defaults
@@ -121,20 +86,26 @@ module SVG
         raise "fields was not supplied or is empty" unless config[:fields] &&
         config[:fields].kind_of?(Array) &&
         config[:fields].length > 0
+				super
+			end
 
-        super
-      end
-
-      def set_defaults
-	      init_with({
+      # In addition to the defaults set in Graph::initialize, sets
+      # [show_data_points] true
+      # [show_data_values] true
+      # [stacked] false
+      # [area_fill] false
+			def set_defaults
+        init_with(
           :show_data_points   => true,
           :show_data_values   => true,
           :stacked            => false,
-          :area_fill          => false,
-        })
+          :area_fill          => false
+        )
 
         self.top_align = self.top_font = self.right_align = self.right_font = 1
       end
+
+      protected
 
       def get_x_labels
         @config[:fields]
@@ -199,8 +170,8 @@ module SVG
             data[:data].each { |field|
               if show_data_points
                 @graph.add_element( "circle", {
-                  "cx" => fieldwidth * field_count,
-                  "cy" => @graph_height - field * fieldheight,
+                  "cx" => (fieldwidth * field_count).to_s,
+                  "cy" => (@graph_height - field * fieldheight).to_s,
                   "r" => "2.5",
                   "class" => "dataPoint#{line}"
                 })

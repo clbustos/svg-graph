@@ -2,8 +2,6 @@ require 'SVG/Graph/Graph'
 
 module SVG
   module Graph
-    # = SVG::TT::Graph::Pie 
-    #
     # === Create presentation quality SVG pie graphs easily
     # 
     # == Synopsis
@@ -35,6 +33,10 @@ module SVG
     # be configured to give you control over how the graph is
     # generated - with or without a key, display percent on pie chart,
     # title, subtitle etc.
+    #
+    # = Examples
+    # 
+    # http://www.germane-software/repositories/public/SVG/test/single.rb
     # 
     # == See also
     #
@@ -44,8 +46,16 @@ module SVG
     # * SVG::Graph::Line
     # * SVG::Graph::Plot
     # * SVG::Graph::TimeSeries
+    #
+    # == Author
+    #
+    # Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
+    #
+    # Copyright 2004 Sean E. Russell
+    # This software is available under the Ruby license[LICENSE.txt]
+    #
     class Pie < Graph
-      # Defaults are (those supplied with Graph)
+      # Defaults are those set by Graph::initialize, and
       # [show_shadow] true
       # [shadow_offset] 10
       # [show_data_labels] false
@@ -61,7 +71,7 @@ module SVG
       # [show_y_labels] false
       # [datapoint_font_size] 12
       def set_defaults
-        init_with( {
+        init_with(
           :show_shadow		        => true,
           :shadow_offset	        => 10, 
           
@@ -79,8 +89,8 @@ module SVG
           
           :show_x_labels          => false,
           :show_y_labels          => false,
-          :datapoint_font_size    => 12,
-        })
+          :datapoint_font_size    => 12
+        )
         @data = []
       end
 
@@ -175,10 +185,10 @@ module SVG
       RADIANS = Math::PI/180
 
       def draw_data
-        graph = @root.add_element( "g" )
-        background = graph.add_element("g")
-        midground = graph.add_element("g")
-        foreground = graph.add_element("g")
+        @graph = @root.add_element( "g" )
+        background = @graph.add_element("g")
+        midground = @graph.add_element("g")
+        foreground = @graph.add_element("g")
 
         diameter = @graph_height > @graph_width ? @graph_width : @graph_height
         diameter -= expand_gap if expanded or expand_greatest
@@ -189,7 +199,7 @@ module SVG
         xoff = (width - diameter) / 2
         yoff = (height - @border_bottom - diameter)
         yoff -= 10 if show_shadow
-        graph.attributes['transform'] = "translate( #{xoff} #{yoff} )"
+        @graph.attributes['transform'] = "translate( #{xoff} #{yoff} )"
 
         wedge_text_pad = 5
         wedge_text_pad = 20 if show_percent and show_data_labels
@@ -272,16 +282,16 @@ module SVG
               ty -= (mcr * expand_gap)
             end
             foreground.add_element( "text", {
-              "x" => tx,
-              "y" => ty,
+              "x" => tx.to_s,
+              "y" => ty.to_s,
               "class" => "dataPointLabel",
               "style" => "stroke: #fff; stroke-width: 2;"
-            }).text = label
+            }).text = label.to_s
             foreground.add_element( "text", {
-              "x" => tx,
-              "y" => ty,
+              "x" => tx.to_s,
+              "y" => ty.to_s,
               "class" => "dataPointLabel",
-            }).text = label
+            }).text = label.to_s
           end
 
           prev_percent += percent

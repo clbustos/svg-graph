@@ -11,14 +11,14 @@ module SVG
   module Graph
     VERSION = '@ANT_VERSION@'
 
-    # = SVG::Graph 
-    #
-    # ==@ANT_VERSION@
-    #
-    # ===Base object for generating SVG Graphs
+    # === Base object for generating SVG Graphs
     # 
     # == Synopsis
-    # 
+    #
+    # This class is only used as a superclass of specialized charts.  Do not
+    # attempt to use this class directly, unless creating a new chart type.
+    # FIXME: This process should be documented.
+    #
     #   module SVG::Graph::Graph_Type
     #     include SVG::Graph
     # 
@@ -63,6 +63,13 @@ module SVG
     # == Description
     # 
     # This package should be used as a base for creating SVG graphs.
+    #
+    # == Acknowledgements
+    #
+    # Leo Lapworth for creating the SVG::TT::Graph package which this Ruby
+    # port is based on.
+    #
+    # Stephen Morgan for creating the TT template and SVG.
     # 
     # == See
     #
@@ -72,19 +79,60 @@ module SVG
     # * SVG::Graph::Pie
     # * SVG::Graph::Plot
     # * SVG::Graph::TimeSeries
+    #
+    # == Author
+    #
+    # Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
+    #
+    # Copyright 2004 Sean E. Russell
+    # This software is available under the Ruby license[LICENSE.txt]
+    #
     class Graph
       include REXML
 
       # Initialize the graph object with the graph settings.  You won't
       # instantiate this class directly; see the subclass for options.
+      # [width] 500
+      # [height] 300
+      # [show_x_guidelines] false
+      # [show_y_guidelines] true
+      # [show_data_values] true
+      # [min_scale_value] 0
+      # [show_x_labels] true
+      # [stagger_x_labels] false
+      # [rotate_x_labels] false
+      # [show_y_labels] true
+      # [rotate_y_labels] false
+      # [scale_integers] false
+      # [show_x_title] false
+      # [x_title] 'X Field names'
+      # [show_y_title] false
+      # [y_title_text_direction] :bt
+      # [y_title] 'Y Scale'
+      # [show_graph_title] false
+      # [graph_title] 'Graph Title'
+      # [show_graph_subtitle] false
+      # [graph_subtitle] 'Graph Sub Title'
+      # [key] true,
+      # [key_position] :right, # bottom or righ
+      # [font_size] 12
+      # [title_font_size] 16
+      # [subtitle_font_size] 14
+      # [x_label_font_size] 12
+      # [x_title_font_size] 14
+      # [y_label_font_size] 12
+      # [y_title_font_size] 14
+      # [key_font_size] 10
+      # [no_css] false
+      # [add_popups] false
       def initialize( config )
         @config = config
 
         self.top_align = self.top_font = self.right_align = self.right_font = 0
 
         init_with({
-          :width				        => 500,
-          :height			          => 300,
+          :width                => 500,
+          :height                => 300,
           :show_x_guidelines    => false,
           :show_y_guidelines    => true,
           :show_data_values     => true,
@@ -106,12 +154,12 @@ module SVG
           :y_title_text_direction => :bt,
           :y_title              => 'Y Scale',
 
-          :show_graph_title		  => false,
-          :graph_title			    => 'Graph Title',
-          :show_graph_subtitle	=> false,
-          :graph_subtitle		    => 'Graph Sub Title',
-          :key					        => true, 
-          :key_position			    => :right, # bottom or right
+          :show_graph_title      => false,
+          :graph_title          => 'Graph Title',
+          :show_graph_subtitle  => false,
+          :graph_subtitle        => 'Graph Sub Title',
+          :key                  => true, 
+          :key_position          => :right, # bottom or right
 
           :font_size            =>12,
           :title_font_size      =>16,
@@ -123,24 +171,15 @@ module SVG
           :key_font_size        =>10,
           
           :no_css               =>false,
+          :add_popups           =>false,
         })
 
-        init if methods.include? "init"
-        set_defaults if methods.include? "set_defaults"
+				set_defaults if methods.include? "set_defaults"
 
         init_with config
       end
 
       
-      # Overwrite configuration options with supplied options.  Used
-      # by subclasses.
-      def init_with config
-        config.each { |key, value|
-          self.send( key.to_s+"=", value ) if methods.include? key.to_s
-        }
-      end
-
-
       # This method allows you do add data to the graph object.
       # It can be called several times to add more data sets in.
       #
@@ -151,7 +190,7 @@ module SVG
       #     :title => 'Sales 2002'
       #   })
       def add_data conf
-        @data = [] unless @data
+        @data = [] unless defined? @data
 
         if conf[:data] and conf[:data].kind_of? Array
           @data << conf
@@ -192,7 +231,7 @@ module SVG
         style
 
         data = ""
-        @doc.write( data, 0, true )
+        @doc.write( data, 0 )
 
         if @config[:compress]
           if @@__have_zlib
@@ -316,6 +355,14 @@ module SVG
 
       protected
 
+      # Overwrite configuration options with supplied options.  Used
+      # by subclasses.
+      def init_with config
+        config.each { |key, value|
+          self.send( key.to_s+"=", value ) if methods.include? key.to_s
+        }
+      end
+
       attr_accessor :top_align, :top_font, :right_align, :right_font
 
       KEY_BOX_SIZE = 12
@@ -370,19 +417,19 @@ module SVG
         txt_width = label.length * font_size * 0.6 + 10
         tx = (x+txt_width > width ? x-5 : x+5)
         t = @foreground.add_element( "text", {
-          "x" => tx,
-          "y" => y - font_size,
+          "x" => tx.to_s,
+          "y" => (y - font_size).to_s,
           "visibility" => "hidden",
         })
         t.attributes["style"] = "fill: #000; "+
           (x+txt_width > width ? "text-anchor: end;" : "text-anchor: start;")
-        t.text = label
-        t.attributes["id"] = t.id
+        t.text = label.to_s
+        t.attributes["id"] = t.id.to_s
 
         @foreground.add_element( "circle", {
-          "cx" => x,
-          "cy" => y,
-          "r" => 10,
+          "cx" => x.to_s,
+          "cy" => y.to_s,
+          "r" => "10",
           "style" => "opacity: 0",
           "onmouseover" => 
             "document.getElementById(#{t.id}).setAttribute('visibility', 'visible' )",
@@ -423,10 +470,10 @@ module SVG
 
         # Background
         @graph.add_element( "rect", {
-          "x" => 0,
-          "y" => 0,
-          "width" => @graph_width,
-          "height" => @graph_height,
+          "x" => "0",
+          "y" => "0",
+          "width" => @graph_width.to_s,
+          "height" => @graph_height.to_s,
           "class" => "graphBackground"
         })
 
@@ -456,17 +503,17 @@ module SVG
       def make_datapoint_text( x, y, value, style="" )
         if show_data_values
           @foreground.add_element( "text", {
-            "x" => x,
-            "y" => y,
+            "x" => x.to_s,
+            "y" => y.to_s,
             "class" => "dataPointLabel",
             "style" => "#{style} stroke: #fff; stroke-width: 2;"
-          }).text = value
+          }).text = value.to_s
           text = @foreground.add_element( "text", {
-            "x" => x,
-            "y" => y,
+            "x" => x.to_s,
+            "y" => y.to_s,
             "class" => "dataPointLabel"
           })
-          text.text = value
+          text.text = value.to_s
           text.attributes["style"] = style if style.length > 0
         end
       end
@@ -482,7 +529,7 @@ module SVG
           for label in get_x_labels
             text = @graph.add_element( "text" )
             text.attributes["class"] = "xAxisLabels"
-            text.text = label
+            text.text = label.to_s
 
             x = count * label_width + x_label_offset( label_width )
             y = @graph_height + x_label_font_size + 3
@@ -496,8 +543,8 @@ module SVG
               })
             end
 
-            text.attributes["x"] = x
-            text.attributes["y"] = y
+            text.attributes["x"] = x.to_s
+            text.attributes["y"] = y.to_s
             if rotate_x_labels
               text.attributes["transform"] = 
                 "rotate( 90 #{x} #{y-x_label_font_size} )"+
@@ -544,17 +591,17 @@ module SVG
           for label in get_y_labels
             y = y_offset - (label_height * count)
             text = @graph.add_element( "text", {
-              "x" => -3,
-              "y" => y,
+              "x" => "-3",
+              "y" => y.to_s,
               "class" => "yAxisLabels"
             })
-            text.text = label
+            text.text = label.to_s
             if rotate_y_labels
               text.attributes["transform"] = "translate( -#{font_size} 0 ) "+
                 "rotate( 90 0 #{y} ) "
               text.attributes["style"] = "text-anchor: middle"
             else
-              text.attributes["y"] = y - (y_label_font_size/2)
+              text.attributes["y"] = (y - (y_label_font_size/2)).to_s
               text.attributes["style"] = "text-anchor: end"
             end
             draw_y_guidelines( label_height, count ) if show_y_guidelines
@@ -590,10 +637,10 @@ module SVG
       def draw_titles
         if show_graph_title
           @root.add_element( "text", {
-            "x" => width / 2,
-            "y" => title_font_size,
+            "x" => (width / 2).to_s,
+            "y" => (title_font_size).to_s,
             "class" => "mainTitle"
-          }).text = graph_title
+          }).text = graph_title.to_s
         end
 
         if show_graph_subtitle
@@ -601,10 +648,10 @@ module SVG
             title_font_size + 10 :
             subtitle_font_size
           @root.add_element("text", {
-            "x" => width / 2,
-            "y" => y_subtitle,
+            "x" => (width / 2).to_s,
+            "y" => (y_subtitle).to_s,
             "class" => "subTitle"
-          }).text = graph_subtitle
+          }).text = graph_subtitle.to_s
         end
 
         if show_x_title
@@ -612,10 +659,10 @@ module SVG
           x = width / 2
 
           @root.add_element("text", {
-            "x" => x,
-            "y" => y,
+            "x" => x.to_s,
+            "y" => y.to_s,
             "class" => "xAxisTitle",
-          }).text = x_title
+          }).text = x_title.to_s
         end
 
         if show_y_title
@@ -623,11 +670,11 @@ module SVG
           y = height / 2
 
           text = @root.add_element("text", {
-            "x" => x,
-            "y" => y,
+            "x" => x.to_s,
+            "y" => y.to_s,
             "class" => "yAxisTitle",
           })
-          text.text = y_title
+          text.text = y_title.to_s
           if y_title_text_direction == :bt
             text.attributes["transform"] = "rotate( -90, #{x}, #{y} )"
           else
@@ -649,17 +696,17 @@ module SVG
           for key_name in keys
             y_offset = (KEY_BOX_SIZE * key_count) + (key_count * 5)
             group.add_element( "rect", {
-              "x" => 0,
-              "y" => y_offset,
-              "width" => KEY_BOX_SIZE,
-              "height" => KEY_BOX_SIZE,
+              "x" => 0.to_s,
+              "y" => y_offset.to_s,
+              "width" => KEY_BOX_SIZE.to_s,
+              "height" => KEY_BOX_SIZE.to_s,
               "class" => "key#{key_count+1}"
             })
             group.add_element( "text", {
-              "x" => KEY_BOX_SIZE + 5,
-              "y" => y_offset + KEY_BOX_SIZE,
+              "x" => (KEY_BOX_SIZE + 5).to_s,
+              "y" => (y_offset + KEY_BOX_SIZE).to_s,
               "class" => "keyText"
-            }).text = key_name
+            }).text = key_name.to_s
             key_count += 1
           end
 
@@ -741,8 +788,8 @@ module SVG
             %Q{href="#{style_sheet}" type="text/css"} )
         end
         @root = @doc.add_element( "svg", {
-          "width" => width,
-          "height" => height,
+          "width" => width.to_s,
+          "height" => height.to_s,
           "viewBox" => "0 0 #{width} #{height}",
           "xmlns" => "http://www.w3.org/2000/svg",
           "xmlns:xlink" => "http://www.w3.org/1999/xlink"
@@ -764,8 +811,8 @@ module SVG
 
         @root << Comment.new( "SVG Background" )
         @root.add_element( "rect", {
-          "width" => width,
-          "height" => height,
+          "width" => width.to_s,
+          "height" => height.to_s,
           "x" => "0",
           "y" => "0",
           "class" => "svgBackground"
@@ -786,93 +833,93 @@ module SVG
         return <<EOL
 /* Copy from here for external style sheet */
 .svgBackground{
-	fill:#ffffff;
+  fill:#ffffff;
 }
 .graphBackground{
-	fill:#f0f0f0;
+  fill:#f0f0f0;
 }
 
 /* graphs titles */
 .mainTitle{
-	text-anchor: middle;
-	fill: #000000;
-	font-size: #{title_font_size}px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  text-anchor: middle;
+  fill: #000000;
+  font-size: #{title_font_size}px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 .subTitle{
-	text-anchor: middle;
-	fill: #999999;
-	font-size: #{subtitle_font_size}px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  text-anchor: middle;
+  fill: #999999;
+  font-size: #{subtitle_font_size}px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 
 .axis{
-	stroke: #000000;
-	stroke-width: 1px;
+  stroke: #000000;
+  stroke-width: 1px;
 }
 
 .guideLines{
-	stroke: #666666;
-	stroke-width: 1px;
-	stroke-dasharray: 5 5;
+  stroke: #666666;
+  stroke-width: 1px;
+  stroke-dasharray: 5 5;
 }
 
 .xAxisLabels{
-	text-anchor: middle;
-	fill: #000000;
-	font-size: #{x_label_font_size}px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  text-anchor: middle;
+  fill: #000000;
+  font-size: #{x_label_font_size}px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 
 .yAxisLabels{
-	text-anchor: end;
-	fill: #000000;
-	font-size: #{y_label_font_size}px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  text-anchor: end;
+  fill: #000000;
+  font-size: #{y_label_font_size}px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 
 .xAxisTitle{
-	text-anchor: middle;
-	fill: #ff0000;
-	font-size: #{x_title_font_size}px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  text-anchor: middle;
+  fill: #ff0000;
+  font-size: #{x_title_font_size}px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 
 .yAxisTitle{
-	fill: #ff0000;
-	text-anchor: middle;
-	font-size: #{y_title_font_size}px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  fill: #ff0000;
+  text-anchor: middle;
+  font-size: #{y_title_font_size}px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 
 .dataPointLabel{
-	fill: #000000;
-	text-anchor:middle;
-	font-size: 10px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  fill: #000000;
+  text-anchor:middle;
+  font-size: 10px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 
 .staggerGuideLine{
-	fill: none;
-	stroke: #000000;
-	stroke-width: 0.5px;	
+  fill: none;
+  stroke: #000000;
+  stroke-width: 0.5px;  
 }
 
 #{get_css}
 
 .keyText{
-	fill: #000000;
-	text-anchor:start;
-	font-size: #{key_font_size}px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
+  fill: #000000;
+  text-anchor:start;
+  font-size: #{key_font_size}px;
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
 }
 /* End copy for external style sheet */
 EOL

@@ -4,45 +4,38 @@ require 'SVG/Graph/BarBase'
 
 module SVG
   module Graph
-    # = SVG::Graph::Bar 
-    #
-    # == @ANT_VERSION@
-    #
     # === Create presentation quality SVG bar graphs easily
     #
-    # == Synopsis
+    # = Synopsis
     #
     #   require 'SVG/Graph/Bar'
     #
     #   fields = %w(Jan Feb Mar);
-    #   data_sales_02 = %w(12 45 21)
+    #   data_sales_02 = [12, 45, 21]
     #
-    #   graph = SVG::Graph::Bar.new({
+    #   graph = SVG::Graph::Bar.new(
     #     :height => 500,
     #     :width => 300,
     #     :fields => fields
-    #   })
+    #   )
     #
-    #   graph.add_data({
+    #   graph.add_data(
     #     :data => data_sales_02,
     #     :title => 'Sales 2002'
-    #   })
+    #   )
     #
     #   print "Content-type: image/svg+xml\r\n\r\n"
     #   print graph.burn
     #
-    # == Description
+    # = Description
     #
     # This object aims to allow you to easily create high quality
-    # SVG bar graphs. You can either use the default style sheet
-    # or supply your own. Either way there are many options which can
-    # be configured to give you control over how the graph is
-    # generated - with or without a key, data elements at each point,
-    # title, subtitle etc.
+    # SVG[http://www.w3c.org/tr/svg bar graphs. You can either use the default
+    # style sheet or supply your own. Either way there are many options which
+    # can be configured to give you control over how the graph is generated -
+    # with or without a key, data elements at each point, title, subtitle etc.
     #
-    # Copyright 2004 Sean E. Russell
-    #
-    # == Notes
+    # = Notes
     #
     # The default stylesheet handles upto 12 data sets, if you
     # use more you must create your own stylesheet and add the
@@ -50,70 +43,11 @@ module SVG
     # if you go over 12 data sets as they will have no style and
     # be in black.
     #
-    # == Examples
+    # = Examples
     #
-    # * http://germane-software.com/repositories/public/SVG/test.rb
+    # * http://germane-software.com/repositories/public/SVG/test/test.rb
     #
-    # The constructor takes a hash reference, fields (the names for each
-    # field on the X axis) MUST be set, all other values are defaulted to 
-    # those shown above - with the exception of style_sheet which defaults
-    # to using the internal style sheet.
-    #
-    #    require 'SVG/Graph/Bar'
-    #    
-    #    # Field names along the X axis
-    #    fields = %w(Jan Feb Mar)
-    #    
-    #    graph = SVG::Graph::Bar.new({
-    #       # Required
-    #       :fields => fields,
-    #       
-    #       # Optional - defaults shown
-    #       :height            => 500,
-    #       :width             => 300,
-    #       :show_data_values  => true,
-    #       
-    #       :min_scale_value   => 0,
-    #       :stagger_x_labels  => false,
-    #       :rotate_x_labels   => false,
-    #       :bar_gap           => true,
-    #       
-    #       :show_x_labels     => true,
-    #       :show_y_labels     => true,
-    #       :scale_integers    => false,
-    #       :scale_divisions   => 0,
-    #       
-    #       :show_x_title      => false,
-    #       :x_title           => 'X Field names',
-    #       
-    #       :show_y_title      => false,
-    #       :y_title_text_direction => :bt,
-    #       :y_title           => 'Y Scale',
-    #       
-    #       :show_graph_title  => false,
-    #       :graph_title       => 'Graph Title',
-    #       :show_graph_subtitle   => false,
-    #       :graph_subtitle        => 'Graph Sub Title',
-    #       
-    #       :key                   => false,
-    #       :key_position          => :right,
-    #       
-    #       # Optional - defaults to using internal stylesheet
-    #       :style_sheet       => '/includes/graph.css'
-    #    })
-    #
-    # == Acknowledgements
-    #
-    # Leo Lapworth for creating the SVG::TT::Graph package which this Ruby
-    # port is based on.
-    #
-    # Stephen Morgan for creating the TT template and SVG.
-    #
-    # == Author
-    #
-    # Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
-    #
-    # == See also
+    # = See also
     #
     # * SVG::Graph::Graph
     # * SVG::Graph::BarHorizontal
@@ -124,10 +58,13 @@ module SVG
     class Bar < BarBase
       include REXML
 
-      def set_defaults
+      # See Graph::initialize and BarBase::set_defaults
+      def set_defaults 
         super
         self.top_align = self.top_font = 1
       end
+
+      protected
 
       def get_x_labels
         @config[:fields]
