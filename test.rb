@@ -8,7 +8,7 @@ File.open( "data.txt" ) { |fin|
   female_data = fin.readline.split( " " ).collect{|x| x.to_i}
   male_data = fin.readline.split( " " ).collect{|x| x.to_i}
 
-  graph = SVG::Graph::Bar.new( {
+  graph = SVG::Graph::BarHorizontal.new( {
       :height => 480,
       :width => 640,
       :fields => fields,
@@ -18,7 +18,8 @@ File.open( "data.txt" ) { |fin|
       :stack => :side,
       :area_fill => true,
       #:stagger_x_labels => true,
-      :key_position => :bottom,
+      #:rotate_x_labels => true,
+      :key_position => :right,
       :graph_title => subtitle,
       :show_graph_title => true
     })

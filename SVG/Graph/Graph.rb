@@ -72,10 +72,16 @@ module SVG
     # 
     # This package should be used as a base for creating SVG graphs.
     # 
-    # See SVG::Graph::Bar for an example.
+    # == See
+    #
+    # * SVG::Graph::Bar
+    # * SVG::Graph::BarHorizontal
+    # * SVG::Graph::Line
     class Graph
       include REXML
 
+      # Initialize the graph object with the graph settings.  You won't
+      # instantiate this class directly; see the subclass for options.
       def initialize( config )
         @config = config
 
@@ -130,6 +136,9 @@ module SVG
         init_with config
       end
 
+      
+      # Overwrite configuration options with supplied options.  Used
+      # by subclasses.
       def init_with config
         config.each { |key, value|
           self.send( key.to_s+"=", value ) if methods.include? key.to_s
@@ -178,9 +187,6 @@ module SVG
         
         calculations if methods.include? 'calculations'
 
-        raise "#{self.class.name} must have a "+
-          "get_svg method." unless methods.include?("get_svg")
-
         data = get_svg
 
         if @config[:compress]
@@ -198,61 +204,6 @@ module SVG
         return data
       end
 
-      # Calculate a scaling range and divisions to be aesthetically pleasing
-      # Parameters:: value range
-      # Returns:: [revised range, division size, division precision]
-      def range_calc(value, range)
-        value = range
-        division = 0
-        max = 0
-        count = 0
-        
-        if value == 0
-          division = 0.2
-          max = 1
-          return [max, division, 1]
-        end
-
-        if value < 1
-          while value < 1
-            value *= 10
-            count += 1
-          end
-          division = 1
-          count.downto(0) { division /= 10 }
-          max = (range.to_f / division).ceil * division
-        else
-          while value > 10
-            value /= 10
-            count += 1
-          end
-          division = 1
-          count.downto(0) { division *= 10 }
-          max = (range.to_f / division).ceil * division
-        end
-
-        if (max / division) <= 2
-          division /= 5
-          max = (range.to_f / division).ceil * division
-        elsif (max / division) <= 5
-          division /= 2 
-          max = (range.to_f / division).ceil * division
-        end
-          
-        if division >= 1
-          count = 0
-        else
-          count = division.to_s.length - 2
-        end
-        
-        return [max, division, count]
-      end
-
-
-      # Returns true if config value exists, is defined and not ''
-      def is_valid_config name
-        @config[name] and @config[name].length > 0
-      end
 
       #   Set the height of the graph box, this is the total height
       #   of the SVG box created - not the graph it self which auto
@@ -330,17 +281,359 @@ module SVG
       #   Where the key should be positioned, defaults to
       #   :right, set to :bottom if you want to move it.
       attr_accessor :key_position
-      attr_accessor :stack
+      # Set the font size (in points) of the data point labels
       attr_accessor :font_size
+      # Set the font size of the X axis labels
       attr_accessor :x_label_font_size
+      # Set the font size of the X axis title
       attr_accessor :x_title_font_size
+      # Set the font size of the Y axis labels
       attr_accessor :y_label_font_size
+      # Set the font size of the Y axis title
       attr_accessor :y_title_font_size
+      # Set the title font size
       attr_accessor :title_font_size
+      # Set the subtitle font size
       attr_accessor :subtitle_font_size
+      # Set the key font size
       attr_accessor :key_font_size
+      # Show guidelines for the X axis
       attr_accessor :show_x_guidelines
+      # Show guidelines for the Y axis
       attr_accessor :show_y_guidelines
+
+
+      protected
+
+      KEY_BOX_SIZE = 12
+
+      # Override this (and call super) to change the margin to the left
+      # of the plot area.  Results in @border_left being set.
+      def calculate_left_margin
+        @border_left = 7
+        # Check for Y labels
+        max_y_label_height_px = rotate_y_labels ? 
+          y_label_font_size :
+          get_y_labels.max{|a,b| 
+            a.to_s.length<=>b.to_s.length
+          }.to_s.length * y_label_font_size * 0.6
+        @border_left += max_y_label_height_px if show_y_labels
+        @border_left += y_title_font_size if show_y_title
+      end
+
+
+      # Calculates the width of the widest Y label.  This will be the
+      # character height if the Y labels are rotated
+      def max_y_label_width_px
+        return font_size if rotate_y_labels
+      end
+
+
+      # Override this (and call super) to change the margin to the right
+      # of the plot area.  Results in @border_right being set.
+      def calculate_right_margin
+        @border_right = 7
+        if key and key_position == :right
+          val = @data.max { |a,b| a[:title].length <=> b[:title].length }
+          @border_right += val[:title].length * key_font_size * 0.75 
+          @border_right += KEY_BOX_SIZE
+          @border_right += 10    # Some padding around the box
+        end
+      end
+
+
+      # Override this (and call super) to change the margin to the top
+      # of the plot area.  Results in @border_top being set.
+      def calculate_top_margin
+        @border_top = 5
+        @border_top += title_font_size if show_graph_title
+        @border_top += 5
+        @border_top += subtitle_font_size if show_graph_subtitle
+      end
+
+      
+      # Override this (and call super) to change the margin to the bottom
+      # of the plot area.  Results in @border_bottom being set.
+      def calculate_bottom_margin
+        @border_bottom = 7
+        if key and key_position == :bottom
+          @border_bottom += @data.size * font_size
+          @border_bottom += 10
+        end
+        if show_x_labels
+          max_x_label_height_px = rotate_x_labels ? 
+            get_x_labels.max{|a,b| 
+              a.length<=>b.length
+            }.length * x_label_font_size * 0.6 :
+            x_label_font_size
+          @border_bottom += max_x_label_height_px 
+        end
+        @border_bottom += x_label_font_size + 5 if stagger_x_labels
+      end
+
+
+      # Draws the background, axis, and labels.
+      def draw_graph
+        @graph = @root.add_element( "g", {
+          "transform" => "translate( #@border_left #@border_top )"
+        })
+
+        # Background
+        @graph.add_element( "rect", {
+          "x" => 0,
+          "y" => 0,
+          "width" => @graph_width,
+          "height" => @graph_height,
+          "class" => "graphBackground"
+        })
+
+        # Axis
+        @graph.add_element( "path", {
+          "d" => "M 0 0 v#@graph_height",
+          "class" => "axis",
+          "id" => "xAxis"
+        })
+        @graph.add_element( "path", {
+          "d" => "M 0 #@graph_height h#@graph_width",
+          "class" => "axis",
+          "id" => "yAxis"
+        })
+
+        draw_x_labels
+        draw_y_labels
+      end
+
+
+      # Where in the X area the label is drawn
+      # Centered in the field, should be width/2.  Start, 0.
+      def x_label_offset( width )
+        0
+      end
+
+
+      # Draws the X axis labels
+      def draw_x_labels
+        stagger = x_label_font_size + 5
+        if show_x_labels
+          label_width = field_width
+
+          count = 0
+          for label in get_x_labels
+            text = @graph.add_element( "text" )
+            text.attributes["class"] = "xAxisLabels"
+            text.text = label
+
+            x = count * label_width + x_label_offset( label_width )
+            y = @graph_height + x_label_font_size + 3
+            t = 0 - (font_size / 2)
+
+            if stagger_x_labels and count % 2 == 1
+              y += stagger
+              @graph.add_element( "path", {
+                "d" => "M#{x} #@graph_height v#{stagger}",
+                "class" => "staggerGuideLine"
+              })
+            end
+
+            text.attributes["x"] = x
+            text.attributes["y"] = y
+            if rotate_x_labels
+              text.attributes["transform"] = 
+                "rotate( 90 #{x} #{y-x_label_font_size} )"+
+                " translate( 0 -#{x_label_font_size/2} )"
+              text.attributes["style"] = "text-anchor: start"
+            else
+              text.attributes["style"] = "text-anchor: middle"
+            end
+            
+            draw_x_guidelines( label_width, count ) if show_x_guidelines
+            count += 1
+          end
+        end
+      end
+
+
+      # Where in the Y area the label is drawn
+      # Centered in the field, should be width/2.  Start, 0.
+      def y_label_offset( height )
+        0
+      end
+
+
+      # Override this to leave space at the right of the plot for text
+      # returns 0 by default; change to 1.
+      def right_font
+        0
+      end
+
+
+      # Override this to leave space at the top of the plot for text
+      # returns 0 by default; change to 1.
+      def top_font
+        0
+      end
+
+
+      # Override this to align data to the right of the graph;
+      # returns 0 by default; change to 1.
+      def right_align
+        0
+      end
+
+
+      # Override this to align data to the top of the graph;
+      # returns 0 by default; change to 1.
+      def top_align
+        0
+      end
+
+
+      def field_width
+        (@graph_width - font_size*2*right_font) /
+           (get_x_labels.length - right_align)
+      end
+
+
+      def field_height
+        (@graph_height - font_size*2*top_font) /
+           (get_y_labels.length - top_align)
+      end
+
+
+      # Draws the Y axis labels
+      def draw_y_labels
+        if show_y_labels
+          label_height = field_height
+
+          count = 0
+          y_offset = @graph_height + y_label_offset( label_height ) +
+                    (font_size * 0.5)
+          for label in get_y_labels
+            y = y_offset - (label_height * count)
+            text = @graph.add_element( "text", {
+              "x" => -3,
+              "y" => y,
+              "class" => "yAxisLabels"
+            })
+            text.text = label
+            if rotate_y_labels
+              text.attributes["transform"] = "translate( -#{font_size} 0 ) "+
+                "rotate( 90 0 #{y} ) "
+              text.attributes["style"] = "text-anchor: middle"
+            else
+              text.attributes["y"] = y - (y_label_font_size/2)
+              text.attributes["style"] = "text-anchor: end"
+            end
+            draw_y_guidelines( label_height, count ) if show_y_guidelines
+            count += 1
+          end
+        end
+      end
+
+
+      # Draws the X axis guidelines
+      def draw_x_guidelines( label_height, count )
+        if count != 0
+          @graph.add_element( "path", {
+            "d" => "M#{label_height*count} 0 v#@graph_height",
+            "class" => "guideLines"
+          })
+        end
+      end
+
+
+      # Draws the Y axis guidelines
+      def draw_y_guidelines( label_height, count )
+        if count != 0
+          @graph.add_element( "path", {
+            "d" => "M0 #{@graph_height-(label_height*count)} h#@graph_width",
+            "class" => "guideLines"
+          })
+        end
+      end
+
+
+      # Draws the graph title and subtitle
+      def draw_titles
+        if show_graph_title
+          @root.add_element( "text", {
+            "x" => width / 2,
+            "y" => title_font_size,
+            "class" => "mainTitle"
+          }).text = graph_title
+        end
+
+        if show_graph_subtitle
+          y_subtitle = show_graph_title ? 
+            title_font_size + 10 :
+            subtitle_font_size
+          @root.add_element("text", {
+            "x" => width / 2,
+            "y" => y_subtitle,
+            "class" => "subTitle"
+          }).text = graph_subtitle
+        end
+      end
+
+
+      # Draws the legend on the graph
+      def draw_legend
+        if key
+          group = @root.add_element( "g" )
+
+          key_count = 0
+          for dataset in @data
+            y_offset = (KEY_BOX_SIZE * key_count) + (key_count * 5)
+            group.add_element( "rect", {
+              "x" => 0,
+              "y" => y_offset,
+              "width" => KEY_BOX_SIZE,
+              "height" => KEY_BOX_SIZE,
+              "class" => "key#{key_count+1}"
+            })
+            group.add_element( "text", {
+              "x" => KEY_BOX_SIZE + 5,
+              "y" => y_offset + KEY_BOX_SIZE,
+              "class" => "keyText"
+            }).text = dataset[:title]
+            key_count += 1
+          end
+
+          case key_position
+          when :right
+            x_offset = @graph_width + @border_left + 10
+            y_offset = @border_top + 20
+          when :bottom
+            x_offset = @border_left + 20
+            y_offset = @border_top + @graph_height + 5
+            if show_x_labels
+              max_x_label_height_px = rotate_x_labels ? 
+                get_x_labels.max{|a,b| 
+                  a.length<=>b.length
+                }.length * x_label_font_size :
+                x_label_font_size
+              y_offset += max_x_label_height_px 
+            end
+          end
+          group.attributes["transform"] = "translate(#{x_offset} #{y_offset})"
+        end
+      end
+
+
+      private
+
+      def get_svg
+        start_svg
+        calculate_graph_dimensions
+        draw_graph
+        draw_titles
+        draw_legend
+        draw_data
+
+        rv = ""
+        @doc.write( rv, 0, true )
+        return rv
+      end
 
 
       def start_svg
@@ -385,8 +678,6 @@ module SVG
       end
 
 
-      KEY_BOX_SIZE = 12
-
       def calculate_graph_dimensions
         calculate_left_margin
         calculate_right_margin
@@ -395,290 +686,6 @@ module SVG
         @graph_width = width - @border_left - @border_right
         @graph_height = height - @border_top - @border_bottom
       end
-
-      def calculate_left_margin
-        @border_left = 7
-        # Check for Y labels
-        max_y_label_height_px = rotate_y_labels ? 
-          y_label_font_size :
-          get_y_labels.max{|a,b| 
-            a.to_s.length<=>b.to_s.length
-          }.to_s.length * y_label_font_size * 0.6
-        @border_left += max_y_label_height_px if show_y_labels
-        @border_left += y_title_font_size if show_y_title
-      end
-
-      # Calculates the width of the widest Y label.  This will be the
-      # character height if the Y labels are rotated
-      def max_y_label_width_px
-        return font_size if rotate_y_labels
-      end
-
-      def calculate_right_margin
-        @border_right = 7
-        if key and key_position == :right
-          val = @data.max { |a,b| a[:title].length <=> b[:title].length }
-          @border_right += val[:title].length * key_font_size * 0.75 
-          @border_right += KEY_BOX_SIZE
-          @border_right += 10    # Some padding around the box
-        end
-      end
-
-      def calculate_top_margin
-        @border_top = 5
-        @border_top += title_font_size if show_graph_title
-        @border_top += 5
-        @border_top += subtitle_font_size if show_graph_subtitle
-      end
-
-      def calculate_bottom_margin
-        @border_bottom = 7
-        if key and key_position == :bottom
-          @border_bottom += @data.size * font_size
-          @border_bottom += 5 * font_size
-        end
-        max_x_label_height_px = rotate_x_labels ? 
-          get_x_labels.max{|a,b| 
-            a.length<=>b.length
-          }.length * x_label_font_size :
-          x_label_font_size
-        @border_bottom += max_x_label_height_px if show_x_labels
-        @border_bottom += x_label_font_size + 5 if stagger_x_labels
-      end
-
-
-      def draw_graph
-        @graph = @root.add_element( "g", {
-          "transform" => "translate( #@border_left #@border_top )"
-        })
-
-        # Background
-        @graph.add_element( "rect", {
-          "x" => 0,
-          "y" => 0,
-          "width" => @graph_width,
-          "height" => @graph_height,
-          "class" => "graphBackground"
-        })
-
-        # Axis
-        @graph.add_element( "path", {
-          "d" => "M 0 0 v#@graph_height",
-          "class" => "axis",
-          "id" => "xAxis"
-        })
-        @graph.add_element( "path", {
-          "d" => "M 0 #@graph_height h#@graph_width",
-          "class" => "axis",
-          "id" => "yAxis"
-        })
-
-        draw_x_labels
-        draw_y_labels
-      end
-
-      # Where in the X area the label is drawn
-      # Centered in the field, should be width/2.  Start, 0.
-      def x_label_offset( width )
-        0
-      end
-
-      def field_width
-      end
-      def field_height
-      end
-
-      def draw_x_labels
-        stagger = x_label_font_size + 5
-        if show_x_labels
-          label_width = field_width
-
-          count = 0
-          for label in get_x_labels
-            text = @graph.add_element( "text" )
-            text.attributes["class"] = "xAxisLabels"
-            text.text = label
-
-            x = count * label_width + x_label_offset( label_width )
-            y = @graph_height + x_label_font_size + 3
-            t = 0 - (font_size / 2)
-
-            if stagger_x_labels and count % 2 == 1
-              y += stagger
-              @graph.add_element( "path", {
-                "d" => "M#{x} #@graph_height v#{stagger}",
-                "class" => "staggerGuideLine"
-              })
-            end
-
-            text.attributes["x"] = x
-            text.attributes["y"] = y
-            if rotate_x_labels
-              text.attributes["transform"] = "rotate( 90 #{t} #{y} )"
-              text.attributes["style"] = "text-anchor: start"
-            else
-              text.attributes["style"] = "text-anchor: middle"
-            end
-            
-            draw_x_guidelines( label_width, count ) if show_x_guidelines
-            count += 1
-          end
-        end
-      end
-
-
-      # Where in the Y area the label is drawn
-      # Centered in the field, should be width/2.  Start, 0.
-      def y_label_offset( height )
-        0
-      end
-
-
-      def right_font
-        0
-      end
-
-      def top_font
-        0
-      end
-      def right_align
-        0
-      end
-
-      def top_align
-        0
-      end
-
-      def field_width
-        (@graph_width - font_size*2*right_font) /
-           (get_x_labels.length - right_align)
-      end
-
-      def field_height
-        (@graph_height - font_size*2*top_font) /
-           (get_y_labels.length - top_align)
-      end
-
-
-      def draw_y_labels
-        if show_y_labels
-          label_height = field_height
-
-          count = 0
-          y_offset = @graph_height + y_label_offset( label_height ) +
-                    (font_size * 0.5)
-          for label in get_y_labels
-            y = y_offset - (label_height * count)
-            text = @graph.add_element( "text", {
-              "x" => -3,
-              "y" => y,
-              "class" => "yAxisLabels"
-            })
-            text.text = label
-            if rotate_y_labels
-              text.attributes["transform"] = "translate( -#{font_size} 0 ) "+
-                "rotate( 90 0 #{y} ) "
-              text.attributes["style"] = "text-anchor: middle"
-            else
-              text.attributes["y"] = y - (y_label_font_size/2)
-              text.attributes["style"] = "text-anchor: end"
-            end
-            draw_y_guidelines( label_height, count ) if show_y_guidelines
-            count += 1
-          end
-        end
-      end
-
-
-      def draw_x_guidelines( label_height, count )
-        if count != 0
-          @graph.add_element( "path", {
-            "d" => "M#{label_height*count} 0 v#@graph_height",
-            "class" => "guideLines"
-          })
-        end
-      end
-
-      def draw_y_guidelines( label_height, count )
-        if count != 0
-          @graph.add_element( "path", {
-            "d" => "M0 #{@graph_height-(label_height*count)} h#@graph_width",
-            "class" => "guideLines"
-          })
-        end
-      end
-
-
-      def draw_titles
-        if show_graph_title
-          @root.add_element( "text", {
-            "x" => width / 2,
-            "y" => title_font_size,
-            "class" => "mainTitle"
-          }).text = graph_title
-        end
-
-        if show_graph_subtitle
-          y_subtitle = show_graph_title ? 
-            title_font_size + 10 :
-            subtitle_font_size
-          @root.add_element("text", {
-            "x" => width / 2,
-            "y" => y_subtitle,
-            "class" => "subTitle"
-          }).text = graph_subtitle
-        end
-      end
-
-
-      def draw_legend
-        if key
-          group = @root.add_element( "g" )
-
-          key_count = 0
-          for dataset in @data
-            y_offset = (KEY_BOX_SIZE * key_count) + (key_count * 5)
-            group.add_element( "rect", {
-              "x" => 0,
-              "y" => y_offset,
-              "width" => KEY_BOX_SIZE,
-              "height" => KEY_BOX_SIZE,
-              "class" => "key#{key_count+1}"
-            })
-            group.add_element( "text", {
-              "x" => KEY_BOX_SIZE + 5,
-              "y" => y_offset + KEY_BOX_SIZE,
-              "class" => "keyText"
-            }).text = dataset[:title]
-            key_count += 1
-          end
-
-          case key_position
-          when :right
-            x_offset = @graph_width + @border_left + 10
-            y_offset = @border_top + 20
-          when :bottom
-            x_offset = @border_left + 20
-            y_offset = @border_top + @graph_height + 10
-          end
-          group.attributes["transform"] = "translate(#{x_offset} #{y_offset})"
-        end
-      end
-
-
-      def get_svg
-        start_svg
-        calculate_graph_dimensions
-        draw_graph
-        draw_titles
-        draw_legend
-        draw_data
-
-        rv = ""
-        @doc.write( rv, 0, true )
-        return rv
-      end
-
 
       def get_style
         return <<EOL
@@ -775,6 +782,7 @@ module SVG
 /* End copy for external style sheet */
 EOL
       end
+
     end
   end
 end
