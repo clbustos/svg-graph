@@ -326,8 +326,8 @@ module SVG
       def calculate_right_margin
         @border_right = 7
         if key and key_position == :right
-          val = @data.max { |a,b| a[:title].length <=> b[:title].length }
-          @border_right += val[:title].length * key_font_size * 0.75 
+          val = keys.max { |a,b| a.length <=> b.length }
+          @border_right += val.length * key_font_size * 0.6 
           @border_right += KEY_BOX_SIZE
           @border_right += 10    # Some padding around the box
         end
@@ -567,6 +567,9 @@ module SVG
         end
       end
 
+      def keys 
+        return @data.collect{ |d| d[:title] }
+      end
 
       # Draws the legend on the graph
       def draw_legend
@@ -574,7 +577,7 @@ module SVG
           group = @root.add_element( "g" )
 
           key_count = 0
-          for dataset in @data
+          for key_name in keys
             y_offset = (KEY_BOX_SIZE * key_count) + (key_count * 5)
             group.add_element( "rect", {
               "x" => 0,
@@ -587,7 +590,7 @@ module SVG
               "x" => KEY_BOX_SIZE + 5,
               "y" => y_offset + KEY_BOX_SIZE,
               "class" => "keyText"
-            }).text = dataset[:title]
+            }).text = key_name
             key_count += 1
           end
 
@@ -627,6 +630,11 @@ module SVG
         return rv
       end
 
+      
+      # Override and place code to add defs here
+      def add_defs defs
+      end
+
 
       def start_svg
         # Base document
@@ -655,6 +663,7 @@ module SVG
         if not(style_sheet && style_sheet != '')
           @root << Comment.new(" include default stylesheet if none specified ")
           defs = @root.add_element( "defs" )
+          add_defs defs
           style = defs.add_element( "style", {"type"=>"text/css"} )
           style << CData.new( get_style )
         end
