@@ -63,6 +63,13 @@
 
 
 	<target name='web' depends='api'>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+    <copy tofile='index.xml' file='index.xml.in' filtering='true'/>
+    <get dest='index.xsl'
+      src='http://germane-software.com/~ser/styles/common.xsl'/>
+    <style in='index.xml' out='index.html' style='index.xsl'/>
+
 		<delete dir='dist'/>
 		<mkdir dir='dist'/>
 		<filter token='ANT_VERSION' value='${release}'/>
@@ -76,6 +83,9 @@
 		<gzip zipfile='web.tgz' src='web.tar'/>
 		<delete file='web.tar'/>
 		<delete dir='dist'/>
+    <delete file='index.xml'/>
+    <delete file='index.html'/>
+    <delete file='index.xsl'/>
 	</target>
 
 
