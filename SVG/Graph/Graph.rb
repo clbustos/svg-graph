@@ -120,6 +120,8 @@ module SVG
           :y_label_font_size    =>12,
           :y_title_font_size    =>14,
           :key_font_size        =>10,
+          
+          :no_css               =>false,
         })
 
         init if methods.include? "init"
@@ -179,7 +181,16 @@ module SVG
         
         calculations if methods.include? 'calculations'
 
-        data = get_svg
+        start_svg
+        calculate_graph_dimensions
+        draw_graph
+        draw_titles
+        draw_legend
+        draw_data
+        style
+
+        data = ""
+        @doc.write( data, 0, true )
 
         if @config[:compress]
           if @@__have_zlib
@@ -293,6 +304,10 @@ module SVG
       attr_accessor :show_x_guidelines
       # Show guidelines for the Y axis
       attr_accessor :show_y_guidelines
+      # Do not use CSS if set to true.  Many SVG viewers do not support CSS, but
+      # not using CSS can result in larger SVGs as well as making it impossible to
+      # change colors after the chart is generated.  Defaults to false.
+      attr_accessor :no_css
 
 
       protected
@@ -617,20 +632,45 @@ module SVG
 
       private
 
-      def get_svg
-        start_svg
-        calculate_graph_dimensions
-        draw_graph
-        draw_titles
-        draw_legend
-        draw_data
+      def style
+        if no_css
+          styles = parse_css
+          @root.elements.each("//*[@class]") { |el|
+            cl = el.attributes["class"]
+            style = styles[cl]
+            style += el.attributes["style"] if el.attributes["style"]
+            el.attributes["style"] = style
+          }
+        end
+      end
 
-        rv = ""
-        @doc.write( rv, 0, true )
+      def parse_css
+        css = get_style
+        rv = {}
+        while css =~ /^(\.(\w+)(?:\s*,\s*\.\w+)*)\s*\{/m
+          names_orig = names = $1
+          css = $'
+          css =~ /([^}]+)\}/m
+          content = $1
+          css = $'
+
+          nms = []
+          while names =~ /^\s*,?\s*\.(\w+)/
+            nms << $1
+            names = $'
+          end
+
+          content = content.tr( "\n\t", " ")
+          for name in nms
+            current = rv[name]
+            current = current ? current+"; "+content : content
+            rv[name] = current.strip.squeeze(" ")
+          end
+        end
         return rv
       end
 
-      
+
       # Override and place code to add defs here
       def add_defs defs
       end
@@ -660,10 +700,10 @@ module SVG
         " Leo Lapworth & Stephan Morgan " )
         @root << Comment.new( " "+"/"*66 )
 
-        if not(style_sheet && style_sheet != '')
+        defs = @root.add_element( "defs" )
+        add_defs defs
+        if not(style_sheet && style_sheet != '') and !no_css
           @root << Comment.new(" include default stylesheet if none specified ")
-          defs = @root.add_element( "defs" )
-          add_defs defs
           style = defs.add_element( "style", {"type"=>"text/css"} )
           style << CData.new( get_style )
         end
