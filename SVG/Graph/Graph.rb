@@ -5,6 +5,8 @@ rescue
   @@__have_zlib = false
 end
 
+require 'rexml/document'
+
 module SVG
   module Graph
     VERSION = '@ANT_VERSION@'
@@ -72,12 +74,63 @@ module SVG
     # 
     # See SVG::Graph::Bar for an example.
     class Graph
+      include REXML
+
       def initialize( config )
         @config = config
+
+        raise "fields was not supplied or is empty" unless @config[:fields] &&
+        @config[:fields].kind_of?(Array) &&
+        @config[:fields].length > 0
+
+        init_with({
+          :width				        => 500,
+          :height			          => 300,
+          :show_x_guidelines    => false,
+          :show_y_guidelines    => true,
+          :show_data_values     => true,
+
+          :min_scale_value      => 0,
+
+          :show_x_labels        => true,
+          :stagger_x_labels     => false,
+          :rotate_x_labels      => false,
+
+          :show_y_labels        => true,
+          :rotate_y_labels      => false,
+          :scale_integers       => false,
+
+          :show_x_title         => false,
+          :x_title              => 'X Field names',
+
+          :show_y_title         => false,
+          :y_title_text_direction => :bt,
+          :y_title              => 'Y Scale',
+
+          :show_graph_title		  => false,
+          :graph_title			    => 'Graph Title',
+          :show_graph_subtitle	=> false,
+          :graph_subtitle		    => 'Graph Sub Title',
+          :key					        => true, 
+          :key_position			    => :right, # bottom or right
+
+          :font_size            =>12,
+          :title_font_size      =>16,
+          :subtitle_font_size   =>14,
+          :x_label_font_size    =>12,
+          :x_title_font_size    =>14,
+          :y_label_font_size    =>12,
+          :y_title_font_size    =>14,
+          :key_font_size        =>10,
+        })
 
         init if methods.include? "init"
         set_defaults if methods.include? "set_defaults"
 
+        init_with config
+      end
+
+      def init_with config
         config.each { |key, value|
           self.send( key.to_s+"=", value ) if methods.include? key.to_s
         }
@@ -201,15 +254,527 @@ module SVG
         @config[name] and @config[name].length > 0
       end
 
+      #   Set the height of the graph box, this is the total height
+      #   of the SVG box created - not the graph it self which auto
+      #   scales to fix the space.
+      attr_accessor :height
+      #   Set the width of the graph box, this is the total width
+      #   of the SVG box created - not the graph it self which auto
+      #   scales to fix the space.
+      attr_accessor :width
+      #   Set the path to an external stylesheet, set to '' if
+      #   you want to revert back to using the defaut internal version.
+      #
+      #   To create an external stylesheet create a graph using the
+      #   default internal version and copy the stylesheet section to
+      #   an external file and edit from there.
+      attr_accessor :style_sheet
+      #   (Bool) Show the value of each element of data on the graph
+      attr_accessor :show_data_values
+      #   The point at which the Y axis starts, defaults to '0',
+      #   if set to nil it will default to the minimum data value.
+      attr_accessor :min_scale_value
+      #   Whether to show labels on the X axis or not, defaults
+      #   to true, set to false if you want to turn them off.
+      attr_accessor :show_x_labels
+      #   This puts the labels at alternative levels so if they
+      #   are long field names they will not overlap so easily.
+      #   Default it false, to turn on set to true.
+      attr_accessor :stagger_x_labels
+      #   This turns the X axis labels by 90 degrees.
+      #   Default it false, to turn on set to true.
+      attr_accessor :rotate_x_labels
+      #   This turns the Y axis labels by 90 degrees.
+      #   Default it false, to turn on set to true.
+      attr_accessor :rotate_y_labels
+      #   Whether to show labels on the Y axis or not, defaults
+      #   to true, set to false if you want to turn them off.
+      attr_accessor :show_y_labels
+      #   Ensures only whole numbers are used as the scale divisions.
+      #   Default it false, to turn on set to true. This has no effect if 
+      #   scale divisions are less than 1.
+      attr_accessor :scale_integers
+      #   This defines the gap between markers on the Y axis,
+      #   default is a 10th of the max_value, e.g. you will have
+      #   10 markers on the Y axis. NOTE: do not set this too
+      #   low - you are limited to 999 markers, after that the
+      #   graph won't generate.
+      attr_accessor :scale_divisions
+      #   Whether to show the title under the X axis labels,
+      #   default is false, set to true to show.
+      attr_accessor :show_x_title
+      #   What the title under X axis should be, e.g. 'Months'.
+      attr_accessor :x_title
+      #   Whether to show the title under the Y axis labels,
+      #   default is false, set to true to show.
+      attr_accessor :show_y_title
+      #   Aligns writing mode for Y axis label. 
+      #   Defaults to :bt (Bottom to Top).
+      #   Change to :tb (Top to Bottom) to reverse.
+      attr_accessor :y_title_text_direction
+      #   What the title under Y axis should be, e.g. 'Sales in thousands'.
+      attr_accessor :y_title
+      #   Whether to show a title on the graph, defaults
+      #   to false, set to true to show.
+      attr_accessor :show_graph_title
+      #   What the title on the graph should be.
+      attr_accessor :graph_title
+      #   Whether to show a subtitle on the graph, defaults
+      #   to false, set to true to show.
+      attr_accessor :show_graph_subtitle
+      #   What the subtitle on the graph should be.
+      attr_accessor :graph_subtitle
+      #   Whether to show a key, defaults to false, set to
+      #   true if you want to show it.
+      attr_accessor :key
+      #   Where the key should be positioned, defaults to
+      #   :right, set to :bottom if you want to move it.
+      attr_accessor :key_position
+      attr_accessor :stack
+      attr_accessor :font_size
+      attr_accessor :x_label_font_size
+      attr_accessor :x_title_font_size
+      attr_accessor :y_label_font_size
+      attr_accessor :y_title_font_size
+      attr_accessor :title_font_size
+      attr_accessor :subtitle_font_size
+      attr_accessor :key_font_size
+      attr_accessor :show_x_guidelines
+      attr_accessor :show_y_guidelines
 
-      # This object provides autoload methods for all config
-      # options defined in the set_defaults method within the
-      # inheriting object.
-      #
-      # See the SVG::TT::Graph::GRAPH_TYPE documentation for a list.
-      #
-      #    value = graph.method()
-      #    graph.method = value;
+
+      def start_svg
+        # Base document
+        @doc = Document.new
+        @doc << XMLDecl.new
+        @doc << DocType.new( %q{svg PUBLIC "-//W3C//DTD SVG 1.0//EN" } +
+          %q{"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"} )
+        if style_sheet && style_sheet != ''
+          @doc << ProcessingInstruction.new( "xml-stylesheet",
+            %Q{href="#{style_sheet}" type="text/css"} )
+        end
+        @root = @doc.add_element( "svg", {
+          "width" => width,
+          "height" => height,
+          "viewBox" => "0 0 #{width} #{height}",
+          "xmlns" => "http://www.w3.org/2000/svg",
+          "xmlns:xlink" => "http://www.w3.org/1999/xlink"
+        })
+        @root << Comment.new( " "+"\\"*66 )
+        @root << Comment.new( " Created with SVG::Graph " )
+        @root << Comment.new( " Sean Russell " )
+        @root << Comment.new( " Based on SVG::TT::Graph for Perl by"+
+        " Leo Lapworth & Stephan Morgan " )
+        @root << Comment.new( " "+"/"*66 )
+
+        if not(style_sheet && style_sheet != '')
+          @root << Comment.new(" include default stylesheet if none specified ")
+          defs = @root.add_element( "defs" )
+          style = defs.add_element( "style", {"type"=>"text/css"} )
+          style << CData.new( get_style )
+        end
+
+        @root << Comment.new( "SVG Background" )
+        @root.add_element( "rect", {
+          "width" => width,
+          "height" => height,
+          "x" => "0",
+          "y" => "0",
+          "class" => "svgBackground"
+        })
+      end
+
+
+      KEY_BOX_SIZE = 12
+
+      def calculate_graph_dimensions
+        calculate_left_margin
+        calculate_right_margin
+        calculate_bottom_margin
+        calculate_top_margin
+        @graph_width = width - @border_left - @border_right
+        @graph_height = height - @border_top - @border_bottom
+      end
+
+      def calculate_left_margin
+        @border_left = 7
+        # Check for Y labels
+        max_y_label_height_px = rotate_y_labels ? 
+          y_label_font_size :
+          get_y_labels.max{|a,b| 
+            a.to_s.length<=>b.to_s.length
+          }.to_s.length * y_label_font_size * 0.6
+        @border_left += max_y_label_height_px if show_y_labels
+        @border_left += y_title_font_size if show_y_title
+      end
+
+      # Calculates the width of the widest Y label.  This will be the
+      # character height if the Y labels are rotated
+      def max_y_label_width_px
+        return font_size if rotate_y_labels
+      end
+
+      def calculate_right_margin
+        @border_right = 7
+        if key and key_position == :right
+          val = @data.max { |a,b| a[:title].length <=> b[:title].length }
+          @border_right += val[:title].length * key_font_size * 0.75 
+          @border_right += KEY_BOX_SIZE
+          @border_right += 10    # Some padding around the box
+        end
+      end
+
+      def calculate_top_margin
+        @border_top = 5
+        @border_top += title_font_size if show_graph_title
+        @border_top += 5
+        @border_top += subtitle_font_size if show_graph_subtitle
+      end
+
+      def calculate_bottom_margin
+        @border_bottom = 7
+        if key and key_position == :bottom
+          @border_bottom += @data.size * font_size
+          @border_bottom += 5 * font_size
+        end
+        max_x_label_height_px = rotate_x_labels ? 
+          get_x_labels.max{|a,b| 
+            a.length<=>b.length
+          }.length * x_label_font_size :
+          x_label_font_size
+        @border_bottom += max_x_label_height_px if show_x_labels
+        @border_bottom += x_label_font_size + 5 if stagger_x_labels
+      end
+
+
+      def draw_graph
+        @graph = @root.add_element( "g", {
+          "transform" => "translate( #@border_left #@border_top )"
+        })
+
+        # Background
+        @graph.add_element( "rect", {
+          "x" => 0,
+          "y" => 0,
+          "width" => @graph_width,
+          "height" => @graph_height,
+          "class" => "graphBackground"
+        })
+
+        # Axis
+        @graph.add_element( "path", {
+          "d" => "M 0 0 v#@graph_height",
+          "class" => "axis",
+          "id" => "xAxis"
+        })
+        @graph.add_element( "path", {
+          "d" => "M 0 #@graph_height h#@graph_width",
+          "class" => "axis",
+          "id" => "yAxis"
+        })
+
+        draw_x_labels
+        draw_y_labels
+      end
+
+      # Where in the X area the label is drawn
+      # Centered in the field, should be width/2.  Start, 0.
+      def x_label_offset( width )
+        0
+      end
+
+      def field_width
+      end
+      def field_height
+      end
+
+      def draw_x_labels
+        stagger = x_label_font_size + 5
+        if show_x_labels
+          label_width = field_width
+
+          count = 0
+          for label in get_x_labels
+            text = @graph.add_element( "text" )
+            text.attributes["class"] = "xAxisLabels"
+            text.text = label
+
+            x = count * label_width + x_label_offset( label_width )
+            y = @graph_height + x_label_font_size + 3
+            t = 0 - (font_size / 2)
+
+            if stagger_x_labels and count % 2 == 1
+              y += stagger
+              @graph.add_element( "path", {
+                "d" => "M#{x} #@graph_height v#{stagger}",
+                "class" => "staggerGuideLine"
+              })
+            end
+
+            text.attributes["x"] = x
+            text.attributes["y"] = y
+            if rotate_x_labels
+              text.attributes["transform"] = "rotate( 90 #{t} #{y} )"
+              text.attributes["style"] = "text-anchor: start"
+            else
+              text.attributes["style"] = "text-anchor: middle"
+            end
+            
+            draw_x_guidelines( label_width, count ) if show_x_guidelines
+            count += 1
+          end
+        end
+      end
+
+
+      # Where in the Y area the label is drawn
+      # Centered in the field, should be width/2.  Start, 0.
+      def y_label_offset( height )
+        0
+      end
+
+
+      def right_font
+        0
+      end
+
+      def top_font
+        0
+      end
+      def right_align
+        0
+      end
+
+      def top_align
+        0
+      end
+
+      def field_width
+        (@graph_width - font_size*2*right_font) /
+           (get_x_labels.length - right_align)
+      end
+
+      def field_height
+        (@graph_height - font_size*2*top_font) /
+           (get_y_labels.length - top_align)
+      end
+
+
+      def draw_y_labels
+        if show_y_labels
+          label_height = field_height
+
+          count = 0
+          y_offset = @graph_height + y_label_offset( label_height ) +
+                    (font_size * 0.5)
+          for label in get_y_labels
+            y = y_offset - (label_height * count)
+            text = @graph.add_element( "text", {
+              "x" => -3,
+              "y" => y,
+              "class" => "yAxisLabels"
+            })
+            text.text = label
+            if rotate_y_labels
+              text.attributes["transform"] = "translate( -#{font_size} 0 ) "+
+                "rotate( 90 0 #{y} ) "
+              text.attributes["style"] = "text-anchor: middle"
+            else
+              text.attributes["y"] = y - (y_label_font_size/2)
+              text.attributes["style"] = "text-anchor: end"
+            end
+            draw_y_guidelines( label_height, count ) if show_y_guidelines
+            count += 1
+          end
+        end
+      end
+
+
+      def draw_x_guidelines( label_height, count )
+        if count != 0
+          @graph.add_element( "path", {
+            "d" => "M#{label_height*count} 0 v#@graph_height",
+            "class" => "guideLines"
+          })
+        end
+      end
+
+      def draw_y_guidelines( label_height, count )
+        if count != 0
+          @graph.add_element( "path", {
+            "d" => "M0 #{@graph_height-(label_height*count)} h#@graph_width",
+            "class" => "guideLines"
+          })
+        end
+      end
+
+
+      def draw_titles
+        if show_graph_title
+          @root.add_element( "text", {
+            "x" => width / 2,
+            "y" => title_font_size,
+            "class" => "mainTitle"
+          }).text = graph_title
+        end
+
+        if show_graph_subtitle
+          y_subtitle = show_graph_title ? 
+            title_font_size + 10 :
+            subtitle_font_size
+          @root.add_element("text", {
+            "x" => width / 2,
+            "y" => y_subtitle,
+            "class" => "subTitle"
+          }).text = graph_subtitle
+        end
+      end
+
+
+      def draw_legend
+        if key
+          group = @root.add_element( "g" )
+
+          key_count = 0
+          for dataset in @data
+            y_offset = (KEY_BOX_SIZE * key_count) + (key_count * 5)
+            group.add_element( "rect", {
+              "x" => 0,
+              "y" => y_offset,
+              "width" => KEY_BOX_SIZE,
+              "height" => KEY_BOX_SIZE,
+              "class" => "key#{key_count+1}"
+            })
+            group.add_element( "text", {
+              "x" => KEY_BOX_SIZE + 5,
+              "y" => y_offset + KEY_BOX_SIZE,
+              "class" => "keyText"
+            }).text = dataset[:title]
+            key_count += 1
+          end
+
+          case key_position
+          when :right
+            x_offset = @graph_width + @border_left + 10
+            y_offset = @border_top + 20
+          when :bottom
+            x_offset = @border_left + 20
+            y_offset = @border_top + @graph_height + 10
+          end
+          group.attributes["transform"] = "translate(#{x_offset} #{y_offset})"
+        end
+      end
+
+
+      def get_svg
+        start_svg
+        calculate_graph_dimensions
+        draw_graph
+        draw_titles
+        draw_legend
+        draw_data
+
+        rv = ""
+        @doc.write( rv, 0, true )
+        return rv
+      end
+
+
+      def get_style
+        return <<EOL
+/* Copy from here for external style sheet */
+.svgBackground{
+	fill:#ffffff;
+}
+.graphBackground{
+	fill:#f0f0f0;
+}
+
+/* graphs titles */
+.mainTitle{
+	text-anchor: middle;
+	fill: #000000;
+	font-size: #{title_font_size}px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+.subTitle{
+	text-anchor: middle;
+	fill: #999999;
+	font-size: #{subtitle_font_size}px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.axis{
+	stroke: #000000;
+	stroke-width: 1px;
+}
+
+.guideLines{
+	stroke: #666666;
+	stroke-width: 1px;
+	stroke-dasharray: 5 5;
+}
+
+.xAxisLabels{
+	text-anchor: middle;
+	fill: #000000;
+	font-size: #{x_label_font_size}px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.yAxisLabels{
+	text-anchor: end;
+	fill: #000000;
+	font-size: #{y_label_font_size}px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.xAxisTitle{
+	text-anchor: middle;
+	fill: #ff0000;
+	font-size: #{x_title_font_size}px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.yAxisTitle{
+	fill: #ff0000;
+	text-anchor: middle;
+	font-size: #{y_title_font_size}px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.dataPointLabel{
+	fill: #000000;
+	text-anchor:middle;
+	font-size: 10px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.staggerGuideLine{
+	fill: none;
+	stroke: #000000;
+	stroke-width: 0.5px;	
+}
+
+#{get_css}
+
+.keyText{
+	fill: #000000;
+	text-anchor:start;
+	font-size: #{key_font_size}px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+/* End copy for external style sheet */
+EOL
+      end
     end
   end
 end

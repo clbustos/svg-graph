@@ -1,4 +1,6 @@
 require 'SVG/Graph/BarHorizontal'
+require 'SVG/Graph/Bar'
+require 'SVG/Graph/Line'
 
 File.open( "data.txt" ) { |fin|
   subtitle = fin.readline
@@ -6,7 +8,7 @@ File.open( "data.txt" ) { |fin|
   female_data = fin.readline.split( " " ).collect{|x| x.to_i}
   male_data = fin.readline.split( " " ).collect{|x| x.to_i}
 
-  graph = SVG::Graph::BarHorizontal.new( {
+  graph = SVG::Graph::Bar.new( {
       :height => 480,
       :width => 640,
       :fields => fields,
@@ -14,8 +16,9 @@ File.open( "data.txt" ) { |fin|
       :scale_integers => true,
       :bar_gap => true,
       :stack => :side,
+      :area_fill => true,
       #:stagger_x_labels => true,
-      #:key_position => :bottom,
+      :key_position => :bottom,
       :graph_title => subtitle,
       :show_graph_title => true
     })

@@ -1,5 +1,5 @@
 require 'rexml/document'
-require 'SVG/Graph/Bar'
+require 'SVG/Graph/BarBase'
 
 module SVG
   module Graph
@@ -131,372 +131,81 @@ module SVG
     # [stack]
     #   How to position bars from multiple data sets. Can be one of
     #   :overlap, :side, or :top
-    class BarHorizontal < Bar
+    class BarHorizontal < BarBase
 
-      def gen_svg
-        d = Document.new
-        d << XMLDecl.new
-        d << DocType.new( %q{svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"} )
-        if style_sheet && style_sheet != ''
-          d << ProcessingInstruction.new( "xml-stylesheet",
-            %Q{href="#{style_sheet}" type="text/css"} )
-        end
-        root = d.add_element( "svg", {
-          "width" => width,
-          "height" => height,
-          "viewBox" => "0 0 #{width} #{height}",
-          "xmlns" => "http://www.w3.org/2000/svg",
-          "xmlns:xlink" => "http://www.w3.org/1999/xlink"
+      def set_defaults
+        super
+        init_with( {
+          :rotate_y_labels    => true,
+          :show_x_guidelines  => true,
+          :show_y_guidelines  => false
         })
-        root << Comment.new( " "+"\\"*66 )
-        root << Comment.new( " Created with SVG::Graph " )
-        root << Comment.new( " Sean Russell " )
-        root << Comment.new( " Based on SVG::TT::Graph for Perl by"+
-        " Leo Lapworth & Stephan Morgan " )
-        root << Comment.new( " "+"/"*66 )
+      end
+  
+      def get_x_labels
+        max_value = @data.collect{|x| x[:data].max}.max
+        min_value = @data.collect{|x| x[:data].min}.min
+        range = max_value - min_value
+        top_pad = range == 0 ? 10 : range / 20.0
+        scale_range = (max_value + top_pad) - min_value
 
-        if not(style_sheet && style_sheet != '')
-          root << Comment.new(" include default stylesheet if none specified ")
-          defs = root.add_element( "defs" )
-          style = defs.add_element( "style", {"type"=>"text/css"} )
-          style << CData.new( CSS )
-        end
-
-        root << Comment.new( "SVG Background" )
-        root.add_element( "rect", {
-          "width" => width,
-          "height" => height,
-          "x" => "0",
-          "y" => "0",
-          "class" => "svgBackground"
-        })
-
-        # Calculate graph area and boundries
-        x = 0
-        y = 0
-        char_width = 9
-
-        min_value = 9e20
-        max_value = 0
-        max_key_size = 0
-
-        for data in @data
-          dataset = data[:data]
-          title = data[:title]
-
-          dm = dataset.min
-          min_value = dm < min_value ? dm : min_value
-          dm = dataset.max
-          max_value = dm > max_value ? dm : max_value
-          max_key_size = title.length if title.length > max_key_size
-        end
-
-        h = height
-        w = width
-
-        if show_y_title
-          w -= 20
-          x += 20
-        end
-        if show_y_labels
-          max_ylabel_length = @config[:fields].max {|a,b| a.length <=> b.length }.length
-          space_b4_axis = char_width * max_ylabel_length
-
-          w -= (space_b4_axis + char_width)
-          x += space_b4_axis + char_width
-        end
-
-        if max_ylabel_length == 1
-          w -= 5
-          x += 5
-        end
-
-        if show_x_labels
-          w -= 20
-          if !(show_y_labels || show_y_title)
-            w -= 10
-            x += 10
-          end
-          if min_scale_value.to_s.length > 1
-            padding_for_labels = char_width * min_scale_value.to_s.length
-            w -= (padding_for_labels / 2)
-            x += (padding_for_labels / 2)
-          end
-        end
-
-        h -= 20 if show_x_labels
-
-        stagger = 0
-        if stagger_x_labels
-          stagger = 17
-          h -= stagger
-        end
-
-        h = h - 25 - stagger if show_x_title
-
-        if show_y_labels
-          h -= 10
-          y += 10
-        end
-
-        if show_graph_title
-          h -= 25
-          y += 25
-        end
-
-        if show_graph_subtitle
-          h -= 10
-          y += 10
-        end
-
-        key_box_size = 12
-        key_padding = 5
-
-        if key && key_position == :right
-          w = w - (max_key_size * (char_width - 1)) - (key_box_size)
-        elsif key && key_position == :bottom
-          if data.size > 4
-            h -= (data.size + 1) * (key_box_size + key_padding)
-          else
-            h -= 4 * (key_box_size + key_padding)
-          end
-        end
-
-        minvalue = min_value
-        minvalue = min_scale_value if min_scale_value
-
-        base_line = h + y
-
-        temp = max_value - minvalue
-        top_pad = temp == 0 ? 10 : temp / 20.0
-
-        scale_range = (max_value + top_pad) - minvalue
-
-        scale_division = scale_divisions || scale_range / 10.0
+        scale_division = scale_divisions || (scale_range / 10.0)
 
         if scale_integers
           scale_division = scale_division < 1 ? 1 : scale_division.round
         end
 
-        # Background
-        root.add_element( "rect", {
-          "x" => x,
-          "y" => y,
-          "width" => w,
-          "height" => h,
-          "class" => "graphBackground"
-        })
+        rv = []
+        min_value.step( max_value, scale_division ) {|v| rv << v}
+        return rv
+      end
 
-        # Axis
-        root.add_element( "path", {
-          "d" => "M #{x} #{y} v#{h}",
-          "class" => "axis",
-          "id" => "xAxis"
-        })
-        root.add_element( "path", {
-          "d" => "M #{x} #{base_line} h#{w}",
-          "class" => "axis",
-          "id" => "yAxis"
-        })
+      def get_y_labels
+        @config[:fields]
+      end
 
-        dy = @config[:fields].size
+      def y_label_offset( height )
+        height / -2.0
+      end
 
-        data_widths_y = h / dy
+      def right_align
+        1
+      end
+      alias :right_font :right_align
 
-        dh = (data_widths_y*100).truncate / 100.0
+      def draw_data
+        fieldheight = field_height
+        fieldwidth = field_width
+        bargap = bar_gap ? (fieldheight < 10 ? fieldheight / 2 : 10) : 0
 
-        i = dh
-        count = 0
-
-        if show_y_labels
-          for field in @config[:fields]
-            text = root.add_element( "text" )
-            text.attributes["class"] = "yAxisLabels"
-            text.attributes["x"] = x-10
-            text.text = field
-
-            ty = base_line - (dh / 2)
-
-            if count == 0
-              i -= dh
-            else
-              ty -= i
-            end
-
-            text.attributes["y"] = ty
-            
-            i += dh
-            count += 1
-          end
-        end
-
-        dx = scale_range / scale_division
-        scale_division_height = w.to_f / dx
-        dx = scale_division_height.to_i
-        count = 0
-        y_value = min_scale_value
-        stagger_count = 0
-        if show_x_labels
-          while (dx * count) < w
-            text = root.add_element( "text", {
-              "x" => x + (dx * count),
-              "y" => base_line + 15,
-              "class" => "xAxisLabels"
-            })
-            if scale_integers
-              text.text = y_value.to_i
-            else
-              text.text = (y_value * 10).to_i / 10.0
-            end
-            if count != 0
-              p1 = x + (dx * count)
-              root.add_element( "path", {
-                "d" => "M#{p1} #{base_line} V#{y}",
-                "class" => "guideLines"
-              });
-              text.attributes["style"] = "text-anchor: middle;"
-              if stagger_count == 2
-                stagger_count = 0
-              else
-                text.attributes["y"] = base_line + 15 + stagger
-                root.add_element( "path", {
-                  "d" => "M#{p1} #{base_line}, v#{stagger}",
-                  "class" => "staggerGuideLine"
-                })
-              end
-            end
-            y_value = y_value + scale_division
-            count += 1
-            stagger_count += 1
-          end
-        end
-
-        if show_x_title 
-          y_xtitle = show_x_labels ? 35 : 15
-          root.add_element( "text", {
-            "x" => (w / 2) + x,
-            "y" => h + y + y_xtitle + stagger,
-            "class" => "xAxisTitle"
-          }).text = y_title
-        end	
-
-        if show_y_title 
-          text = root.add_element( "text", { "class" => "yAxisTitle" } )
-          text.text = y_title
-          if y_title_text_direction == :tb
-            text.attributes["x"] = 12
-            text.attributes["y"] = (h / 2) + y
-            text.attributes["style"] = "writing-mode: tb;"
-          else
-            text.attributes["transform"]="translate(15, #{(h/2)+y}) rotate(270)"
-          end
-        end
-
-        bargap = bar_gap ? 10 : 0
-
-        bar_width = dh - bargap
-        divider = dx / scale_division
-
-        xcount = 0
-
-        subbar_height = bar_width
+        subbar_height = fieldheight - bargap
         subbar_height /= @data.length if stack == :side
+        
+        field_count = 1
+        y_mod = (subbar_height / 2) + (font_size / 2)
         @config[:fields].each_index { |i|
-          dcount = 1
+          dataset_count = 0
           for dataset in @data
-            data_val = dataset[:data][i]
-            temp_y = base_line - (dh * xcount) - dh
-            temp_x = x + (data_val * divider)
-            temp_y += (dcount - 1) * subbar_height if stack == :side
-            root.add_element( "path", {
-              "d" => "M#{x} #{temp_y} H#{temp_x} v#{subbar_height} H#{x} Z",
-              "class" => "fill#{dcount}"
+            y = @graph_height - (fieldheight * field_count)
+            y += (subbar_height * dataset_count) if stack == :side
+            x = dataset[:data][i] * fieldwidth
+
+            @graph.add_element( "path", {
+              "d" => "M0 #{y} H#{x} v#{subbar_height} H0 Z",
+              "class" => "fill#{dataset_count+1}"
             })
             if show_data_values
-              root.add_element( "text", {
-                "x" => temp_x + 5,
-                "y" => temp_y + (dh / 2)-(stack==:side ? subbar_height/2 : 0),
+              @graph.add_element( "text", {
+                "x" => x + 5,
+                "y" => y + y_mod,
                 "class" => "dataPointLabel",
                 "style" => "text-anchor: start;"
-              }).text = data_val
+              }).text = dataset[:data][i]
             end
-            dcount += 1
+            dataset_count += 1
           end
-          xcount += 1
+          field_count += 1
         }
-
-        key_box_size = 12
-        key_count = 1
-        key_padding = 5
-        if key && key_position == :right
-          for dataset in @data
-            yval = y + (key_box_size * key_count) + (key_count * key_padding)
-            root.add_element( "rect", {
-              "x" => x + w + 20,
-              "y" => yval,
-              "width" => key_box_size,
-              "height" => key_box_size,
-              "class" => "key#{key_count}"
-            })
-            root.add_element( "text", {
-              "x" => x + w + 20 + key_box_size + key_padding,
-              "y" => yval + key_box_size,
-              "class" => "keyText"
-            }).text = dataset[:title]
-            key_count += 1
-          end
-        elsif key && key_position == :bottom
-          y_key = base_line
-          y_key = base_line + 20 if show_x_labels
-          y_key = base_line + 25 if show_x_title
-
-          y_key_start = y_key
-          x_key = x
-          for dataset in @data
-            if key_count == 4 || key_count == 7 || key_count == 10
-              x_key += 200
-              y_key -= (key_box_size * 4) - 2
-            end
-            wh = key_box_size
-            bs = y_key + (key_box_size * key_count) + 
-            (key_count * key_padding) + stagger
-            cl = "key#{key_count}"
-            root.add_element( "rect", {
-              "x" => x_key,
-              "y" => bs,
-              "width" => wh,
-              "height" => wh,
-              "class" => cl
-            })
-            root.add_element( "text", {
-              "x" => x_key + key_box_size + key_padding,
-              "y" => bs + key_box_size,
-              "width" => wh,
-              "height" => wh,
-              "class" => cl
-            }).text = dataset[:title]
-            key_count += 1
-          end
-        end
-
-        if show_graph_title
-          root.add_element( "text", {
-            "x" => width / 2,
-            "y" => "15",
-            "class" => "mainTitle"
-          }).text = graph_title
-        end
-
-        if show_graph_subtitle
-          y_subtitle = show_graph_title ? 30 : 15
-          root.add_element("text", {
-            "x" => width / 2,
-            "y" => y_subtitle,
-            "class" => "subTitle"
-          }).text = graph_subtitle
-        end
-
-        return d
       end
     end
   end
