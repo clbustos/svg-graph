@@ -53,6 +53,15 @@
   </sect1>
 
   <sect1>
+    <title>Getting it</title>
+
+    <para>Links to the current distribution and to pre-packaged documentation
+    can be found on <ulink
+    url="http://www.germane-software.com/cgi-bin/software/SVG">this
+    page</ulink>.</para>
+  </sect1>
+
+  <sect1>
     <title>Why?</title>
 
     <para>The SVG::TT:Graph package is just fine. It lacked a couple of
@@ -92,10 +101,11 @@
   <sect1>
     <title>Usage</title>
 
-    <para>There's API documentation; use rdoc to extract it. The API
-    documentation is pretty comprehensive (Leo Lapworth did a really good job
-    on the docs, and I stole most of them), and there's an example application
-    in the main directory.</para>
+    <para>There's API documentation; use rdoc to generate it, or download the
+    pre-generated docs from the download page. The API documentation is pretty
+    comprehensive (Leo Lapworth did a really good job on the docs, and I stole
+    most of them), and there's an example application in the main
+    directory.</para>
   </sect1>
 
   <sect1>
