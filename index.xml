@@ -151,10 +151,13 @@
   <sect1>
     <title>Usage</title>
 
-    <para>There's API documentation; use rdoc to generate it, or download the
-    pre-generated docs from the download page. The API documentation is pretty
-    comprehensive (Leo Lapworth did a really good job on the docs, and I stole
-    most of them), and there's an example application in the main
+    <para>There's API documentation available, either <ulink
+    url="http://www.germane-software.com/software/SVG/SVG::Graph/doc">online</ulink>
+    or for <ulink
+    url="http://www.germane-software.com/archive/svg_graph_api_@ANT_VERSION@.tgz">download</ulink>.
+    Or, you can use rdoc to generate it yourself. The API documentation is
+    pretty comprehensive (Leo Lapworth did a really good job on the docs, and
+    I stole most of them), and there's an example application in the main
     directory.</para>
   </sect1>
 
