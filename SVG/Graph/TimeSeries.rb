@@ -94,14 +94,26 @@ module SVG
         super
         init_with( 
           #:max_time_span     => '',
-          #:timescale_divisions   => '',
-          :x_label_format    => '%Y-%m-%d %H:%M:%S'
+          :x_label_format     => '%Y-%m-%d %H:%M:%S',
+          :popup_format       => '%Y-%m-%d %H:%M:%S'
         )
       end
 
       # The format string use do format the X axis labels.
       # See Time::strformat
       attr_accessor :x_label_format
+      # Use this to set the spacing between dates on the axis.  The value
+      # must be of the form "\d+ ?(days|weeks|months|years|hours|minutes|seconds)?"
+      # 
+      # EG:
+      #
+      #   graph.timescale_divisions = "2 weeks"
+      #
+      # will cause the chart to try to divide the X axis up into segments of
+      # two week periods.
+      attr_accessor :timescale_divisions
+      # The formatting used for the popups.  See x_label_format
+      attr_accessor :popup_format
 
       def add_data data
         @data = [] unless @data
@@ -126,13 +138,70 @@ module SVG
       end
 
 
+      def min_x_value=(value)
+        arr = ParseDate.parsedate( value )
+        @min_x_value = Time.local( *arr[0,6].compact ).to_i
+      end
+
+
       protected
       def format x, y
-        Time.at( x ).to_s
+        Time.at( x ).strftime( popup_format )
       end
 
       def get_x_labels
-        super.collect { |v| Time.at(v).strftime( x_label_format ) }
+        get_x_values.collect { |v| Time.at(v).strftime( x_label_format ) }
+      end
+      
+      private
+      def get_x_values
+        rv = []
+        min, max, scale_division = x_range
+        if timescale_divisions
+          timescale_divisions =~ /(\d+) ?(days|weeks|months|years|hours|minutes|seconds)?/
+          division_units = $2 ? $2 : "days"
+          amount = $1.to_i
+          if amount
+            step =  nil
+            case division_units
+            when "months"
+              cur = min
+              while cur < max
+                rv << cur
+                arr = Time.at( cur ).to_a
+                arr[4] += amount
+                if arr[4] > 11
+                  arr[5] += (arr[4] / 11).to_i
+                  arr[4] = (arr[4] % 11)
+                end
+                cur = Time.local(*arr).to_i
+              end
+            when "years"
+              cur = min
+              while cur < max
+                rv << cur
+                arr = Time.at( cur ).to_a
+                arr[5] += amount
+                cur = Time.local(*arr).to_i
+              end
+            when "weeks"
+              step = 7 * 24 * 60 * 60 * amount
+            when "days"
+              step = 24 * 60 * 60 * amount
+            when "hours"
+              step = 60 * 60 * amount
+            when "minutes"
+              step = 60 * amount
+            when "seconds"
+              step = amount
+            end
+            min.step( max, step ) {|v| rv << v} if step
+
+            return rv
+          end
+        end
+        min.step( max, scale_division ) {|v| rv << v}
+        return rv
       end
     end
   end

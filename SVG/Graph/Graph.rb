@@ -188,6 +188,7 @@ module SVG
         draw_titles
         draw_legend
         draw_data
+        @graph.add_element( @foreground )
         style
 
         data = ""
@@ -365,10 +366,10 @@ module SVG
 
 
       # Adds pop-up point information to a graph.
-      def add_popup( canvas, x, y, label )
+      def add_popup( x, y, label )
         txt_width = label.length * font_size * 0.6 + 10
         tx = (x+txt_width > width ? x-5 : x+5)
-        t = canvas.add_element( "text", {
+        t = @foreground.add_element( "text", {
           "x" => tx,
           "y" => y - font_size,
           "visibility" => "hidden",
@@ -378,13 +379,15 @@ module SVG
         t.text = label
         t.attributes["id"] = t.id
 
-        canvas.add_element( "circle", {
+        @foreground.add_element( "circle", {
           "cx" => x,
           "cy" => y,
           "r" => 10,
           "style" => "opacity: 0",
-          "onmouseover" => "document.getElementById(#{t.id}).setAttribute('visibility', 'visible' )",
-          "onmouseout" => "document.getElementById(#{t.id}).setAttribute('visibility', 'hidden' )",
+          "onmouseover" => 
+            "document.getElementById(#{t.id}).setAttribute('visibility', 'visible' )",
+          "onmouseout" => 
+            "document.getElementById(#{t.id}).setAttribute('visibility', 'hidden' )",
         })
 
       end
@@ -416,6 +419,7 @@ module SVG
         @graph = @root.add_element( "g", {
           "transform" => "translate( #@border_left #@border_top )"
         })
+        @foreground = Element.new( "g" )
 
         # Background
         @graph.add_element( "rect", {
@@ -451,13 +455,13 @@ module SVG
 
       def make_datapoint_text( x, y, value, style="" )
         if show_data_values
-          @graph.add_element( "text", {
+          @foreground.add_element( "text", {
             "x" => x,
             "y" => y,
             "class" => "dataPointLabel",
             "style" => "#{style} stroke: #fff; stroke-width: 2;"
           }).text = value
-          text = @graph.add_element( "text", {
+          text = @foreground.add_element( "text", {
             "x" => x,
             "y" => y,
             "class" => "dataPointLabel"

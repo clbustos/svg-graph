@@ -160,18 +160,23 @@ module SVG
           scale_division = scale_division < 1 ? 1 : scale_division.round
         end
 
-        max_value = max_value%scale_division == 0 ? 
-          max_value : 
-          (max_value+scale_division)-((max_value+scale_division)%scale_division)
-
         [min_value, max_value, scale_division]
       end
 
-      def get_x_labels
+      def get_x_values
         min_value, max_value, scale_division = x_range
         rv = []
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
+      end
+      alias :get_x_labels :get_x_values
+
+      def field_width
+        values = get_x_values
+        max = @data.collect{|x| x[:data][X][-1]}.max
+        dx = (max - values[-1]).to_f / (values[-1] - values[-2])
+        (@graph_width.to_f - font_size*2*right_font) /
+           ((get_x_labels.length+dx) - right_align)
       end
 
 
@@ -190,18 +195,23 @@ module SVG
           scale_division = scale_division < 1 ? 1 : scale_division.round
         end
 
-        max_value = max_value%scale_division == 0 ? 
-          max_value : 
-          (max_value+scale_division)-((max_value+scale_division)%scale_division)
-
         return [min_value, max_value, scale_division]
       end
 
-      def get_y_labels
+      def get_y_values
         min_value, max_value, scale_division = y_range
         rv = []
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
+      end
+      alias :get_y_labels :get_y_values
+
+      def field_height
+        values = get_y_values
+        max = @data.collect{|x| x[:data][Y].max }.max
+        dx = (max - values[-1]).to_f / (values[-1] - values[-2])
+        (@graph_height.to_f - font_size*2*top_font) /
+           ((get_y_labels.length+dx) - top_align)
       end
 
       def draw_data
@@ -249,8 +259,7 @@ module SVG
                   "r" => "2.5",
                   "class" => "dataPoint#{line}"
                 })
-                add_popup( @graph, x, y, 
-                          format( x_points[idx], y_points[idx] ) ) if add_popups
+                add_popup(x, y, format( x_points[idx], y_points[idx] )) if add_popups
               end
               make_datapoint_text( x, y-6, y_points[idx] )
             }
