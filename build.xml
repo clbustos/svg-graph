@@ -36,6 +36,8 @@
 		<filter token='ANT_VERSION' value='${release}'/>
 		<filter token='ANT_DATE' value='${date}'/>
 
+    <copy file="dist.xml.in" tofile="dist.xml" filtering="true"/>
+
     <delete dir='dist'/>
 
     <antcall target='docs'>
