@@ -35,6 +35,8 @@ be configured to give you control over how the graph is
 generated - with or without a key, data elements at each point,
 title, subtitle etc.
 
+Copyright 2004 Sean E. Russell
+
 =NOTES
 
 The default stylesheet handles upto 12 data sets, if you
@@ -45,9 +47,7 @@ be in black.
 
 =EXAMPLES
 
-FIXME
-For examples look at the project home page
-http://leo.cuckoo.org/projects/SVG-TT-Graph/
+* http://germane-software.com/repositories/public/SVG/test.rb
 
 =ACKNOWLEDGEMENTS
 
@@ -62,12 +62,8 @@ Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
 
 =SEE ALSO
 
-* SVG::Graph
-* SVG::Graph::Line
+* SVG::Graph::Graph
 * SVG::Graph::BarHorizontal
-* SVG::Graph::BarLine
-* SVG::Graph::Pie
-* SVG::Graph::TimeSeries
 
 =end
 module SVG
@@ -96,7 +92,7 @@ module SVG
       #       :min_scale_value   => 0,
       #       :stagger_x_labels  => false,
       #       :rotate_x_labels   => false,
-      #       :bar_gap           => 1,
+      #       :bar_gap           => true,
       #       
       #       :show_x_labels     => true,
       #       :show_y_labels     => true,
@@ -338,7 +334,7 @@ module SVG
 
             tx = x + (dw / 2) - (bargap / 2)
             ty = base_line + 15
-            tt = x + ( dw / 2 ) - ( bar_gap / 2 ) - half_char_height
+            tt = x + ( dw / 2 ) - ( bargap / 2 ) - half_char_height
 
             if count == 0
               i -= dw
@@ -637,7 +633,7 @@ module SVG
           :show_data_values     => true,
 
           :min_scale_value      => 0,
-          :bar_gap			        => 1,
+          :bar_gap			        => true,
 
           :show_x_labels        => true,
           :stagger_x_labels     => false,

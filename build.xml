@@ -1,0 +1,92 @@
+<project name='SVG::Graph' default='build-dist' basedir='.'>
+	<property name='date' value='+2004/100'/>
+	<property name='release' value='0.1.0'/>
+	
+	<!-- Build the API docs -->
+  <target name='api'>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+		<delete dir='doc'/>
+    <mkdir dir='temp'/>
+    <copy todir='temp' filtering='true'> <fileset dir='src/rexml'/> </copy>
+		<exec executable='rdoc'>
+      <arg line='--main temp/Graph.rb --op doc --exclude .svn temp'/>
+		</exec>
+    <delete dir='temp'/>
+	</target>
+
+
+	<!-- Build the API doc archives -->
+	<target name='api-dist' depends='api'>
+		<!-- Make a distribution directory and copy the docs to it -->
+		<mkdir dir='dist'/>
+    <mkdir dir='dist/svg_graph_${release}'/>
+		<mkdir dir='dist/svg_graph_${release}/doc'/>
+		<copy todir='dist/svg_graph_${release}/doc'> <fileset dir='doc'/> </copy>
+		<tar tarfile='svg_graph_api_${release}.tar' basedir='dist'/>
+		<gzip zipfile='svg_graph_api_${release}.tgz' src='svg_graph_api_${release}.tar'/>
+    <zip zipfile='svg_graph_api_${release}.zip' basedir='dist'/>
+		<delete dir='dist'/>
+		<delete>
+			<fileset dir='.' includes='*.tar'/>
+		</delete>
+	</target>
+
+	<target name='dist.xml'>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+		<copy file='dist.xml.in' tofile='dist.xml' filtering='true'/>
+	</target>
+
+
+	<!-- Builds the distribution archive -->
+	<target name='dist' depends='dist.xml,docs,api'>
+		<mkdir dir='dist'/>
+		<mkdir dir='dist/svg_graph_${release}'/>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+		<copy todir='dist/svg_graph_${release}' filtering='true'>
+			<fileset dir='.' excludes='**/.svn/**,*~'
+				includes='dist.xml,SVG,README.txt'/>
+		</copy>
+		<copy todir='dist/svg_graph_${release}'> 
+			<fileset dir='.' includes='doc/**'/> 
+		</copy>
+		<tar tarfile='svg_graph_${release}.tar' basedir='dist'/>
+		<gzip zipfile='svg_graph_${release}.tgz' src='svg_graph_${release}.tar'/>
+		<zip zipfile='svg_graph_${release}.zip' basedir='dist'/>
+		<delete dir='dist'/>
+		<delete>
+			<fileset dir='.' includes='*.tar'/>
+		</delete>
+	</target>
+
+
+	<target name='web' depends='docs,api'>
+		<delete dir='dist'/>
+		<mkdir dir='dist'/>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+		<copy todir='dist' overwrite='yes' filtering='true'>
+			<fileset dir='.' includes='dist.xml,index.html,LICENSE.txt,GPL.txt'/>
+		</copy>
+    <mkdir dir='dist/doc'/>
+    <copy todir='dist/doc'> <fileset dir='doc'/> </copy>
+		<tar tarfile='web.tar' basedir='dist'/>
+		<gzip zipfile='web.tgz' src='web.tar'/>
+		<delete file='web.tar'/>
+		<delete dir='dist'/>
+	</target>
+
+
+	<target name='clean'>
+		<delete>
+			<fileset dir='.' includes='*.tgz,*.zip,*~'/>
+		</delete>
+		<delete> <fileset dir='doc'/> </delete>
+	</target>
+
+	<!-- The main task.  We don't have to compile anything, so we just
+			build a bunch of documentation and some distribution archives. -->
+	<target name='build-dist' depends='api-dist,dist,docs,web'/>
+</project>

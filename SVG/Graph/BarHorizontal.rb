@@ -3,7 +3,8 @@ require 'SVG/Graph/Bar'
 
 =begin
 
-SVG::Graph::BarHorizontal - Create presentation quality SVG horitonzal bar graphs easily
+SVG::Graph::BarHorizontal - Create presentation quality SVG horitonzal bar 
+graphs easily
 
 =SYNOPSIS
 
@@ -35,41 +36,16 @@ be configured to give you control over how the graph is
 generated - with or without a key, data elements at each point,
 title, subtitle etc.
 
-=back
+Copyright 2004 Sean E. Russell
 
-=head1 NOTES
+=EXAMPLES
 
-The default stylesheet handles upto 12 data sets, if you
-use more you must create your own stylesheet and add the
-additional settings for the extra data sets. You will know
-if you go over 12 data sets as they will have no style and
-be in black.
+* http://germane-software.com/repositories/public/SVG/test.rb
 
-=head1 EXAMPLES
+=SEE ALSO
 
-For examples look at the project home page 
-http://leo.cuckoo.org/projects/SVG-TT-Graph/
-
-=head1 EXPORT
-
-None by default.
-
-=head1 ACKNOWLEDGEMENTS
-
-Stephen Morgan for creating the TT template and SVG.
-
-=head1 AUTHOR
-
-Leo Lapworth (LLAP@cuckoo.org)
-
-=head1 SEE ALSO
-
-L<SVG::TT::Graph>,
-L<SVG::TT::Graph::Line>,
-L<SVG::TT::Graph::Bar>,
-L<SVG::TT::Graph::BarLine>,
-L<SVG::TT::Graph::Pie>,
-L<SVG::TT::Graph::TimeSeries>
+* SVG::Graph::Graph
+* SVG::Graph::Bar
 =end
 module SVG
   module Graph
@@ -93,23 +69,23 @@ module SVG
       #   Show the value of each element of data on the graph
       # [bar_gap]
       #   Whether to have a gap between the bars or not, default
-      #   is '1', set to '0' if you don't want gaps.
+      #   is true, set to false if you don't want gaps.
       # [min_scale_value]
-      #   The point at which the Y axis starts, defaults to '0',
-      #   if set to '' it will default to the minimum data value.
+      #   The point at which the Y axis starts, defaults to false
+      #   if set to nil it will default to the minimum data value.
       # [show_x_labels]
       #   Whether to show labels on the X axis or not, defaults
-      #   to 1, set to '0' if you want to turn them off.
+      #   to 1, set to false if you want to turn them off.
       # [stagger_x_labels]
       #   This puts the labels at alternative levels so if they
       #   are long field names they will not overlap so easily.
-      #   Default it '0', to turn on set to '1'.
+      #   Default it false to turn on set to true.
       # [show_y_labels]
       #   Whether to show labels on the Y axis or not, defaults
-      #   to 1, set to '0' if you want to turn them off.
+      #   to 1, set to false if you want to turn them off.
       # [scale_integers]
       #   Ensures only whole numbers are used as the scale divisions.
-      #   Default it '0', to turn on set to '1'. This has no effect if 
+      #   Default it false to turn on set to true. This has no effect if 
       #   scale divisions are less than 1.
       # [scale_divisions]
       #   This defines the gap between markers on the X axis,
@@ -119,33 +95,36 @@ module SVG
       #   graph won't generate.
       # [show_x_title]
       #   Whether to show the title under the X axis labels,
-      #   default is 0, set to '1' to show.
+      #   default is false set to true to show.
       # [x_title]
       #   What the title under X axis should be, e.g. 'Months'.
       # [show_y_title]
       #   Whether to show the title under the Y axis labels,
-      #   default is 0, set to '1' to show.
+      #   default is false set to true to show.
       # [y_title_text_direction]
-      #   Aligns writing mode for Y axis label. Defaults to 'bt' (Bottom to Top).
-      #   Change to 'tb' (Top to Bottom) to reverse.
+      #   Aligns writing mode for Y axis label. Defaults to :bt 
+      #   (Bottom to Top). Change to :tb (Top to Bottom) to reverse.
       # [y_title]
       #   What the title under Y axis should be, e.g. 'Sales in thousands'.
       # [show_graph_title]
       #   Whether to show a title on the graph,
-      #   default is 0, set to '1' to show.
+      #   default is false set to true to show.
       # [graph_title]
       #   What the title on the graph should be.
       # [show_graph_subtitle]
       #   Whether to show a subtitle on the graph,
-      #   default is 0, set to '1' to show.
+      #   default is false, set to true to show.
       # [graph_subtitle]
       #   What the subtitle on the graph should be.
       # [key]
-      #   Whether to show a key, defaults to 0, set to
-      #   '1' if you want to show it.
+      #   Whether to show a key, defaults to false, set to
+      #   true if you want to show it.
       # [key_position]
       #   Where the key should be positioned, defaults to
-      #   'right', set to 'bottom' if you want to move it.
+      #   :right, set to :bottom if you want to move it.
+      # [stack]
+      #   How to position bars from multiple data sets. Can be one of
+      #   :overlap, :side, or :top
 
       def gen_svg
         d = Document.new

@@ -12,9 +12,10 @@ File.open( "data.txt" ) { |fin|
       :fields => fields,
       :key => true,
       :scale_integers => true,
-      :bar_gap => 1,
+      :bar_gap => true,
       :stack => :side,
       #:stagger_x_labels => true,
+      #:key_position => :bottom,
       :graph_title => subtitle,
       :show_graph_title => true
     })
