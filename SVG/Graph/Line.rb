@@ -1,3 +1,5 @@
+require 'SVG/Graph/Graph'
+
 module SVG
   module Graph
     # = SVG::TT::Graph::Line 

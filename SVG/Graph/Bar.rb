@@ -4,13 +4,13 @@ require 'SVG/Graph/BarBase'
 
 module SVG
   module Graph
-    # =SVG::Graph::Bar 
+    # = SVG::Graph::Bar 
     #
-    # ==@ANT_VERSION@
+    # == @ANT_VERSION@
     #
-    # ===Create presentation quality SVG bar graphs easily
+    # === Create presentation quality SVG bar graphs easily
     #
-    # ==Synopsis
+    # == Synopsis
     #
     #   require 'SVG/Graph/Bar'
     #
@@ -31,7 +31,7 @@ module SVG
     #   print "Content-type: image/svg+xml\r\n\r\n"
     #   print graph.burn
     #
-    # ==Description
+    # == Description
     #
     # This object aims to allow you to easily create high quality
     # SVG bar graphs. You can either use the default style sheet
@@ -42,7 +42,7 @@ module SVG
     #
     # Copyright 2004 Sean E. Russell
     #
-    # ==Notes
+    # == Notes
     #
     # The default stylesheet handles upto 12 data sets, if you
     # use more you must create your own stylesheet and add the
@@ -50,22 +50,22 @@ module SVG
     # if you go over 12 data sets as they will have no style and
     # be in black.
     #
-    # ==Examples
+    # == Examples
     #
     # * http://germane-software.com/repositories/public/SVG/test.rb
     #
-    # ==Acknowledgements
+    # == Acknowledgements
     #
     # Leo Lapworth for creating the SVG::TT::Graph package which this Ruby
     # port is based on.
     #
     # Stephen Morgan for creating the TT template and SVG.
     #
-    # ==Author
+    # == Author
     #
     # Sean E. Russell <serATgermaneHYPHENsoftwareDOTcom>
     #
-    # ==See also
+    # == See also
     #
     # * SVG::Graph::Graph
     # * SVG::Graph::BarHorizontal
