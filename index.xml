@@ -250,14 +250,21 @@
     that this situation improves<footnote>
         <para>Prayer is much more effective when accompanied by sums of cash
         sent to the author.</para>
-      </footnote>. Email me, and I'll fix them. If the package ever gets
-    popular, I'll set up a bug page<footnote>
-        <para>Watch: five years from now, when SVG::Graph is a core Ruby
-        package, and it consists of a half million lines of code, and the
-        United Nations depends on it for all of it's graphing needs, and the
-        Linux kernel itself depends on it for its install process -- this
-        documentation will be largely unchanged, and although I'll have long
-        since set up a bug page, I won't have changed that paragraph.</para>
       </footnote>.</para>
+
+    <para>There is a <ulink
+    url='http://www.germane-software.com/cgi-bin/roundup/svg-graph'>bug and
+    feature request database</ulink>; use this, and please create a user account
+    if you don't have one, so that I can email you if I have questions.
+    Alternatively, post anonymously, and check the database often.</para>
+  </sect1>
+
+  <sect1>
+  	<title>Repository</title>
+
+    <para>The sourcecode repository is a <ulink
+    url='http://subversion.tigris.org'>Subversion</ulink> repository, located
+    <ulink
+    url='http://www.germane-software.com/repositories/public/SVG'>here</ulink>.</para>
   </sect1>
 </article>

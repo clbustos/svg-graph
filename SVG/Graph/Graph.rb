@@ -17,48 +17,19 @@ module SVG
     #
     # This class is only used as a superclass of specialized charts.  Do not
     # attempt to use this class directly, unless creating a new chart type.
-    # FIXME: This process should be documented.
     #
-    #   module SVG::Graph::Graph_Type
-    #     include SVG::Graph
-    # 
-    #     def set_defaults
-    #       init_with( { :key => 'value' } )
-    #     end
-    # 
-    #     def _init
-    #       # any testing you want to do
-    #     end
-    #   end
-    #   
-    # In your script...
-    #   
-    #   require 'SVG/Graph/Graph_Type'
-    # 
-    #   width = 500
-    #   height = 300
-    #   fields = %w{ field_1 field_2 field_3 )
-    # 
-    #   graph = SVG::Graph::Graph_Type.new( {
-    #     :fields => fields,
-    #     # ... other config options
-    #     :height => height
-    #   })
-    # 
-    #   data = [ 23, 56, 32 ]
-    # 
-    #   graph.add_data( {
-    #     :data => data,
-    #     :title => 'Sales 2002'
-    #   })
-    # 
-    #   config_value = graph.config_option
-    #   graph.config_option = config_value
-    # 
-    #   graph.compress = true
-    # 
-    #   print "Content-type: image/svg+xml\r\n"
-    #   print graph.burn
+    # For examples of how to subclass this class, see the existing specific
+    # subclasses, such as SVG::Graph::Pie.
+    #
+    # == Examples
+    #
+    # For examples of how to use this package, see either the test files, or
+    # the documentation for the specific class you want to use.
+    #
+    # * file:test/plot.rb
+    # * file:test/single.rb
+    # * file:test/test.rb
+    # * file:test/timeseries.rb
     # 
     # == Description
     # 
