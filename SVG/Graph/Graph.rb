@@ -69,6 +69,8 @@ module SVG
     # * SVG::Graph::Bar
     # * SVG::Graph::BarHorizontal
     # * SVG::Graph::Line
+    # * SVG::Graph::Pie
+    # * SVG::Graph::Plot
     class Graph
       include REXML
 
