@@ -30,22 +30,23 @@
 		<delete> <fileset dir='.' includes='*.tar'/> </delete>
 	</target>
 
-	<target name='dist.xml'>
-		<filter token='ANT_VERSION' value='${release}'/>
-		<filter token='ANT_DATE' value='${date}'/>
-		<copy file='dist.xml.in' tofile='dist.xml' filtering='true'/>
-	</target>
-
 
 	<!-- Builds the distribution archive -->
-	<target name='dist' depends='dist.xml'>
+  <target name='dist'>
 		<filter token='ANT_VERSION' value='${release}'/>
 		<filter token='ANT_DATE' value='${date}'/>
+
+    <delete dir='dist'/>
+
+    <antcall target='docs'>
+      <param name='destdir' value='dist/svg_graph_${release}'/>
+    </antcall>
 
 		<copy todir='dist/svg_graph_${release}' filtering='true'>
 			<fileset dir='.' excludes='**/.svn/**,*~'
 				includes='README.txt,test.rb,data.txt'/>
 		</copy>
+    <copy tofile='dist/svg_graph_${release}/install.rb' file='install.rb'/>
 		<copy todir='dist/svg_graph_${release}'> 
       <fileset dir='.' includes='SVG/**'/> 
 		</copy>
@@ -63,38 +64,45 @@
 
 
 	<target name='web' depends='api'>
-		<filter token='ANT_VERSION' value='${release}'/>
-		<filter token='ANT_DATE' value='${date}'/>
-    <copy tofile='index.xml' file='index.xml.in' filtering='true'/>
-    <get dest='index.xsl'
-      src='http://germane-software.com/~ser/styles/common.xsl'/>
-    <style in='index.xml' out='index.html' style='index.xsl'/>
-
 		<delete dir='dist'/>
 		<mkdir dir='dist'/>
-		<filter token='ANT_VERSION' value='${release}'/>
-		<filter token='ANT_DATE' value='${date}'/>
-		<copy todir='dist' overwrite='yes' filtering='true'>
-      <fileset dir='.' 
-        includes='screenshot.svg,index.html,LICENSE.txt,GPL.txt'/>
-		</copy>
-    <mkdir dir='dist/doc'/>
+
+    <antcall target='docs'>
+      <param name='destdir' value='dist'/>
+    </antcall>
+
     <copy todir='dist/doc'> <fileset dir='doc'/> </copy>
 		<tar tarfile='web.tar' basedir='dist'/>
 		<gzip zipfile='web.tgz' src='web.tar'/>
-		<delete file='web.tar'/>
+
 		<delete dir='dist'/>
-    <delete file='index.xml'/>
-    <delete file='index.html'/>
+		<delete file='web.tar'/>
     <delete file='index.xsl'/>
 	</target>
 
 
+  <target name='docs'>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+
+    <copy tofile='${destdir}/index.xml' file='index.xml' filtering='true'/>
+    <get dest='index.xsl'
+      src='http://germane-software.com/~ser/styles/common.xsl'/>
+    <style in='${destdir}/index.xml' out='${destdir}/index.html' 
+      style='index.xsl'/>
+
+    <copy todir='${destdir}' overwrite='yes' filtering='true'>
+      <fileset dir='.' 
+        includes='screenshot.svg,index.html,LICENSE.txt,GPL.txt'/>
+		</copy>
+  </target>
+
+
 	<target name='clean'>
 		<delete>
-      <fileset dir='.' includes='*.tgz,*.zip,*~,dist.xml'/>
+      <fileset dir='.' includes='*.tgz,*.zip,*~,index.html'/>
+      <fileset dir='doc'/>
 		</delete>
-		<delete> <fileset dir='doc'/> </delete>
 	</target>
 
 	<!-- The main task.  We don't have to compile anything, so we just
