@@ -50,6 +50,10 @@ module SVG
     # 
     # * SVG::Graph::Graph
     # * SVG::Graph::Bar
+    # * SVG::Graph::Line
+    # * SVG::Graph::Pie
+    # * SVG::Graph::Plot
+    # * SVG::Graph::TimeSeries
     #
     # =Options
     #

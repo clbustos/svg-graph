@@ -71,8 +71,8 @@ module SVG
     # 
     # * SVG::Graph::Graph
     # * SVG::Graph::BarHorizontal
-    # * SVG::Graph::BarLine
     # * SVG::Graph::Bar
+    # * SVG::Graph::Line
     # * SVG::Graph::Pie
     # * SVG::Graph::TimeSeries
     class Plot < Graph
@@ -90,10 +90,23 @@ module SVG
         self.top_align = self.right_align = self.top_font = self.right_font = 1
       end
 
-      attr_accessor :scale_x_divisions, :scale_y_divisions, 
-        :scale_x_integers, :scale_y_integers, :area_fill, :show_data_points,
-        :min_x_value, :min_y_value
+      attr_accessor :scale_x_divisions
+      attr_accessor :scale_y_divisions 
+      # Make the X axis labels integers
+      attr_accessor :scale_x_integers 
+      # Make the Y axis labels integers
+      attr_accessor :scale_y_integers 
+      # Fill the area under the line
+      attr_accessor :area_fill 
+      # Show a small circle on the graph where the line
+      # goes from one point to the next.
+      attr_accessor :show_data_points
+      # Set the minimum value of the X axis
+      attr_accessor :min_x_value 
+      # Set the minimum value of the Y axis
+      attr_accessor :min_y_value
 
+      
       def add_data data
         @data = [] unless @data
         if not(data[:data] and data[:data].kind_of? Array)
@@ -105,6 +118,7 @@ module SVG
         data[:data].each_index {|i|
           (i%2 == 0 ? x : y) << data[:data][i]
         }
+        sort_two( x, y )
         data[:data] = [x,y]
         @data << data
       end
@@ -132,14 +146,9 @@ module SVG
       X = 0
       Y = 1
       def x_range
-        max_value = @data.collect{|x| x[:data][X].max }.max
-        min_value = @data.collect{|x| x[:data][X].min }.min
+        max_value = @data.collect{|x| x[:data][X][-1] }.max
+        min_value = @data.collect{|x| x[:data][X][0] }.min
         min_value = min_value<min_x_value ? min_value : min_x_value if min_x_value
-        [min_value, max_value]
-      end
-
-      def get_x_labels
-        min_value, max_value = x_range
 
         range = max_value - min_value
         right_pad = range == 0 ? 10 : range / 20.0
@@ -151,9 +160,16 @@ module SVG
           scale_division = scale_division < 1 ? 1 : scale_division.round
         end
 
-        rv = []
         max_value = max_value%scale_division == 0 ? 
-          max_value : max_value + scale_division
+          max_value : 
+          (max_value+scale_division)-((max_value+scale_division)%scale_division)
+
+        [min_value, max_value, scale_division]
+      end
+
+      def get_x_labels
+        min_value, max_value, scale_division = x_range
+        rv = []
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
       end
@@ -163,11 +179,6 @@ module SVG
         max_value = @data.collect{|x| x[:data][Y].max }.max
         min_value = @data.collect{|x| x[:data][Y].min }.min
         min_value = min_value<min_y_value ? min_value : min_y_value if min_y_value
-        return [min_value, max_value]
-      end
-
-      def get_y_labels
-        min_value, max_value = y_range
 
         range = max_value - min_value
         top_pad = range == 0 ? 10 : range / 20.0
@@ -179,9 +190,16 @@ module SVG
           scale_division = scale_division < 1 ? 1 : scale_division.round
         end
 
-        rv = []
         max_value = max_value%scale_division == 0 ? 
-          max_value : max_value + scale_division
+          max_value : 
+          (max_value+scale_division)-((max_value+scale_division)%scale_division)
+
+        return [min_value, max_value, scale_division]
+      end
+
+      def get_y_labels
+        min_value, max_value, scale_division = y_range
+        rv = []
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
       end
@@ -189,17 +207,14 @@ module SVG
       def draw_data
         line = 1
         
-        xlabels = get_x_labels
-        x_min, x_max = xlabels[0], xlabels[-1]
-        ylabels = get_y_labels
-        y_min, y_max = ylabels[0], ylabels[-1]
+        x_min, x_max, x_div = x_range
+        y_min, y_max, y_div = y_range
         x_step = (@graph_width.to_f - font_size*2) / (x_max-x_min)
         y_step = (@graph_height.to_f -  font_size*2) / (y_max-y_min)
 
         for data in @data
           x_points = data[:data][X]
           y_points = data[:data][Y]
-          sort_two( x_points, y_points )
 
           lpath = "L"
           x_start = 0
@@ -213,7 +228,7 @@ module SVG
 
           if area_fill
             @graph.add_element( "path", {
-              "d" => "M0 #@graph_height #{lpath} V#@graph_height Z",
+              "d" => "M#{x_start} #@graph_height #{lpath} V#@graph_height Z",
               "class" => "fill#{line}"
             })
           end

@@ -117,9 +117,9 @@ module SVG
     #
     # * SVG::Graph::Graph
     # * SVG::Graph::BarHorizontal
-    # * SVG::Graph::BarLine
     # * SVG::Graph::Line
     # * SVG::Graph::Pie
+    # * SVG::Graph::Plot
     # * SVG::Graph::TimeSeries
     class Bar < BarBase
       include REXML

@@ -66,11 +66,12 @@ module SVG
     # 
     # == See
     #
-    # * SVG::Graph::Bar
     # * SVG::Graph::BarHorizontal
+    # * SVG::Graph::Bar
     # * SVG::Graph::Line
     # * SVG::Graph::Pie
     # * SVG::Graph::Plot
+    # * SVG::Graph::TimeSeries
     class Graph
       include REXML
 

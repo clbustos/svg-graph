@@ -56,7 +56,6 @@ module SVG
     # 
     # * SVG::Graph::Graph
     # * SVG::Graph::BarHorizontal
-    # * SVG::Graph::BarLine
     # * SVG::Graph::Bar
     # * SVG::Graph::Pie
     # * SVG::Graph::Plot

@@ -36,6 +36,14 @@ module SVG
     # generated - with or without a key, display percent on pie chart,
     # title, subtitle etc.
     # 
+    # == See also
+    #
+    # * SVG::Graph::Graph
+    # * SVG::Graph::BarHorizontal
+    # * SVG::Graph::Bar
+    # * SVG::Graph::Line
+    # * SVG::Graph::Plot
+    # * SVG::Graph::TimeSeries
     class Pie < Graph
       # Defaults are (those supplied with Graph)
       # [show_shadow] true
