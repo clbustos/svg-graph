@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<article>
+  <title>Screenshots</title>
+
+  <sect1>
+    <title>SVGs</title>
+
+    <para>Here are the SVG screenshots in all their glory. KSVG doesn't handle
+    CSS properly yet, and neither does librsvg. Adobe and Batik both
+    do.<mediaobject>
+        <imageobject>
+          <imagedata fileref="images/bar.svg" format="SVG" />
+        </imageobject>
+      </mediaobject><mediaobject>
+        <imageobject>
+          <imagedata fileref="images/barhorizontal.svg" format="SVG" />
+        </imageobject>
+      </mediaobject><mediaobject>
+        <imageobject>
+          <imagedata fileref="images/line.svg" format="SVG" />
+        </imageobject>
+      </mediaobject><mediaobject>
+        <imageobject>
+          <imagedata fileref="images/pie.svg" format="SVG" />
+        </imageobject>
+      </mediaobject></para>
+  </sect1>
+
+  <sect1>
+    <title>PNGs</title>
+
+    <para>Here are the icky, bitmapped PNGs. PNG is a beautiful file format,
+    don't get me wrong; but it is best for things that vector graphics
+    <emphasis>aren't</emphasis> good at, such as pictures.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/bar.png" format="PNG" />
+      </imageobject>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/barhorizontal.png" format="PNG" />
+      </imageobject>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/line.png" format="PNG" />
+      </imageobject>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/pie.png" format="PNG" />
+      </imageobject>
+    </mediaobject>
+  </sect1>
+</article>

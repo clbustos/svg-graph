@@ -1,0 +1,234 @@
+<?xml version='1.0'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 640 480' height='480' width='640' xmlns='http://www.w3.org/2000/svg'
+  >  <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  -->  <!-- Created with SVG::Graph 
+  -->  <!-- Sean Russell 
+  -->  <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
+  -->  <!-- //////////////////////////////////////////////////////////////////
+  -->  <!-- include default stylesheet if none specified 
+  --><defs
+    ><filter id='dropshadow' height='1.2' width='1.2'
+      ><feGaussianBlur result='blur' stdDeviation='4'
+      /></filter
+    ><style type='text/css'><![CDATA[/* Copy from here for external style sheet */
+.svgBackground{
+	fill:#ffffff;
+}
+.graphBackground{
+	fill:#f0f0f0;
+}
+
+/* graphs titles */
+.mainTitle{
+	text-anchor: middle;
+	fill: #000000;
+	font-size: 16px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+.subTitle{
+	text-anchor: middle;
+	fill: #999999;
+	font-size: 14px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.axis{
+	stroke: #000000;
+	stroke-width: 1px;
+}
+
+.guideLines{
+	stroke: #666666;
+	stroke-width: 1px;
+	stroke-dasharray: 5 5;
+}
+
+.xAxisLabels{
+	text-anchor: middle;
+	fill: #000000;
+	font-size: 12px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.yAxisLabels{
+	text-anchor: end;
+	fill: #000000;
+	font-size: 12px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.xAxisTitle{
+	text-anchor: middle;
+	fill: #ff0000;
+	font-size: 14px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.yAxisTitle{
+	fill: #ff0000;
+	text-anchor: middle;
+	font-size: 14px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.dataPointLabel{
+	fill: #000000;
+	text-anchor:middle;
+	font-size: 10px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.staggerGuideLine{
+	fill: none;
+	stroke: #000000;
+	stroke-width: 0.5px;	
+}
+
+.dataPointLabel{
+	fill: #000000;
+	text-anchor:middle;
+	font-size: 12px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+/* key - MUST match fill styles */
+.key1,.fill1{
+	fill: #ff0000;
+	fill-opacity: 0.7;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key2,.fill2{
+	fill: #0000ff;
+	fill-opacity: 0.7;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key3,.fill3{
+	fill-opacity: 0.7;
+	fill: #00ff00;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key4,.fill4{
+	fill-opacity: 0.7;
+	fill: #ffcc00;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key5,.fill5{
+	fill-opacity: 0.7;
+	fill: #00ccff;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key6,.fill6{
+	fill-opacity: 0.7;
+	fill: #ff00ff;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key7,.fill7{
+	fill-opacity: 0.7;
+	fill: #00ff99;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key8,.fill8{
+	fill-opacity: 0.7;
+	fill: #ffff00;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key9,.fill9{
+	fill-opacity: 0.7;
+	fill: #cc6666;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key10,.fill10{
+	fill-opacity: 0.7;
+	fill: #663399;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key11,.fill11{
+	fill-opacity: 0.7;
+	fill: #339900;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key12,.fill12{
+	fill-opacity: 0.7;
+	fill: #9966FF;
+	stroke: none;
+	stroke-width: 1px;	
+}
+
+
+.keyText{
+	fill: #000000;
+	text-anchor:start;
+	font-size: 10px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+/* End copy for external style sheet */
+]]></style
+  ></defs
+  >  <!--SVG Background
+  --><rect x='0' class='svgBackground' y='0' height='480' width='640'
+  /><text x='320' class='mainTitle' y='16'>Question 7
+</text
+  ><g transform='translate(543.0 46)'
+    ><rect x='0' class='key1' y='0' height='12' width='12'
+    /><text x='17' class='keyText' y='12'>Internet [3]</text
+    ><rect x='0' class='key2' y='17' height='12' width='12'
+    /><text x='17' class='keyText' y='29'>TV [3]</text
+    ><rect x='0' class='key3' y='34' height='12' width='12'
+    /><text x='17' class='keyText' y='46'>Newspaper [0]</text
+    ><rect x='0' class='key4' y='51' height='12' width='12'
+    /><text x='17' class='keyText' y='63'>Magazine [6]</text
+    ><rect x='0' class='key5' y='68' height='12' width='12'
+    /><text x='17' class='keyText' y='80'>Radio
+ [1]</text
+  ></g
+  ><g transform='translate( 117 58 )'
+    ><g
+      ><path transform='translate( 10 10 )' d='M202.5,202.5 L202.5,0.0 A202.5,202.5 0, 0,1, 403.523547004856 178.091322248297 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'
+      /><path transform='translate( 10 10 )' d='M202.5,202.5 L403.523547004856,178.091322248297 A202.5,202.5 0, 0,1, 250.96142201823 399.115718028776 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'
+      /><path transform='translate( 10 10 )' d='M202.5,202.5 L250.96142201823,399.115718028776 A202.5,202.5 0, 0,1, 250.96142201823 399.115718028776 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'
+      /><path transform='translate( -8.7003248537083 17.0920977408507 )' d='M202.5,202.5 L250.96142201823,399.115718028776 A202.5,202.5 0, 0,1, 108.393557661137 23.195154805225 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'
+      /><path transform='translate( 10 10 )' d='M202.5,202.5 L108.393557661137,23.195154805225 A202.5,202.5 0, 0,1, 202.5 0.0 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'
+      /></g
+    ><g
+      ><path d='M202.5,202.5 L202.5,0.0 A202.5,202.5 0, 0,1, 403.523547004856 178.091322248297 Z' style='fill: #fff; stroke: none;'
+      /><path d='M202.5,202.5 L403.523547004856,178.091322248297 A202.5,202.5 0, 0,1, 250.96142201823 399.115718028776 Z' style='fill: #fff; stroke: none;'
+      /><path d='M202.5,202.5 L250.96142201823,399.115718028776 A202.5,202.5 0, 0,1, 250.96142201823 399.115718028776 Z' style='fill: #fff; stroke: none;'
+      /><path transform='translate( -18.7003248537083 7.09209774085072 )' d='M202.5,202.5 L250.96142201823,399.115718028776 A202.5,202.5 0, 0,1, 108.393557661137 23.195154805225 Z' style='fill: #fff; stroke: none;'
+      /><path d='M202.5,202.5 L108.393557661137,23.195154805225 A202.5,202.5 0, 0,1, 202.5 0.0 Z' style='fill: #fff; stroke: none;'
+      /></g
+    ><g
+      ><path class='fill1' d='M202.5,202.5 L202.5,0.0 A202.5,202.5 0, 0,1, 403.523547004856 178.091322248297 Z'
+      /><text x='336.782338293761' class='dataPointLabel' y='50.926573495352'>Internet 23%</text
+      ><path class='fill2' d='M202.5,202.5 L403.523547004856,178.091322248297 A202.5,202.5 0, 0,1, 250.96142201823 399.115718028776 Z'
+      /><text x='369.154232843465' class='dataPointLabel' y='317.533111213059'>TV 23%</text
+      ><path class='fill3' d='M202.5,202.5 L250.96142201823,399.115718028776 A202.5,202.5 0, 0,1, 250.96142201823 399.115718028776 Z'
+      /><path transform='translate( -18.7003248537083 7.09209774085072 )' class='fill4' d='M202.5,202.5 L250.96142201823,399.115718028776 A202.5,202.5 0, 0,1, 108.393557661137 23.195154805225 Z'
+      /><text x='-5.54111399750478' class='dataPointLabel' y='281.399587366964'>Magazine 46%</text
+      ><path class='fill5' d='M202.5,202.5 L108.393557661137,23.195154805225 A202.5,202.5 0, 0,1, 202.5 0.0 Z'
+      /><text x='154.03857798177' class='dataPointLabel' y='5.88428197122448'>Radio
+ 8%</text
+    ></g
+  ></g
+></svg
+>

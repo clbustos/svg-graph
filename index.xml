@@ -33,10 +33,13 @@
     a toolkit for generating SVG data graphs, which are a species of plot that
     are oriented toward displaying statistical data.</para>
 
-    <para>Actually, I just made all of that up. Graphs differ from plots (as
-    far as I can tell) in that one of the columns can be non-numeric data.
-    Graphs are the sorts of things that spreadsheets generate. Feel free to
-    email me with concise definitions of Graphs and Plots.</para>
+    <para>Actually, I just made all of that up. Graphs are a specialization of
+    plots in which the data points on one axis are not scalar. That is, the
+    columns tend to be names rather than numbers, and if they
+    <emphasis>are</emphasis> numbers, the screen representation doesn't insert
+    missing data points on that axis. That is, if you only have data for 1, 2,
+    and 5, then you'll only get three points, and 5 won't be displayed further
+    away from 2 than 2 is from 1.</para>
   </sect1>
 
   <sect1>
@@ -46,7 +49,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata fileref="screenshot.svg" format="SVG" />
+        <imagedata fileref="images/pie.svg" format="SVG" />
       </imageobject>
     </mediaobject>
 
@@ -54,7 +57,17 @@
     number of SVG viewers don't do CSS correctly yet. If the above image is
     entirely black, your SVG viewer doesn't handle CSS properly. If the above
     image doesn't display at all, your browser probably doesn't understand
-    SVG. The Adobe plugin does, as does Batik.</para>
+    SVG. The Adobe plugin does, as does Batik. In any case, here's a PNG
+    version of the above image for the SVG-challenged:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/pie.png" format="PNG" />
+      </imageobject>
+    </mediaobject>
+
+    <para>The SVG version is <emphasis>much</emphasis> cooler. <ulink
+    url="screenshots.html">More screenshots are available</ulink>.</para>
   </sect1>
 
   <sect1>
@@ -135,9 +148,26 @@
     allows you to place the data bars from multiple data sets on the same
     graph side-by-side, rather than overlapping.</para>
 
-    <para>SVG::Graph is probably incomplete. In fact, the first release
-    contained two graph styles: Bar, and BarHorizontal. Version 0.2.0 added a
-    Line graph, and the number of styles will grow.</para>
+    <para>SVG::Graph is probably incomplete. The currently supported graph
+    types are:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Bar</para>
+      </listitem>
+
+      <listitem>
+        <para>BarHorizontal</para>
+      </listitem>
+
+      <listitem>
+        <para>Line</para>
+      </listitem>
+
+      <listitem>
+        <para>Pie</para>
+      </listitem>
+    </itemizedlist>
   </sect1>
 
   <sect1>

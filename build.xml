@@ -91,16 +91,21 @@
     <filter token='ANT_PROJECT' value='SVG::Graph'/>
 
     <copy tofile='${destdir}/index.xml' file='index.xml' filtering='true'/>
+    <copy tofile='${destdir}/screenshots.xml' file='screenshots.xml'/>
     <copy todir='${destdir}' overwrite='yes' filtering='true'>
       <fileset dir='.' includes='screenshot.svg,LICENSE.txt,GPL.txt'/>
 		</copy>
+    <copy todir='${destdir}/images'><fileset dir='images'/></copy>
 
     <get dest='index.xsl'
       src='http://germane-software.com/~ser/styles/common.xsl'/>
     <style in='${destdir}/index.xml' out='${destdir}/index.html' 
       style='index.xsl'/>
+    <style in='${destdir}/screenshots.xml' out='${destdir}/screenshots.html' 
+      style='index.xsl'/>
 
     <delete file='${destdir}/index.xml'/>
+    <delete file='${destdir}/screenshots.xml'/>
   </target>
 
 

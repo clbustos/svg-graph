@@ -3,33 +3,14 @@ require 'SVG/Graph/Bar'
 require 'SVG/Graph/Line'
 require 'SVG/Graph/Pie'
 
-File.open( "data.txt" ) { |fin|
-  subtitle = fin.readline
-  fields = fin.readline.split( /,/ )
-  female_data = fin.readline.split( " " ).collect{|x| x.to_i}
-  male_data = fin.readline.split( " " ).collect{|x| x.to_i}
-
-  graph = SVG::Graph::Pie.new( {
-      :height => 480,
-      :width => 640,
-      :fields => fields,
-      :key => true,
-      :scale_integers => true,
-      :bar_gap => true,
-      :stack => :side,
-      :area_fill => true,
-      #:stagger_x_labels => true,
-      #:rotate_x_labels => true,
-      #:expanded => true,
-      :expand_greatest => true,
-      :key_position => :right,
-      :graph_title => subtitle,
-      :show_graph_title => true,
-      :expand_gap => 20,
-
-      :show_data_labels => true,
-    })
-
+def gen klass, args, title, fields, female_data, male_data
+  args[ :width ] = 640
+  args[ :height ] = 480
+  args[ :compress ] = true
+  args[ :fields ] = fields
+  args[ :graph_title ] = title
+  args[ :show_graph_title ] = true
+  graph = klass.new( args )
   graph.add_data( {
       :data => female_data,
       :title => "Female"
@@ -38,6 +19,28 @@ File.open( "data.txt" ) { |fin|
       :data => male_data,
       :title => "Male"
     })
+  return graph.burn
+end
 
-  puts graph.burn
+File.open( "data.txt" ) { |fin|
+  title = fin.readline
+  fields = fin.readline.split( /,/ )
+  female_data = fin.readline.split( " " ).collect{|x| x.to_i}
+  male_data = fin.readline.split( " " ).collect{|x| x.to_i}
+
+  for file, klass, args in [
+    [ "bar", SVG::Graph::Bar,
+      { :scale_integers => true, :stack => :side } ],
+    [ "barhorizontal",SVG::Graph::BarHorizontal,
+      {:scale_integers=> true,:stack=>:side} ],
+    [ "line", SVG::Graph::Line, 
+      { :scale_integers => true, :area_fill => true, } ],
+    [ "pie", SVG::Graph::Pie, 
+      { :expand_greatest => true, :show_data_labels => true,} ],
+    ]
+    File.open("#{file}.svgz", "w") {|fout| 
+      fout.print( gen(klass, args, title, fields, female_data, male_data ) )
+    }
+  end
 }
+

@@ -67,6 +67,7 @@ module SVG
       #    Accumulates each data set. (i.e. Each point increased by sum of 
       #   all previous series at same point). Default is 0, set to '1' to show.
       attr_accessor :stacked
+      # Fill in the area under the plot if true
       attr_accessor :area_fill
 
       #   require 'SVG/Graph/Line'

@@ -177,46 +177,46 @@
   >  <!--SVG Background
   --><rect x='0' class='svgBackground' y='0' height='480' width='640'
   /><g transform='translate( 19 26 )'
-    ><rect x='0' class='graphBackground' y='0' height='435' width='547.0'
+    ><rect x='0' class='graphBackground' y='0' height='435' width='556.0'
     /><path class='axis' d='M 0 0 v435' id='xAxis'
-    /><path class='axis' d='M 0 435 h547.0' id='yAxis'
+    /><path class='axis' d='M 0 435 h556.0' id='yAxis'
     /><text x='0.0' class='xAxisLabels' y='450' style='text-anchor: middle'>0</text
-    ><text x='174.333333333333' class='xAxisLabels' y='450' style='text-anchor: middle'>1</text
-    ><path class='guideLines' d='M174.333333333333 0 v435'
-    /><text x='348.666666666667' class='xAxisLabels' y='450' style='text-anchor: middle'>2</text
-    ><path class='guideLines' d='M348.666666666667 0 v435'
-    /><text x='523.0' class='xAxisLabels' y='450' style='text-anchor: middle'>3</text
-    ><path class='guideLines' d='M523.0 0 v435'
+    ><text x='177.333333333333' class='xAxisLabels' y='450' style='text-anchor: middle'>1</text
+    ><path class='guideLines' d='M177.333333333333 0 v435'
+    /><text x='354.666666666667' class='xAxisLabels' y='450' style='text-anchor: middle'>2</text
+    ><path class='guideLines' d='M354.666666666667 0 v435'
+    /><text x='532.0' class='xAxisLabels' y='450' style='text-anchor: middle'>3</text
+    ><path class='guideLines' d='M532.0 0 v435'
     /><text transform='translate( -12 0 ) rotate( 90 0 397.5 ) ' x='-3' class='yAxisLabels' y='397.5' style='text-anchor: middle'>Internet</text
     ><text transform='translate( -12 0 ) rotate( 90 0 310.5 ) ' x='-3' class='yAxisLabels' y='310.5' style='text-anchor: middle'>TV</text
     ><text transform='translate( -12 0 ) rotate( 90 0 223.5 ) ' x='-3' class='yAxisLabels' y='223.5' style='text-anchor: middle'>Newspaper</text
     ><text transform='translate( -12 0 ) rotate( 90 0 136.5 ) ' x='-3' class='yAxisLabels' y='136.5' style='text-anchor: middle'>Magazine</text
     ><text transform='translate( -12 0 ) rotate( 90 0 49.5 ) ' x='-3' class='yAxisLabels' y='49.5' style='text-anchor: middle'>Radio
 </text
-    ><path class='fill1' d='M0 348 H348.666666666667 v38 H0 Z'
-    /><text x='353.666666666667' class='dataPointLabel' y='373' style='text-anchor: start;'>2</text
-    ><path class='fill2' d='M0 386 H174.333333333333 v38 H0 Z'
-    /><text x='179.333333333333' class='dataPointLabel' y='411' style='text-anchor: start;'>1</text
-    ><path class='fill1' d='M0 261 H348.666666666667 v38 H0 Z'
-    /><text x='353.666666666667' class='dataPointLabel' y='286' style='text-anchor: start;'>2</text
-    ><path class='fill2' d='M0 299 H174.333333333333 v38 H0 Z'
-    /><text x='179.333333333333' class='dataPointLabel' y='324' style='text-anchor: start;'>1</text
+    ><path class='fill1' d='M0 348 H354.666666666667 v38 H0 Z'
+    /><text x='359.666666666667' class='dataPointLabel' y='373' style='text-anchor: start;'>2</text
+    ><path class='fill2' d='M0 386 H177.333333333333 v38 H0 Z'
+    /><text x='182.333333333333' class='dataPointLabel' y='411' style='text-anchor: start;'>1</text
+    ><path class='fill1' d='M0 261 H354.666666666667 v38 H0 Z'
+    /><text x='359.666666666667' class='dataPointLabel' y='286' style='text-anchor: start;'>2</text
+    ><path class='fill2' d='M0 299 H177.333333333333 v38 H0 Z'
+    /><text x='182.333333333333' class='dataPointLabel' y='324' style='text-anchor: start;'>1</text
     ><path class='fill1' d='M0 174 H0.0 v38 H0 Z'
     /><text x='5.0' class='dataPointLabel' y='199' style='text-anchor: start;'>0</text
     ><path class='fill2' d='M0 212 H0.0 v38 H0 Z'
     /><text x='5.0' class='dataPointLabel' y='237' style='text-anchor: start;'>0</text
-    ><path class='fill1' d='M0 87 H523.0 v38 H0 Z'
-    /><text x='528.0' class='dataPointLabel' y='112' style='text-anchor: start;'>3</text
-    ><path class='fill2' d='M0 125 H523.0 v38 H0 Z'
-    /><text x='528.0' class='dataPointLabel' y='150' style='text-anchor: start;'>3</text
+    ><path class='fill1' d='M0 87 H532.0 v38 H0 Z'
+    /><text x='537.0' class='dataPointLabel' y='112' style='text-anchor: start;'>3</text
+    ><path class='fill2' d='M0 125 H532.0 v38 H0 Z'
+    /><text x='537.0' class='dataPointLabel' y='150' style='text-anchor: start;'>3</text
     ><path class='fill1' d='M0 0 H0.0 v38 H0 Z'
     /><text x='5.0' class='dataPointLabel' y='25' style='text-anchor: start;'>0</text
-    ><path class='fill2' d='M0 38 H174.333333333333 v38 H0 Z'
-    /><text x='179.333333333333' class='dataPointLabel' y='63' style='text-anchor: start;'>1</text
+    ><path class='fill2' d='M0 38 H177.333333333333 v38 H0 Z'
+    /><text x='182.333333333333' class='dataPointLabel' y='63' style='text-anchor: start;'>1</text
   ></g
   ><text x='320' class='mainTitle' y='16'>Question 7
 </text
-  ><g transform='translate(576.0 46)'
+  ><g transform='translate(585.0 46)'
     ><rect x='0' class='key1' y='0' height='12' width='12'
     /><text x='17' class='keyText' y='12'>Female</text
     ><rect x='0' class='key2' y='17' height='12' width='12'
