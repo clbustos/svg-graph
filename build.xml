@@ -74,6 +74,7 @@
       <param name='destdir' value='dist'/>
     </antcall>
 
+    <copy file="dist.xml.in" tofile="dist/dist.xml" filtering="true"/>
     <copy todir='dist/doc'> <fileset dir='doc'/> </copy>
 		<tar tarfile='web.tar' basedir='dist'/>
 		<gzip zipfile='web.tgz' src='web.tar'/>
