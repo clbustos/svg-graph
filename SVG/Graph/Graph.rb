@@ -23,15 +23,7 @@ module SVG
     #     include SVG::Graph
     # 
     #     def set_defaults
-    #       default = { 'keys' => 'value }
-    #       default.each { |key, value|
-    #         this.config[ key ] = value
-    #       }
-    #     end
-    # 
-    #     def get_template
-    #       template = 'set the template'
-    #       return template
+    #       init_with( { :key => 'value' } )
     #     end
     # 
     #     def _init
