@@ -49,6 +49,14 @@
         <caption>
           <para>SVG::Chart::Plot</para>
         </caption>
+      </mediaobject><mediaobject>
+        <imageobject>
+          <imagedata fileref="images/timeseries.svg" format="SVG" />
+        </imageobject>
+
+        <caption>
+          <para>SVG::Chart::TimeSeries</para>
+        </caption>
       </mediaobject></para>
   </sect1>
 
@@ -106,6 +114,16 @@
 
       <caption>
         <para>SVG::Chart::Plot</para>
+      </caption>
+    </mediaobject>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/timeseries.png" format="PNG" />
+      </imageobject>
+
+      <caption>
+        <para>SVG::Chart::TimeSeries</para>
       </caption>
     </mediaobject>
   </sect1>

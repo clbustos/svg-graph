@@ -171,6 +171,10 @@
       <listitem>
         <para>Plot (this is scalar data)</para>
       </listitem>
+
+      <listitem>
+        <para>TimeSeries (also scalar data, with one axis being dates)</para>
+      </listitem>
     </itemizedlist>
   </sect1>
 
