@@ -40,13 +40,19 @@
   <sect1>
     <title>Screenshot</title>
 
-    <para>Gotta have one:</para>
+    <para>Gotta have one.</para>
 
     <mediaobject>
       <imageobject>
         <imagedata fileref="screenshot.svg" format="SVG" />
       </imageobject>
     </mediaobject>
+
+    <para>By the way, there are a couple of problems with this. First, my
+    stylesheet for docbook doesn't deal with SVG at the moment, so you won't
+    get an image here. I'll fix that soon. Second, the SVG output uses CSS for
+    styling, and a depressing number of SVG viewers don't do CSS correctly
+    yet. The Adobe plugin does, as does Batik.</para>
   </sect1>
 
   <sect1>
