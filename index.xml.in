@@ -48,11 +48,11 @@
       </imageobject>
     </mediaobject>
 
-    <para>By the way, there are a couple of problems with this. First, my
-    stylesheet for docbook doesn't deal with SVG at the moment, so you won't
-    get an image here. I'll fix that soon. Second, the SVG output uses CSS for
-    styling, and a depressing number of SVG viewers don't do CSS correctly
-    yet. The Adobe plugin does, as does Batik.</para>
+    <para>The SVG output by SVG::Graph uses CSS for styling, and a depressing
+    number of SVG viewers don't do CSS correctly yet. If the above image is
+    entirely black, your SVG viewer doesn't handle CSS properly. If the above
+    image doesn't display at all, your browser probably doesn't understand
+    SVG. The Adobe plugin does, as does Batik.</para>
   </sect1>
 
   <sect1>
