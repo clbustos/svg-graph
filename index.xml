@@ -132,15 +132,18 @@
     little bit of evaluated code, but the Graph classes are mostly code with a
     little SVG; therefore, it makes more sense (and is a hell of a lot more
     readable) to have the SVG embedded in the code rather than vice versa.
-    However, much of the logic was directly cut and paste out of
-    SVG::TT::Graph, so at least the first few versions of SVG::Graph borrowed
-    heavily from the Perl version.</para>
+    However, some of the logic was directly cut and paste out of
+    SVG::TT::Graph, as was the entire CSS code and chunks of the
+    documentation, and the part of the API that the user sees is almost
+    identical to the original.</para>
 
-    <para>In fact i version 0.2.0 I completely refactored the code to make it
-    more modularized. As a result, the core Graph class contains most of the
-    graph drawing primatives, and the specializations only draw the plot
-    itself. This results in many fewer lines of code, and that code is more
-    robust.</para>
+    <para>In version 0.2.0 I completely refactored the code to make it more
+    modulare. As a result, the core Graph class contains most of the graph
+    drawing primatives, and the specializations (Bar, BarHorizontal, Line,
+    Pie, etc.) only draw the plot itself. This results in many fewer lines of
+    code, and that code is more robust. SVG::TT::Graph re-implemented most of
+    the code for every plot type, whereas SVG::Graph reuses most of the
+    code.</para>
 
     <para>I intend SVG::Graph to have more features than SVG::TT::Graph, which
     is the main reason for the re-implementation. One such feature is the
