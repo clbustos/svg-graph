@@ -140,7 +140,8 @@ module SVG
         raise "Data supplied must be x,y pairs!  "+
           "The data provided contained an odd set of "+
           "data points" unless data[:data].length % 2 == 0
-
+        return if data[:data].length == 0
+          
         x = []
         y = []
         data[:data].each_index {|i|

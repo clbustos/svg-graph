@@ -445,7 +445,7 @@ module SVG
       def calculate_bottom_margin
         @border_bottom = 7
         if key and key_position == :bottom
-          @border_bottom += @data.size * font_size
+          @border_bottom += @data.size * (font_size + 5)
           @border_bottom += 10
         end
         if show_x_labels
@@ -454,10 +454,10 @@ module SVG
               a.length<=>b.length
             }.length * x_label_font_size * 0.6 :
             x_label_font_size
-          @border_bottom += max_x_label_height_px 
+          @border_bottom += max_x_label_height_px
+          @border_bottom += max_x_label_height_px + 10 if stagger_x_labels
         end
-        @border_bottom += x_label_font_size + 5 if stagger_x_labels
-        @border_bottom += x_title_font_size +  5 if show_x_title
+        @border_bottom += x_title_font_size + 5 if show_x_title
       end
 
 
@@ -655,7 +655,11 @@ module SVG
         end
 
         if show_x_title
-          y = height - 5
+          y = @graph_height + @border_top + x_title_font_size
+          if show_x_labels
+            y += x_label_font_size + 5 if stagger_x_labels
+            y += x_label_font_size + 5
+          end
           x = width / 2
 
           @root.add_element("text", {
@@ -723,8 +727,10 @@ module SVG
                   a.length<=>b.length
                 }.length * x_label_font_size :
                 x_label_font_size
-              y_offset += max_x_label_height_px 
+              y_offset += max_x_label_height_px
+              y_offset += max_x_label_height_px + 5 if stagger_x_labels
             end
+            y_offset += x_title_font_size + 5 if show_x_title
           end
           group.attributes["transform"] = "translate(#{x_offset} #{y_offset})"
         end

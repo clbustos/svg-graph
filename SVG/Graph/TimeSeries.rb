@@ -144,9 +144,14 @@ module SVG
       # may be any date that is parseable by ParseDate.
       def add_data data
         @data = [] unless @data
-        if not(data[:data] and data[:data].kind_of? Array)
-          raise "No data provided by #{conf.inspect}"
-        end
+       
+        raise "No data provided by #{conf.inspect}" unless data[:data] and
+                                                    data[:data].kind_of? Array
+        raise "Data supplied must be x,y pairs!  "+
+          "The data provided contained an odd set of "+
+          "data points" unless data[:data].length % 2 == 0
+        return if data[:data].length == 0
+
 
         x = []
         y = []
@@ -198,9 +203,9 @@ module SVG
                 rv << cur
                 arr = Time.at( cur ).to_a
                 arr[4] += amount
-                if arr[4] > 11
-                  arr[5] += (arr[4] / 11).to_i
-                  arr[4] = (arr[4] % 11)
+                if arr[4] > 12
+                  arr[5] += (arr[4] / 12).to_i
+                  arr[4] = (arr[4] % 12)
                 end
                 cur = Time.local(*arr).to_i
               end
