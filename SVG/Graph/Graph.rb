@@ -814,12 +814,14 @@ module SVG
           "height" => height.to_s,
           "viewBox" => "0 0 #{width} #{height}",
           "xmlns" => "http://www.w3.org/2000/svg",
-          "xmlns:xlink" => "http://www.w3.org/1999/xlink"
+          "xmlns:xlink" => "http://www.w3.org/1999/xlink",
+          "xmlns:a3" => "http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/",
+          "a3:scriptImplementation" => "Adobe"
         })
         @root << Comment.new( " "+"\\"*66 )
         @root << Comment.new( " Created with SVG::Graph " )
-        @root << Comment.new( " Sean Russell " )
-        @root << Comment.new( " Based on SVG::TT::Graph for Perl by"+
+        @root << Comment.new( " SVG::Graph by Sean E. Russell " )
+        @root << Comment.new( " Losely based on SVG::TT::Graph for Perl by"+
         " Leo Lapworth & Stephan Morgan " )
         @root << Comment.new( " "+"/"*66 )
 
