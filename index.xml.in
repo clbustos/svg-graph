@@ -38,6 +38,18 @@
   </sect1>
 
   <sect1>
+    <title>Screenshot</title>
+
+    <para>Gotta have one:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshot.svg" format="SVG" />
+      </imageobject>
+    </mediaobject>
+  </sect1>
+
+  <sect1>
     <title>Why use it?</title>
 
     <para>If you're a Ruby programmer, you can't use SVG::TT::Graph directly.

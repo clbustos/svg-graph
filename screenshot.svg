@@ -1,0 +1,221 @@
+<?xml version='1.0'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 640 480' height='480' width='640' xmlns='http://www.w3.org/2000/svg'
+  >  <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  -->  <!-- Created with SVG::Graph 
+  -->  <!-- Sean Russell 
+  -->  <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
+  -->  <!-- //////////////////////////////////////////////////////////////////
+  -->  <!-- include default stylesheet if none specified 
+  --><defs
+    ><style type='text/css'><![CDATA[/* Copy from here for external style sheet */
+.svgBackground{
+	fill:#ffffff;
+}
+.graphBackground{
+	fill:#f0f0f0;
+}
+
+/* graphs titles */
+.mainTitle{
+	text-anchor: middle;
+	fill: #000000;
+	font-size: 14px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+.subTitle{
+	text-anchor: middle;
+	fill: #999999;
+	font-size: 12px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.axis{
+	stroke: #000000;
+	stroke-width: 1px;
+}
+
+.guideLines{
+	stroke: #666666;
+	stroke-width: 1px;
+	stroke-dasharray: 5 5;
+}
+
+.xAxisLabels{
+	text-anchor: middle;
+	fill: #000000;
+	font-size: 12px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.yAxisLabels{
+	text-anchor: end;
+	fill: #000000;
+	font-size: 12px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.xAxisTitle{
+	text-anchor: middle;
+	fill: #ff0000;
+	font-size: 14px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.yAxisTitle{
+	fill: #ff0000;
+	text-anchor: middle;
+	font-size: 14px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.dataPointLabel{
+	fill: #000000;
+	text-anchor:middle;
+	font-size: 10px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+
+.staggerGuideLine{
+	fill: none;
+	stroke: #000000;
+	stroke-width: 0.5px;	
+}
+/* default fill styles for multiple datasets (probably only use a single dataset on this graph though) */
+.key1,.fill1{
+	fill: #ff0000;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 0.5px;	
+}
+.key2,.fill2{
+	fill: #0000ff;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key3,.fill3{
+	fill: #00ff00;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key4,.fill4{
+	fill: #ffcc00;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key5,.fill5{
+	fill: #00ccff;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key6,.fill6{
+	fill: #ff00ff;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key7,.fill7{
+	fill: #00ffff;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key8,.fill8{
+	fill: #ffff00;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key9,.fill9{
+	fill: #cc6666;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key10,.fill10{
+	fill: #663399;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key11,.fill11{
+	fill: #339900;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.key12,.fill12{
+	fill: #9966FF;
+	fill-opacity: 0.5;
+	stroke: none;
+	stroke-width: 1px;	
+}
+.keyText{
+	fill: #000000;
+	text-anchor:start;
+	font-size: 10px;
+	font-family: "Arial", sans-serif;
+	font-weight: normal;
+}
+/* End copy for external style sheet */
+]]></style
+  ></defs
+  >  <!--SVG Background
+  --><rect x='0' class='svgBackground' y='0' height='480' width='640'
+  /><rect x='90' class='graphBackground' y='35' height='425' width='470'
+  /><path class='axis' d='M 90 35 v425' id='xAxis'
+  /><path class='axis' d='M 90 460 h470' id='yAxis'
+  /><text x='80' class='yAxisLabels' y='417.5'>Internet</text
+  ><text x='80' class='yAxisLabels' y='332.5'>TV</text
+  ><text x='80' class='yAxisLabels' y='247.5'>Newspaper</text
+  ><text x='80' class='yAxisLabels' y='162.5'>Magazine</text
+  ><text x='80' class='yAxisLabels' y='77.5'>Radio
+</text
+  ><text x='90' class='xAxisLabels' y='475'>0</text
+  ><text x='239' class='xAxisLabels' y='475' style='text-anchor: middle;'>1</text
+  ><path class='guideLines' d='M239 460 V35'
+  /><path class='staggerGuideLine' d='M239 460, v0'
+  /><text x='388' class='xAxisLabels' y='475' style='text-anchor: middle;'>2</text
+  ><path class='guideLines' d='M388 460 V35'
+  /><text x='537' class='xAxisLabels' y='475' style='text-anchor: middle;'>3</text
+  ><path class='guideLines' d='M537 460 V35'
+  /><path class='staggerGuideLine' d='M537 460, v0'
+  /><path class='fill1' d='M90 375.0 H388 v37.5 H90 Z'
+  /><text x='393' class='dataPointLabel' y='398.75' style='text-anchor: start;'>2</text
+  ><path class='fill2' d='M90 412.5 H239 v37.5 H90 Z'
+  /><text x='244' class='dataPointLabel' y='436.25' style='text-anchor: start;'>1</text
+  ><path class='fill1' d='M90 290.0 H388 v37.5 H90 Z'
+  /><text x='393' class='dataPointLabel' y='313.75' style='text-anchor: start;'>2</text
+  ><path class='fill2' d='M90 327.5 H239 v37.5 H90 Z'
+  /><text x='244' class='dataPointLabel' y='351.25' style='text-anchor: start;'>1</text
+  ><path class='fill1' d='M90 205.0 H90 v37.5 H90 Z'
+  /><text x='95' class='dataPointLabel' y='228.75' style='text-anchor: start;'>0</text
+  ><path class='fill2' d='M90 242.5 H90 v37.5 H90 Z'
+  /><text x='95' class='dataPointLabel' y='266.25' style='text-anchor: start;'>0</text
+  ><path class='fill1' d='M90 120.0 H537 v37.5 H90 Z'
+  /><text x='542' class='dataPointLabel' y='143.75' style='text-anchor: start;'>3</text
+  ><path class='fill2' d='M90 157.5 H537 v37.5 H90 Z'
+  /><text x='542' class='dataPointLabel' y='181.25' style='text-anchor: start;'>3</text
+  ><path class='fill1' d='M90 35.0 H90 v37.5 H90 Z'
+  /><text x='95' class='dataPointLabel' y='58.75' style='text-anchor: start;'>0</text
+  ><path class='fill2' d='M90 72.5 H239 v37.5 H90 Z'
+  /><text x='244' class='dataPointLabel' y='96.25' style='text-anchor: start;'>1</text
+  ><rect x='580' class='key1' y='52' height='12' width='12'
+  /><text x='597' class='keyText' y='64'>Female</text
+  ><rect x='580' class='key2' y='69' height='12' width='12'
+  /><text x='597' class='keyText' y='81'>Male</text
+  ><text x='320' class='mainTitle' y='15'>Question 7
+</text
+></svg
+>

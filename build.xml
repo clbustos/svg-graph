@@ -75,7 +75,8 @@
 		<filter token='ANT_VERSION' value='${release}'/>
 		<filter token='ANT_DATE' value='${date}'/>
 		<copy todir='dist' overwrite='yes' filtering='true'>
-			<fileset dir='.' includes='dist.xml,index.html,LICENSE.txt,GPL.txt'/>
+      <fileset dir='.' 
+        includes='screenshot.svg,index.html,LICENSE.txt,GPL.txt'/>
 		</copy>
     <mkdir dir='dist/doc'/>
     <copy todir='dist/doc'> <fileset dir='doc'/> </copy>
