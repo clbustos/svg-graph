@@ -128,6 +128,12 @@ module SVG
 
       # This method generates the SVG document, and is used by Graph::burn
       def get_svg
+        rv = ""
+        gen_svg.write( rv, 0, true )
+        return rv
+      end
+
+      def gen_svg
         d = Document.new
         d << XMLDecl.new
         d << DocType.new( %q{svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"} )
@@ -186,7 +192,7 @@ module SVG
           min_value = dm < min_value ? dm : min_value
           dm = dataset.max
           max_value = dm > max_value ? dm : max_value
-          max_key_size = title.length>max_key_size ? title.length : max_key_size
+          max_key_size = title.length if title.length > max_key_size
         end
 
         h = height
@@ -244,7 +250,7 @@ module SVG
 
         scale_range = (max_value + top_pad) - minvalue
 
-        scale_division = scale_divisions || scale_range / 10.0
+        scale_division = scale_divisions || (scale_range / 10.0)
 
         if scale_integers
           scale_division = scale_division < 1 ? 1 : scale_division.round
@@ -521,9 +527,7 @@ module SVG
           }).text = graph_subtitle
         end
 
-        rv = ""
-        d.write( rv, 0, true )
-        return rv
+        return d
       end
 
       ##########################################################################
@@ -658,7 +662,8 @@ module SVG
 
           :stack                => :overlap,
           }
-          self.send( k.to_s+"=", v )
+          m = k.to_s + "="
+          self.send( m, v ) if methods.include? m
         end
       end
 

@@ -1,0 +1,4 @@
+Question 7
+Internet,TV,Newspaper,Magazine,Radio
+2 2 0 3 0
+1 1 0 3 1
