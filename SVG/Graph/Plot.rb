@@ -250,8 +250,7 @@ module SVG
                   "class" => "dataPoint#{line}"
                 })
                 add_popup( @graph, x, y, 
-                  "(#{format_x(x_points[idx])}, "+
-                  "#{format_y(y_points[idx])})" ) if add_popups
+                          format( x_points[idx], y_points[idx] ) ) if add_popups
               end
               make_datapoint_text( x, y-6, y_points[idx] )
             }
@@ -260,10 +259,9 @@ module SVG
         end
       end
 
-      def format_x x
-        (x * 100).to_i / 100
+      def format x, y
+        "(#{(x * 100).to_i / 100}, #{(y * 100).to_i / 100})"
       end
-      alias :format_y :format_x
       
       def get_css
         return <<EOL

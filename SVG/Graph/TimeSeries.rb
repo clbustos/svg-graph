@@ -127,8 +127,8 @@ module SVG
 
 
       protected
-      def format_x x
-        Time.at( x )
+      def format x, y
+        Time.at( x ).to_s
       end
 
       def get_x_labels
