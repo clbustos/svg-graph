@@ -101,7 +101,7 @@
     <copy todir='${destdir}/images'><fileset dir='images'/></copy>
 
     <get dest='index.xsl'
-      src='http://germane-software.com/~ser/styles/common.xsl'/>
+      src='http://www.germane-software.com/~ser/styles/common.xsl'/>
     <style in='${destdir}/index.xml' out='${destdir}/index.html' 
       style='index.xsl'/>
     <style in='${destdir}/screenshots.xml' out='${destdir}/screenshots.html' 
