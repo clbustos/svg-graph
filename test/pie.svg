@@ -1,0 +1,70 @@
+<?xml version='1.0'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 640 480' height='480' width='640' xmlns='http://www.w3.org/2000/svg'>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  -->
+    <!-- Created with SVG::Graph 
+  -->
+    <!-- Sean Russell 
+  -->
+    <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
+  -->
+    <!-- //////////////////////////////////////////////////////////////////
+  -->
+  <defs>
+    <filter id='dropshadow' height='1.2' width='1.2'>
+      <feGaussianBlur result='blur' stdDeviation='4'/>
+    </filter>
+  </defs>
+    <!--SVG Background
+  -->
+  <rect x='0' class='svgBackground' y='0' height='480' style='fill:#ffffff;' width='640'/>
+  <text x='320' class='mainTitle' y='16' style='text-anchor: middle; fill: #000000; font-size: 16px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Question 7
+</text>
+  <g transform='translate(543.0 46)'>
+    <rect x='0' class='key1' y='0' height='12' style='fill: #ff0000; fill-opacity: 0.7; stroke: none; stroke-width: 1px;' width='12'/>
+    <text x='17' class='keyText' y='12' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Internet [3]</text>
+    <rect x='0' class='key2' y='17' height='12' style='fill: #0000ff; fill-opacity: 0.7; stroke: none; stroke-width: 1px;' width='12'/>
+    <text x='17' class='keyText' y='29' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>TV [3]</text>
+    <rect x='0' class='key3' y='34' height='12' style='fill-opacity: 0.7; fill: #00ff00; stroke: none; stroke-width: 1px;' width='12'/>
+    <text x='17' class='keyText' y='46' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Newspaper [0]</text>
+    <rect x='0' class='key4' y='51' height='12' style='fill-opacity: 0.7; fill: #ffcc00; stroke: none; stroke-width: 1px;' width='12'/>
+    <text x='17' class='keyText' y='63' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Magazine [6]</text>
+    <rect x='0' class='key5' y='68' height='12' style='fill-opacity: 0.7; fill: #00ccff; stroke: none; stroke-width: 1px;' width='12'/>
+    <text x='17' class='keyText' y='80' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Radio
+ [1]</text>
+  </g>
+  <g transform='translate( 112 48 )'>
+    <g>
+      <path transform='translate( 16.631226582408 2.51489251828899 )' d='M207.5,207.5 L207.5,0.0 A207.5,207.5 0, 0,1, 413.487091375346 182.48863884702 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'/>
+      <path transform='translate( 18.2298386589366 15.6806474673116 )' d='M207.5,207.5 L413.487091375346,182.48863884702 A207.5,207.5 0, 0,1, 257.158000339668 408.970427115906 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'/>
+      <path transform='translate( 12.3931566428756 19.7094181742605 )' d='M207.5,207.5 L257.158000339668,408.970427115906 A207.5,207.5 0, 0,1, 257.158000339668 408.970427115906 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'/>
+      <path transform='translate( 0.649837573145852 13.5460488704254 )' d='M207.5,207.5 L257.158000339668,408.970427115906 A207.5,207.5 0, 0,1, 111.069941800918 23.7678746769589 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'/>
+      <path transform='translate( 7.60684335712442 0.29058182573948 )' d='M207.5,207.5 L111.069941800918,23.7678746769589 A207.5,207.5 0, 0,1, 207.5 0.0 Z' filter='url(#dropshadow)' style='fill: #ccc; stroke: none;'/>
+    </g>
+    <g>
+      <path transform='translate( 6.63122658240795 -7.48510748171101 )' d='M207.5,207.5 L207.5,0.0 A207.5,207.5 0, 0,1, 413.487091375346 182.48863884702 Z' style='fill: #fff; stroke: none;'/>
+      <path transform='translate( 8.22983865893656 5.68064746731156 )' d='M207.5,207.5 L413.487091375346,182.48863884702 A207.5,207.5 0, 0,1, 257.158000339668 408.970427115906 Z' style='fill: #fff; stroke: none;'/>
+      <path transform='translate( 2.39315664287558 9.70941817426052 )' d='M207.5,207.5 L257.158000339668,408.970427115906 A207.5,207.5 0, 0,1, 257.158000339668 408.970427115906 Z' style='fill: #fff; stroke: none;'/>
+      <path transform='translate( -9.35016242685415 3.54604887042536 )' d='M207.5,207.5 L257.158000339668,408.970427115906 A207.5,207.5 0, 0,1, 111.069941800918 23.7678746769589 Z' style='fill: #fff; stroke: none;'/>
+      <path transform='translate( -2.39315664287558 -9.70941817426052 )' d='M207.5,207.5 L111.069941800918,23.7678746769589 A207.5,207.5 0, 0,1, 207.5 0.0 Z' style='fill: #fff; stroke: none;'/>
+    </g>
+    <g>
+      <path transform='translate( 6.63122658240795 -7.48510748171101 )' class='fill1' d='M207.5,207.5 L207.5,0.0 A207.5,207.5 0, 0,1, 413.487091375346 182.48863884702 Z' style='fill: #ff0000; fill-opacity: 0.7; stroke: none; stroke-width: 1px;'/>
+      <text x='351.729178167373' class='dataPointLabel' y='44.6989122727855' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;stroke: #fff; stroke-width: 2;'>Internet 23%</text>
+      <text x='351.729178167373' class='dataPointLabel' y='44.6989122727855' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Internet 23%</text>
+      <path transform='translate( 8.22983865893656 5.68064746731156 )' class='fill2' d='M207.5,207.5 L413.487091375346,182.48863884702 A207.5,207.5 0, 0,1, 257.158000339668 408.970427115906 Z' style='fill: #0000ff; fill-opacity: 0.7; stroke: none; stroke-width: 1px;'/>
+      <text x='386.49899083187' class='dataPointLabel' y='331.054082414026' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;stroke: #fff; stroke-width: 2;'>TV 23%</text>
+      <text x='386.49899083187' class='dataPointLabel' y='331.054082414026' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>TV 23%</text>
+      <path transform='translate( 2.39315664287558 9.70941817426052 )' class='fill3' d='M207.5,207.5 L257.158000339668,408.970427115906 A207.5,207.5 0, 0,1, 257.158000339668 408.970427115906 Z' style='fill-opacity: 0.7; fill: #00ff00; stroke: none; stroke-width: 1px;'/>
+      <path transform='translate( -9.35016242685415 3.54604887042536 )' class='fill4' d='M207.5,207.5 L257.158000339668,408.970427115906 A207.5,207.5 0, 0,1, 111.069941800918 23.7678746769589 Z' style='fill-opacity: 0.7; fill: #ffcc00; stroke: none; stroke-width: 1px;'/>
+      <text x='4.1339672159223' class='dataPointLabel' y='284.626562931752' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;stroke: #fff; stroke-width: 2;'>Magazine 46%</text>
+      <text x='4.1339672159223' class='dataPointLabel' y='284.626562931752' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Magazine 46%</text>
+      <path transform='translate( -2.39315664287558 -9.70941817426052 )' class='fill5' d='M207.5,207.5 L111.069941800918,23.7678746769589 A207.5,207.5 0, 0,1, 207.5 0.0 Z' style='fill-opacity: 0.7; fill: #00ccff; stroke: none; stroke-width: 1px;'/>
+      <text x='155.448843017456' class='dataPointLabel' y='-3.67984529016633' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;stroke: #fff; stroke-width: 2;'>Radio
+ 8%</text>
+      <text x='155.448843017456' class='dataPointLabel' y='-3.67984529016633' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;; fill: #000000; text-anchor:middle; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Radio
+ 8%</text>
+    </g>
+  </g>
+</svg>
