@@ -34,7 +34,6 @@ graph = SVG::Graph::Plot.new( {
   :show_y_title => true,
   :y_title => "Ice Cream Cones",
   :y_title_text_direction => :bt,
-  :add_popups => true,
 })
 graph.add_data( 
   :data => data1,

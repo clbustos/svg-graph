@@ -1,0 +1,154 @@
+<?xml version='1.0'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 640 480' height='480' width='640' xmlns='http://www.w3.org/2000/svg'
+  >  <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  -->  <!-- Created with SVG::Graph 
+  -->  <!-- Sean Russell 
+  -->  <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
+  -->  <!-- //////////////////////////////////////////////////////////////////
+  --><defs
+  />  <!--SVG Background
+  --><rect x='0' class='svgBackground' y='0' height='480' style='fill:#ffffff;' width='640'
+  /><g transform='translate( 40.4 26 )'
+    ><rect x='0' class='graphBackground' y='0' height='399' style='fill:#f0f0f0;' width='516.6'
+    /><path class='axis' d='M 0 0 v399' id='xAxis' style='stroke: #000000; stroke-width: 1px;'
+    /><path class='axis' d='M 0 399 h516.6' id='yAxis' style='stroke: #000000; stroke-width: 1px;'
+    /><text x='0.0' class='xAxisLabels' y='414' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>12/31/69</text
+    ><text x='49.26' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>08/07/73</text
+    ><path class='staggerGuideLine' d='M49.26 399 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'
+    /><path class='guideLines' d='M49.26 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='98.52' class='xAxisLabels' y='414' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>03/14/77</text
+    ><path class='guideLines' d='M98.52 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='147.78' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>10/19/80</text
+    ><path class='staggerGuideLine' d='M147.78 399 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'
+    /><path class='guideLines' d='M147.78 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='197.04' class='xAxisLabels' y='414' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>05/26/84</text
+    ><path class='guideLines' d='M197.04 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='246.3' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>12/31/87</text
+    ><path class='staggerGuideLine' d='M246.3 399 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'
+    /><path class='guideLines' d='M246.3 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='295.56' class='xAxisLabels' y='414' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>08/07/91</text
+    ><path class='guideLines' d='M295.56 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='344.82' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>03/14/95</text
+    ><path class='staggerGuideLine' d='M344.82 399 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'
+    /><path class='guideLines' d='M344.82 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='394.08' class='xAxisLabels' y='414' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>10/19/98</text
+    ><path class='guideLines' d='M394.08 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='443.34' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>05/26/02</text
+    ><path class='staggerGuideLine' d='M443.34 399 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'
+    /><path class='guideLines' d='M443.34 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='492.6' class='xAxisLabels' y='414' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>12/30/05</text
+    ><path class='guideLines' d='M492.6 0 v399' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='405.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>0</text
+    ><text x='-3' class='yAxisLabels' y='363.333333333333' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>2</text
+    ><path class='guideLines' d='M0 357.333333333333 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='321.666666666667' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>4</text
+    ><path class='guideLines' d='M0 315.666666666667 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='280.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>6</text
+    ><path class='guideLines' d='M0 274.0 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='238.333333333333' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>8</text
+    ><path class='guideLines' d='M0 232.333333333333 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='196.666666666667' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>10</text
+    ><path class='guideLines' d='M0 190.666666666667 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='155.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>12</text
+    ><path class='guideLines' d='M0 149.0 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='113.333333333333' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>14</text
+    ><path class='guideLines' d='M0 107.333333333333 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='71.6666666666667' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>16</text
+    ><path class='guideLines' d='M0 65.6666666666667 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='-3' class='yAxisLabels' y='30.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>18</text
+    ><path class='guideLines' d='M0 24.0 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><path class='line1' d='M27.7324966332125 253.166666666667 L27.7324966332125 253.166666666667 33.6505317999172 169.833333333333 214.385546165625 357.333333333333 255.448061867287 378.166666666667 342.632537210281 128.166666666667 433.710333499136 211.5 469.142858381806 169.833333333333 ' style='fill: none; stroke: #ff0000; stroke-width: 1px;'
+    /><circle cy='253.166666666667' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='27.7324966332125'
+    /><text visibility='hidden' x='32.7324966332125' y='241.166666666667' id='538799996' style='fill: #000; text-anchor: start;'>Tue Jan 11 00:00:00 EST 1972</text
+    ><circle cy='253.166666666667' onmouseover='document.getElementById(538799996).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538799996).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='27.7324966332125' style='opacity: 0'
+    /><text x='27.7324966332125' class='dataPointLabel' y='247.166666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>7</text
+    ><text x='27.7324966332125' class='dataPointLabel' y='247.166666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>7</text
+    ><circle cy='169.833333333333' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='33.6505317999172'
+    /><text visibility='hidden' x='38.6505317999172' y='157.833333333333' id='538796936' style='fill: #000; text-anchor: start;'>Sat Jun 17 00:00:00 EDT 1972</text
+    ><circle cy='169.833333333333' onmouseover='document.getElementById(538796936).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538796936).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='33.6505317999172' style='opacity: 0'
+    /><text x='33.6505317999172' class='dataPointLabel' y='163.833333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>11</text
+    ><text x='33.6505317999172' class='dataPointLabel' y='163.833333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>11</text
+    ><circle cy='357.333333333333' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='214.385546165625'
+    /><text visibility='hidden' x='219.385546165625' y='345.333333333333' id='538793886' style='fill: #000; text-anchor: start;'>Sun Sep 01 00:00:00 EDT 1985</text
+    ><circle cy='357.333333333333' onmouseover='document.getElementById(538793886).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538793886).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='214.385546165625' style='opacity: 0'
+    /><text x='214.385546165625' class='dataPointLabel' y='351.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>2</text
+    ><text x='214.385546165625' class='dataPointLabel' y='351.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>2</text
+    ><circle cy='378.166666666667' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='255.448061867287'
+    /><text visibility='hidden' x='260.448061867287' y='366.166666666667' id='538790836' style='fill: #000; text-anchor: start;'>Thu Sep 01 00:00:00 EDT 1988</text
+    ><circle cy='378.166666666667' onmouseover='document.getElementById(538790836).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538790836).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='255.448061867287' style='opacity: 0'
+    /><text x='255.448061867287' class='dataPointLabel' y='372.166666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>1</text
+    ><text x='255.448061867287' class='dataPointLabel' y='372.166666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>1</text
+    ><circle cy='128.166666666667' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='342.632537210281'
+    /><text visibility='hidden' x='347.632537210281' y='116.166666666667' id='538787786' style='fill: #000; text-anchor: start;'>Sun Jan 15 00:00:00 EST 1995</text
+    ><circle cy='128.166666666667' onmouseover='document.getElementById(538787786).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538787786).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='342.632537210281' style='opacity: 0'
+    /><text x='342.632537210281' class='dataPointLabel' y='122.166666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>13</text
+    ><text x='342.632537210281' class='dataPointLabel' y='122.166666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>13</text
+    ><circle cy='211.5' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='433.710333499136'
+    /><text visibility='hidden' x='428.710333499136' y='199.5' id='538784736' style='fill: #000; text-anchor: end;'>Tue Sep 11 00:00:00 EDT 2001</text
+    ><circle cy='211.5' onmouseover='document.getElementById(538784736).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538784736).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='433.710333499136' style='opacity: 0'
+    /><text x='433.710333499136' class='dataPointLabel' y='205.5' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>9</text
+    ><text x='433.710333499136' class='dataPointLabel' y='205.5' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>9</text
+    ><circle cy='169.833333333333' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='469.142858381806'
+    /><text visibility='hidden' x='464.142858381806' y='157.833333333333' id='538781666' style='fill: #000; text-anchor: end;'>Tue Apr 13 17:31:00 EDT 2004</text
+    ><circle cy='169.833333333333' onmouseover='document.getElementById(538781666).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538781666).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='469.142858381806' style='opacity: 0'
+    /><text x='469.142858381806' class='dataPointLabel' y='163.833333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>11</text
+    ><text x='469.142858381806' class='dataPointLabel' y='163.833333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>11</text
+    ><path class='line2' d='M49.0115093890425 24.0 L49.0115093890425 24.0 98.0183355532102 86.5 147.096971165457 149.0 196.102236254667 44.8333333333334 245.146528217832 274.0 295.311672001017 149.0 344.318498165185 274.0 393.397133777432 315.666666666667 442.402398866641 107.333333333333 ' style='fill: none; stroke: #0000ff; stroke-width: 1px;'
+    /><circle cy='24.0' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='49.0115093890425'
+    /><text visibility='hidden' x='54.0115093890425' y='12.0' id='538777716' style='fill: #000; text-anchor: start;'>Wed Aug 01 00:00:00 EDT 1973</text
+    ><circle cy='24.0' onmouseover='document.getElementById(538777716).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538777716).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='49.0115093890425' style='opacity: 0'
+    /><text x='49.0115093890425' class='dataPointLabel' y='18.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>18</text
+    ><text x='49.0115093890425' class='dataPointLabel' y='18.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>18</text
+    ><circle cy='86.5' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='98.0183355532102'
+    /><text visibility='hidden' x='103.01833555321' y='74.5' id='538774666' style='fill: #000; text-anchor: start;'>Tue Mar 01 00:00:00 EST 1977</text
+    ><circle cy='86.5' onmouseover='document.getElementById(538774666).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538774666).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='98.0183355532102' style='opacity: 0'
+    /><text x='98.0183355532102' class='dataPointLabel' y='80.5' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>15</text
+    ><text x='98.0183355532102' class='dataPointLabel' y='80.5' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>15</text
+    ><circle cy='149.0' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='147.096971165457'
+    /><text visibility='hidden' x='152.096971165457' y='137.0' id='538771616' style='fill: #000; text-anchor: start;'>Wed Oct 01 00:00:00 EDT 1980</text
+    ><circle cy='149.0' onmouseover='document.getElementById(538771616).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538771616).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='147.096971165457' style='opacity: 0'
+    /><text x='147.096971165457' class='dataPointLabel' y='143.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>12</text
+    ><text x='147.096971165457' class='dataPointLabel' y='143.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>12</text
+    ><circle cy='44.8333333333334' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='196.102236254667'
+    /><text visibility='hidden' x='201.102236254667' y='32.8333333333334' id='538768566' style='fill: #000; text-anchor: start;'>Tue May 01 00:00:00 EDT 1984</text
+    ><circle cy='44.8333333333334' onmouseover='document.getElementById(538768566).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538768566).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='196.102236254667' style='opacity: 0'
+    /><text x='196.102236254667' class='dataPointLabel' y='38.8333333333334' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>17</text
+    ><text x='196.102236254667' class='dataPointLabel' y='38.8333333333334' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>17</text
+    ><circle cy='274.0' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='245.146528217832'
+    /><text visibility='hidden' x='250.146528217832' y='262.0' id='538765516' style='fill: #000; text-anchor: start;'>Tue Dec 01 00:00:00 EST 1987</text
+    ><circle cy='274.0' onmouseover='document.getElementById(538765516).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538765516).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='245.146528217832' style='opacity: 0'
+    /><text x='245.146528217832' class='dataPointLabel' y='268.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>6</text
+    ><text x='245.146528217832' class='dataPointLabel' y='268.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>6</text
+    ><circle cy='149.0' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='295.311672001017'
+    /><text visibility='hidden' x='300.311672001017' y='137.0' id='538762466' style='fill: #000; text-anchor: start;'>Thu Aug 01 00:00:00 EDT 1991</text
+    ><circle cy='149.0' onmouseover='document.getElementById(538762466).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538762466).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='295.311672001017' style='opacity: 0'
+    /><text x='295.311672001017' class='dataPointLabel' y='143.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>12</text
+    ><text x='295.311672001017' class='dataPointLabel' y='143.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>12</text
+    ><circle cy='274.0' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='344.318498165185'
+    /><text visibility='hidden' x='349.318498165185' y='262.0' id='538759416' style='fill: #000; text-anchor: start;'>Wed Mar 01 00:00:00 EST 1995</text
+    ><circle cy='274.0' onmouseover='document.getElementById(538759416).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538759416).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='344.318498165185' style='opacity: 0'
+    /><text x='344.318498165185' class='dataPointLabel' y='268.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>6</text
+    ><text x='344.318498165185' class='dataPointLabel' y='268.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>6</text
+    ><circle cy='315.666666666667' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='393.397133777432'
+    /><text visibility='hidden' x='398.397133777432' y='303.666666666667' id='538756366' style='fill: #000; text-anchor: start;'>Thu Oct 01 00:00:00 EDT 1998</text
+    ><circle cy='315.666666666667' onmouseover='document.getElementById(538756366).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538756366).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='393.397133777432' style='opacity: 0'
+    /><text x='393.397133777432' class='dataPointLabel' y='309.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>4</text
+    ><text x='393.397133777432' class='dataPointLabel' y='309.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>4</text
+    ><circle cy='107.333333333333' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='442.402398866641'
+    /><text visibility='hidden' x='437.402398866641' y='95.3333333333334' id='538753316' style='fill: #000; text-anchor: end;'>Wed May 01 00:00:00 EDT 2002</text
+    ><circle cy='107.333333333333' onmouseover='document.getElementById(538753316).setAttribute(&apos;visibility&apos;, &apos;visible&apos; )' r='10' onmouseout='document.getElementById(538753316).setAttribute(&apos;visibility&apos;, &apos;hidden&apos; )' cx='442.402398866641' style='opacity: 0'
+    /><text x='442.402398866641' class='dataPointLabel' y='101.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>14</text
+    ><text x='442.402398866641' class='dataPointLabel' y='101.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>14</text
+  ></g
+  ><text x='320' class='mainTitle' y='16' style='text-anchor: middle; fill: #000000; font-size: 16px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Plot</text
+  ><text x='320' class='xAxisTitle' y='475' style='text-anchor: middle; fill: #ff0000; font-size: 14px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Time</text
+  ><text transform='rotate( -90, 17, 240 )' x='17' class='yAxisTitle' y='240' style='fill: #ff0000; text-anchor: middle; font-size: 14px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Ice Cream Cones</text
+  ><g transform='translate(567.0 46)'
+    ><rect x='0' class='key1' y='0' height='12' style='fill: #ff0000; stroke: none; stroke-width: 1px;' width='12'
+    /><text x='17' class='keyText' y='12' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Dataset 1</text
+    ><rect x='0' class='key2' y='17' height='12' style='fill: #0000ff; stroke: none; stroke-width: 1px;' width='12'
+    /><text x='17' class='keyText' y='29' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Dataset 2</text
+  ></g
+></svg
+>
