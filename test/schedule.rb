@@ -1,10 +1,8 @@
 require 'SVG/Graph/Schedule'
 
 
-title = "Monika's Schedule"
+title = "Billy's Schedule"
 data1 = [
-  "Miracle Worker", "5/15/04", "6/6/04",
-  "Lovers", "5/15/04", "6/6/04",
   "History 107", "5/19/04", "6/30/04",
   "Algebra 011", "6/2/04", "8/11/04",
   "Psychology 101", "6/28/04", "8/9/04",

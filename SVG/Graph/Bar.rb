@@ -71,7 +71,7 @@ module SVG
       end
 
       def get_y_labels
-        max_value = @data.collect{|x| x[:data].max}.max
+        max_value = @data.collect{|x| x[:data].max }.max
         min_value = @data.collect{|x| x[:data].min}.min
         range = max_value - min_value
         top_pad = range == 0 ? 10 : range / 20.0
@@ -96,7 +96,10 @@ module SVG
 
       def draw_data
         fieldwidth = field_width
-        fieldheight = field_height
+        max_value = @data.collect{|x| x[:data].max }.max
+        min_value = @data.collect{|x| x[:data].min}.min
+        fieldheight =  (@graph_height.to_f - font_size*2*top_font) / 
+                          (get_y_labels.max - get_y_labels.min)
         bargap = bar_gap ? (fieldwidth < 10 ? fieldwidth / 2 : 10) : 0
 
         subbar_width = fieldwidth - bargap

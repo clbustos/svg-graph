@@ -102,7 +102,8 @@ module SVG
 
       def draw_data
         fieldheight = field_height
-        fieldwidth = field_width
+        fieldwidth = (@graph_width.to_f - font_size*2*right_font ) /
+                        (get_x_labels.max - get_x_labels.min )
         bargap = bar_gap ? (fieldheight < 10 ? fieldheight / 2 : 10) : 0
 
         subbar_height = fieldheight - bargap
