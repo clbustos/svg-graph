@@ -195,6 +195,7 @@ module SVG
 
         start_svg
         calculate_graph_dimensions
+        @foreground = Element.new( "g" )
         draw_graph
         draw_titles
         draw_legend
@@ -447,7 +448,6 @@ module SVG
         @graph = @root.add_element( "g", {
           "transform" => "translate( #@border_left #@border_top )"
         })
-        @foreground = Element.new( "g" )
 
         # Background
         @graph.add_element( "rect", {

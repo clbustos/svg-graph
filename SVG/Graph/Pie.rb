@@ -188,7 +188,6 @@ module SVG
         @graph = @root.add_element( "g" )
         background = @graph.add_element("g")
         midground = @graph.add_element("g")
-        foreground = @graph.add_element("g")
 
         diameter = @graph_height > @graph_width ? @graph_width : @graph_height
         diameter -= expand_gap if expanded or expand_greatest
@@ -230,7 +229,7 @@ module SVG
             "#{x_end} #{y_end} Z"
 
 
-          wedge = foreground.add_element( "path", {
+          wedge = @foreground.add_element( "path", {
             "d" => path,
             "class" => "fill#{count+1}"
           })
@@ -281,13 +280,13 @@ module SVG
               tx += (msr * expand_gap)
               ty -= (mcr * expand_gap)
             end
-            foreground.add_element( "text", {
+            @foreground.add_element( "text", {
               "x" => tx.to_s,
               "y" => ty.to_s,
               "class" => "dataPointLabel",
               "style" => "stroke: #fff; stroke-width: 2;"
             }).text = label.to_s
-            foreground.add_element( "text", {
+            @foreground.add_element( "text", {
               "x" => tx.to_s,
               "y" => ty.to_s,
               "class" => "dataPointLabel",
