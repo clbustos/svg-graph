@@ -1,6 +1,6 @@
 <project name='SVG::Graph' default='build-dist' basedir='.'>
-	<property name='date' value='+2004/266'/>
-	<property name='release' value='0.6.0'/>
+	<property name='date' value='+2005/058'/>
+	<property name='release' value='0.6.1'/>
   <property name='version' value='$Rev$'/>
 	
 	<!-- Build the API docs -->
