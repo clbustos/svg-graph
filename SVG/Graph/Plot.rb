@@ -147,7 +147,7 @@ module SVG
         data[:data].each_index {|i|
           (i%2 == 0 ? x : y) << data[:data][i]
         }
-        sort_two( x, y )
+        sort( x, y )
         data[:data] = [x,y]
         @data << data
       end
@@ -489,28 +489,6 @@ module SVG
 EOL
       end
 
-      def sort_two( a, b, lo=0, hi=a.length-1 )
-        if lo < hi
-          p = partition(a,b,lo,hi)
-          sort_two(a,b, lo, p-1)
-          sort_two(a,b, p+1, hi)
-        end
-        [a,b]
-      end
-      def partition( a, b, lo, hi )
-        p = a[lo]
-        l = lo
-        z = lo+1
-        while z <= hi
-          if a[z] < p
-            l += 1
-            a[z],a[l],b[z],b[l] = a[l],a[z],b[l],b[z]
-          end
-          z += 1
-        end
-        a[lo],a[l],b[lo],b[l] = a[l],a[lo],b[l],b[lo]
-        l
-      end
     end
   end
 end

@@ -1,0 +1,75 @@
+<?xml version='1.0'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 640 480' height='480' width='640' xmlns='http://www.w3.org/2000/svg'>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  -->
+    <!-- Created with SVG::Graph 
+  -->
+    <!-- Sean Russell 
+  -->
+    <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
+  -->
+    <!-- //////////////////////////////////////////////////////////////////
+  -->
+  <defs/>
+    <!--SVG Background
+  -->
+  <rect x='0' class='svgBackground' y='0' height='480' style='fill:#ffffff;' width='640'/>
+  <g transform='translate( 41 26 )'>
+    <rect x='0' class='graphBackground' y='0' height='394' style='fill:#f0f0f0;' width='592'/>
+    <path class='axis' d='M 0 0 v394' id='xAxis' style='stroke: #000000; stroke-width: 1px;'/>
+    <path class='axis' d='M 0 394 h592' id='yAxis' style='stroke: #000000; stroke-width: 1px;'/>
+    <text x='0.0' class='xAxisLabels' y='409' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>05/15</text>
+    <text x='42.2857142857143' class='xAxisLabels' y='426' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>05/22</text>
+    <path class='staggerGuideLine' d='M42.2857142857143 394 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <path class='guideLines' d='M42.2857142857143 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='84.5714285714286' class='xAxisLabels' y='409' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>05/29</text>
+    <path class='guideLines' d='M84.5714285714286 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='126.857142857143' class='xAxisLabels' y='426' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>06/05</text>
+    <path class='staggerGuideLine' d='M126.857142857143 394 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <path class='guideLines' d='M126.857142857143 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='169.142857142857' class='xAxisLabels' y='409' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>06/12</text>
+    <path class='guideLines' d='M169.142857142857 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='211.428571428571' class='xAxisLabels' y='426' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>06/19</text>
+    <path class='staggerGuideLine' d='M211.428571428571 394 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <path class='guideLines' d='M211.428571428571 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='253.714285714286' class='xAxisLabels' y='409' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>06/26</text>
+    <path class='guideLines' d='M253.714285714286 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='296.0' class='xAxisLabels' y='426' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>07/03</text>
+    <path class='staggerGuideLine' d='M296.0 394 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <path class='guideLines' d='M296.0 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='338.285714285714' class='xAxisLabels' y='409' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>07/10</text>
+    <path class='guideLines' d='M338.285714285714 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='380.571428571429' class='xAxisLabels' y='426' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>07/17</text>
+    <path class='staggerGuideLine' d='M380.571428571429 394 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <path class='guideLines' d='M380.571428571429 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='422.857142857143' class='xAxisLabels' y='409' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>07/24</text>
+    <path class='guideLines' d='M422.857142857143 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='465.142857142857' class='xAxisLabels' y='426' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>07/31</text>
+    <path class='staggerGuideLine' d='M465.142857142857 394 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <path class='guideLines' d='M465.142857142857 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='507.428571428571' class='xAxisLabels' y='409' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>08/07</text>
+    <path class='guideLines' d='M507.428571428571 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='549.714285714286' class='xAxisLabels' y='426' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>08/14</text>
+    <path class='staggerGuideLine' d='M549.714285714286 394 v17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <path class='guideLines' d='M549.714285714286 0 v394' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text transform='translate( -12 0 ) rotate( 90 0 361.166666666667 ) ' x='0' class='yAxisLabels' y='361.166666666667' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Miracle Worker</text>
+    <path class='staggerGuideLine' d='M-17 295.5 h17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <text transform='translate( -12 0 ) rotate( 90 -17 295.5 ) ' x='-17' class='yAxisLabels' y='295.5' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Lovers</text>
+    <text transform='translate( -12 0 ) rotate( 90 0 229.833333333333 ) ' x='0' class='yAxisLabels' y='229.833333333333' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>History 107</text>
+    <path class='staggerGuideLine' d='M-17 164.166666666667 h17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <text transform='translate( -12 0 ) rotate( 90 -17 164.166666666667 ) ' x='-17' class='yAxisLabels' y='164.166666666667' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Algebra 011</text>
+    <text transform='translate( -12 0 ) rotate( 90 0 98.5 ) ' x='0' class='yAxisLabels' y='98.5' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Psychology 101</text>
+    <path class='staggerGuideLine' d='M-17 32.8333333333333 h17' style='fill: none; stroke: #000000; stroke-width: 0.5px;'/>
+    <text transform='translate( -12 0 ) rotate( 90 -17 32.8333333333333 ) ' x='-17' class='yAxisLabels' y='32.8333333333333' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Acting 105</text>
+    <rect x='0.0' class='fill2' y='328.333333333333' height='55.6666666666667' style='fill: #0000ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;' width='134.365591397849'/>
+    <rect x='0.0' class='fill3' y='262.666666666667' height='55.6666666666667' style='fill: #00ff00; fill-opacity: 0.5; stroke: none; stroke-width: 1px;' width='134.365591397849'/>
+    <rect x='24.4301075268886' class='fill4' y='197.0' height='55.6666666666667' style='fill: #ffcc00; fill-opacity: 0.5; stroke: none; stroke-width: 1px;' width='256.516129032258'/>
+    <rect x='109.93548387097' class='fill5' y='131.333333333333' height='55.6666666666667' style='fill: #00ccff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;' width='427.52688172043'/>
+    <rect x='268.731182795702' class='fill6' y='65.6666666666666' height='55.6666666666667' style='fill: #ff00ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;' width='256.516129032258'/>
+    <rect x='323.698924731187' class='fill7' y='0.0' height='55.6666666666667' style='fill: #00ffff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;' width='244.301075268817'/>
+    <g/>
+  </g>
+  <text x='320' class='mainTitle' y='16' style='text-anchor: middle; fill: #000000; font-size: 16px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Monika&apos;s Schedule</text>
+  <text x='320' class='xAxisTitle' y='468' style='text-anchor: middle; fill: #ff0000; font-size: 14px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Time</text>
+</svg>

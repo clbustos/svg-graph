@@ -1,126 +1,131 @@
 <?xml version='1.0'?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 640 480' height='480' width='640' xmlns='http://www.w3.org/2000/svg'
-  >  <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  -->  <!-- Created with SVG::Graph 
-  -->  <!-- Sean Russell 
-  -->  <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
-  -->  <!-- //////////////////////////////////////////////////////////////////
-  --><defs
-  />  <!--SVG Background
-  --><rect x='0' class='svgBackground' y='0' height='480' style='fill:#ffffff;' width='640'
-  /><g transform='translate( 40.4 26 )'
-    ><rect x='0' class='graphBackground' y='0' height='416' style='fill:#f0f0f0;' width='516.6'
-    /><path class='axis' d='M 0 0 v416' id='xAxis' style='stroke: #000000; stroke-width: 1px;'
-    /><path class='axis' d='M 0 416 h516.6' id='yAxis' style='stroke: #000000; stroke-width: 1px;'
-    /><text x='0.0' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>0</text
-    ><text x='51.8526315789474' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>2</text
-    ><path class='guideLines' d='M51.8526315789474 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='103.705263157895' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>4</text
-    ><path class='guideLines' d='M103.705263157895 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='155.557894736842' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>6</text
-    ><path class='guideLines' d='M155.557894736842 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='207.410526315789' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>8</text
-    ><path class='guideLines' d='M207.410526315789 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='259.263157894737' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>10</text
-    ><path class='guideLines' d='M259.263157894737 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='311.115789473684' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>12</text
-    ><path class='guideLines' d='M311.115789473684 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='362.968421052632' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>14</text
-    ><path class='guideLines' d='M362.968421052632 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='414.821052631579' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>16</text
-    ><path class='guideLines' d='M414.821052631579 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='466.673684210526' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>18</text
-    ><path class='guideLines' d='M466.673684210526 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='422.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>0</text
-    ><text x='-3' class='yAxisLabels' y='378.444444444444' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>2</text
-    ><path class='guideLines' d='M0 372.444444444444 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='334.888888888889' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>4</text
-    ><path class='guideLines' d='M0 328.888888888889 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='291.333333333333' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>6</text
-    ><path class='guideLines' d='M0 285.333333333333 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='247.777777777778' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>8</text
-    ><path class='guideLines' d='M0 241.777777777778 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='204.222222222222' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>10</text
-    ><path class='guideLines' d='M0 198.222222222222 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='160.666666666667' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>12</text
-    ><path class='guideLines' d='M0 154.666666666667 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='117.111111111111' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>14</text
-    ><path class='guideLines' d='M0 111.111111111111 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='73.5555555555555' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>16</text
-    ><path class='guideLines' d='M0 67.5555555555555 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><text x='-3' class='yAxisLabels' y='30.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>18</text
-    ><path class='guideLines' d='M0 24.0 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
-    /><path class='line1' d='M0.0 307.111111111111 L0.0 307.111111111111 25.9263157894737 176.444444444444 77.7789473684211 132.888888888889 155.557894736842 176.444444444444 181.484210526316 220.0 285.189473684211 372.444444444444 337.042105263158 220.0 466.673684210526 263.555555555556 492.6 416.0 ' style='fill: none; stroke: #ff0000; stroke-width: 1px;'
-    /><circle cy='307.111111111111' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='0.0'
-    /><circle cy='176.444444444444' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='25.9263157894737'
-    /><circle cy='132.888888888889' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='77.7789473684211'
-    /><circle cy='176.444444444444' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='155.557894736842'
-    /><circle cy='220.0' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='181.484210526316'
-    /><circle cy='372.444444444444' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='285.189473684211'
-    /><circle cy='220.0' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='337.042105263158'
-    /><circle cy='263.555555555556' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='466.673684210526'
-    /><circle cy='416.0' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='492.6'
-    /><path class='line2' d='M0.0 24.0 L0.0 24.0 51.8526315789474 154.666666666667 103.705263157895 45.7777777777778 207.410526315789 89.3333333333333 233.336842105263 328.888888888889 259.263157894737 372.444444444444 285.189473684211 285.333333333333 362.968421052632 154.666666666667 388.894736842105 285.333333333333 466.673684210526 111.111111111111 ' style='fill: none; stroke: #0000ff; stroke-width: 1px;'
-    /><circle cy='24.0' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='0.0'
-    /><circle cy='154.666666666667' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='51.8526315789474'
-    /><circle cy='45.7777777777778' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='103.705263157895'
-    /><circle cy='89.3333333333333' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='207.410526315789'
-    /><circle cy='328.888888888889' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='233.336842105263'
-    /><circle cy='372.444444444444' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='259.263157894737'
-    /><circle cy='285.333333333333' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='285.189473684211'
-    /><circle cy='154.666666666667' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='362.968421052632'
-    /><circle cy='285.333333333333' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='388.894736842105'
-    /><circle cy='111.111111111111' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='466.673684210526'
-    /><g
-      ><text x='0.0' class='dataPointLabel' y='301.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>5</text
-      ><text x='0.0' class='dataPointLabel' y='301.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>5</text
-      ><text x='25.9263157894737' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>11</text
-      ><text x='25.9263157894737' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>11</text
-      ><text x='77.7789473684211' class='dataPointLabel' y='126.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>13</text
-      ><text x='77.7789473684211' class='dataPointLabel' y='126.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>13</text
-      ><text x='155.557894736842' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>11</text
-      ><text x='155.557894736842' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>11</text
-      ><text x='181.484210526316' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>9</text
-      ><text x='181.484210526316' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>9</text
-      ><text x='285.189473684211' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>2</text
-      ><text x='285.189473684211' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>2</text
-      ><text x='337.042105263158' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>9</text
-      ><text x='337.042105263158' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>9</text
-      ><text x='466.673684210526' class='dataPointLabel' y='257.555555555556' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>7</text
-      ><text x='466.673684210526' class='dataPointLabel' y='257.555555555556' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>7</text
-      ><text x='492.6' class='dataPointLabel' y='410.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>0</text
-      ><text x='492.6' class='dataPointLabel' y='410.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>0</text
-      ><text x='0.0' class='dataPointLabel' y='18.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>18</text
-      ><text x='0.0' class='dataPointLabel' y='18.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>18</text
-      ><text x='51.8526315789474' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>12</text
-      ><text x='51.8526315789474' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>12</text
-      ><text x='103.705263157895' class='dataPointLabel' y='39.7777777777778' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>17</text
-      ><text x='103.705263157895' class='dataPointLabel' y='39.7777777777778' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>17</text
-      ><text x='207.410526315789' class='dataPointLabel' y='83.3333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>15</text
-      ><text x='207.410526315789' class='dataPointLabel' y='83.3333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>15</text
-      ><text x='233.336842105263' class='dataPointLabel' y='322.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>4</text
-      ><text x='233.336842105263' class='dataPointLabel' y='322.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>4</text
-      ><text x='259.263157894737' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>2</text
-      ><text x='259.263157894737' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>2</text
-      ><text x='285.189473684211' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>6</text
-      ><text x='285.189473684211' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>6</text
-      ><text x='362.968421052632' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>12</text
-      ><text x='362.968421052632' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>12</text
-      ><text x='388.894736842105' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>6</text
-      ><text x='388.894736842105' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>6</text
-      ><text x='466.673684210526' class='dataPointLabel' y='105.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>14</text
-      ><text x='466.673684210526' class='dataPointLabel' y='105.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>14</text
-    ></g
-  ></g
-  ><text x='320' class='mainTitle' y='16' style='text-anchor: middle; fill: #000000; font-size: 16px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Plot</text
-  ><text x='320' class='xAxisTitle' y='475' style='text-anchor: middle; fill: #ff0000; font-size: 14px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Time</text
-  ><text transform='rotate( -90, 17, 240 )' x='17' class='yAxisTitle' y='240' style='fill: #ff0000; text-anchor: middle; font-size: 14px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Ice Cream Cones</text
-  ><g transform='translate(567.0 46)'
-    ><rect x='0' class='key1' y='0' height='12' style='fill: #ff0000; stroke: none; stroke-width: 1px;' width='12'
-    /><text x='17' class='keyText' y='12' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Dataset 1</text
-    ><rect x='0' class='key2' y='17' height='12' style='fill: #0000ff; stroke: none; stroke-width: 1px;' width='12'
-    /><text x='17' class='keyText' y='29' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Dataset 2</text
-  ></g
-></svg
->
+<svg xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 640 480' height='480' width='640' xmlns='http://www.w3.org/2000/svg'>
+    <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  -->
+    <!-- Created with SVG::Graph 
+  -->
+    <!-- Sean Russell 
+  -->
+    <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
+  -->
+    <!-- //////////////////////////////////////////////////////////////////
+  -->
+  <defs/>
+    <!--SVG Background
+  -->
+  <rect x='0' class='svgBackground' y='0' height='480' style='fill:#ffffff;' width='640'/>
+  <g transform='translate( 40.4 26 )'>
+    <rect x='0' class='graphBackground' y='0' height='416' style='fill:#f0f0f0;' width='516.6'/>
+    <path class='axis' d='M 0 0 v416' id='xAxis' style='stroke: #000000; stroke-width: 1px;'/>
+    <path class='axis' d='M 0 416 h516.6' id='yAxis' style='stroke: #000000; stroke-width: 1px;'/>
+    <text x='0.0' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>0</text>
+    <text x='51.8526315789474' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>2</text>
+    <path class='guideLines' d='M51.8526315789474 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='103.705263157895' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>4</text>
+    <path class='guideLines' d='M103.705263157895 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='155.557894736842' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>6</text>
+    <path class='guideLines' d='M155.557894736842 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='207.410526315789' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>8</text>
+    <path class='guideLines' d='M207.410526315789 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='259.263157894737' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>10</text>
+    <path class='guideLines' d='M259.263157894737 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='311.115789473684' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>12</text>
+    <path class='guideLines' d='M311.115789473684 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='362.968421052632' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>14</text>
+    <path class='guideLines' d='M362.968421052632 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='414.821052631579' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>16</text>
+    <path class='guideLines' d='M414.821052631579 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='466.673684210526' class='xAxisLabels' y='431' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>18</text>
+    <path class='guideLines' d='M466.673684210526 0 v416' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='420.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>0</text>
+    <text x='-3' class='yAxisLabels' y='376.444444444444' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>2</text>
+    <path class='guideLines' d='M0 372.444444444444 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='332.888888888889' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>4</text>
+    <path class='guideLines' d='M0 328.888888888889 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='289.333333333333' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>6</text>
+    <path class='guideLines' d='M0 285.333333333333 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='245.777777777778' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>8</text>
+    <path class='guideLines' d='M0 241.777777777778 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='202.222222222222' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>10</text>
+    <path class='guideLines' d='M0 198.222222222222 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='158.666666666667' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>12</text>
+    <path class='guideLines' d='M0 154.666666666667 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='115.111111111111' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>14</text>
+    <path class='guideLines' d='M0 111.111111111111 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='71.5555555555555' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>16</text>
+    <path class='guideLines' d='M0 67.5555555555555 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <text x='-3' class='yAxisLabels' y='28.0' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: end'>18</text>
+    <path class='guideLines' d='M0 24.0 h516.6' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'/>
+    <path class='line1' d='M0.0 307.111111111111 L0.0 307.111111111111 25.9263157894737 176.444444444444 77.7789473684211 132.888888888889 155.557894736842 176.444444444444 181.484210526316 220.0 285.189473684211 372.444444444444 337.042105263158 220.0 466.673684210526 263.555555555556 492.6 416.0 ' style='fill: none; stroke: #ff0000; stroke-width: 1px;'/>
+    <circle cy='307.111111111111' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='0.0'/>
+    <circle cy='176.444444444444' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='25.9263157894737'/>
+    <circle cy='132.888888888889' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='77.7789473684211'/>
+    <circle cy='176.444444444444' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='155.557894736842'/>
+    <circle cy='220.0' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='181.484210526316'/>
+    <circle cy='372.444444444444' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='285.189473684211'/>
+    <circle cy='220.0' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='337.042105263158'/>
+    <circle cy='263.555555555556' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='466.673684210526'/>
+    <circle cy='416.0' class='dataPoint1' r='2.5' style='fill: #ff0000; stroke: none; stroke-width: 1px;' cx='492.6'/>
+    <path class='line2' d='M0.0 24.0 L0.0 24.0 51.8526315789474 154.666666666667 103.705263157895 45.7777777777778 207.410526315789 89.3333333333333 233.336842105263 328.888888888889 259.263157894737 372.444444444444 285.189473684211 285.333333333333 362.968421052632 154.666666666667 388.894736842105 285.333333333333 466.673684210526 111.111111111111 ' style='fill: none; stroke: #0000ff; stroke-width: 1px;'/>
+    <circle cy='24.0' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='0.0'/>
+    <circle cy='154.666666666667' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='51.8526315789474'/>
+    <circle cy='45.7777777777778' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='103.705263157895'/>
+    <circle cy='89.3333333333333' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='207.410526315789'/>
+    <circle cy='328.888888888889' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='233.336842105263'/>
+    <circle cy='372.444444444444' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='259.263157894737'/>
+    <circle cy='285.333333333333' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='285.189473684211'/>
+    <circle cy='154.666666666667' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='362.968421052632'/>
+    <circle cy='285.333333333333' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='388.894736842105'/>
+    <circle cy='111.111111111111' class='dataPoint2' r='2.5' style='fill: #0000ff; stroke: none; stroke-width: 1px;' cx='466.673684210526'/>
+    <g>
+      <text x='0.0' class='dataPointLabel' y='301.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>5</text>
+      <text x='0.0' class='dataPointLabel' y='301.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>5</text>
+      <text x='25.9263157894737' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>11</text>
+      <text x='25.9263157894737' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>11</text>
+      <text x='77.7789473684211' class='dataPointLabel' y='126.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>13</text>
+      <text x='77.7789473684211' class='dataPointLabel' y='126.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>13</text>
+      <text x='155.557894736842' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>11</text>
+      <text x='155.557894736842' class='dataPointLabel' y='170.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>11</text>
+      <text x='181.484210526316' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>9</text>
+      <text x='181.484210526316' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>9</text>
+      <text x='285.189473684211' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>2</text>
+      <text x='285.189473684211' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>2</text>
+      <text x='337.042105263158' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>9</text>
+      <text x='337.042105263158' class='dataPointLabel' y='214.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>9</text>
+      <text x='466.673684210526' class='dataPointLabel' y='257.555555555556' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>7</text>
+      <text x='466.673684210526' class='dataPointLabel' y='257.555555555556' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>7</text>
+      <text x='492.6' class='dataPointLabel' y='410.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>0</text>
+      <text x='492.6' class='dataPointLabel' y='410.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>0</text>
+      <text x='0.0' class='dataPointLabel' y='18.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>18</text>
+      <text x='0.0' class='dataPointLabel' y='18.0' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>18</text>
+      <text x='51.8526315789474' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>12</text>
+      <text x='51.8526315789474' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>12</text>
+      <text x='103.705263157895' class='dataPointLabel' y='39.7777777777778' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>17</text>
+      <text x='103.705263157895' class='dataPointLabel' y='39.7777777777778' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>17</text>
+      <text x='207.410526315789' class='dataPointLabel' y='83.3333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>15</text>
+      <text x='207.410526315789' class='dataPointLabel' y='83.3333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>15</text>
+      <text x='233.336842105263' class='dataPointLabel' y='322.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>4</text>
+      <text x='233.336842105263' class='dataPointLabel' y='322.888888888889' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>4</text>
+      <text x='259.263157894737' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>2</text>
+      <text x='259.263157894737' class='dataPointLabel' y='366.444444444444' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>2</text>
+      <text x='285.189473684211' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>6</text>
+      <text x='285.189473684211' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>6</text>
+      <text x='362.968421052632' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>12</text>
+      <text x='362.968421052632' class='dataPointLabel' y='148.666666666667' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>12</text>
+      <text x='388.894736842105' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>6</text>
+      <text x='388.894736842105' class='dataPointLabel' y='279.333333333333' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>6</text>
+      <text x='466.673684210526' class='dataPointLabel' y='105.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal; stroke: #fff; stroke-width: 2;'>14</text>
+      <text x='466.673684210526' class='dataPointLabel' y='105.111111111111' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>14</text>
+    </g>
+  </g>
+  <text x='320' class='mainTitle' y='16' style='text-anchor: middle; fill: #000000; font-size: 16px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Plot</text>
+  <text x='320' class='xAxisTitle' y='473' style='text-anchor: middle; fill: #ff0000; font-size: 14px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Time</text>
+  <text transform='rotate( -90, 17, 240 )' x='17' class='yAxisTitle' y='240' style='fill: #ff0000; text-anchor: middle; font-size: 14px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Ice Cream Cones</text>
+  <g transform='translate(567.0 46)'>
+    <rect x='0' class='key1' y='0' height='12' style='fill: #ff0000; stroke: none; stroke-width: 1px;' width='12'/>
+    <text x='17' class='keyText' y='12' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Dataset 1</text>
+    <rect x='0' class='key2' y='17' height='12' style='fill: #0000ff; stroke: none; stroke-width: 1px;' width='12'/>
+    <text x='17' class='keyText' y='29' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Dataset 2</text>
+  </g>
+</svg>

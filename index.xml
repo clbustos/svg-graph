@@ -127,7 +127,7 @@
     identical to the original.</para>
 
     <para>In version 0.2.0 I completely refactored the code to make it more
-    modulare. As a result, the core Graph class contains most of the graph
+    modular. As a result, the core Graph class contains most of the graph
     drawing primatives, and the specializations (Bar, BarHorizontal, Line,
     Pie, etc.) only draw the plot itself. This results in many fewer lines of
     code, and that code is more robust. SVG::TT::Graph re-implemented most of
@@ -174,6 +174,10 @@
 
       <listitem>
         <para>TimeSeries (also scalar data, with one axis being dates)</para>
+      </listitem>
+
+      <listitem>
+        <para>Schedule (scalar time range data, with non-scalar Y axis)</para>
       </listitem>
     </itemizedlist>
   </sect1>
@@ -253,18 +257,19 @@
       </footnote>.</para>
 
     <para>There is a <ulink
-    url='http://www.germane-software.com/cgi-bin/roundup/svg-graph'>bug and
-    feature request database</ulink>; use this, and please create a user account
-    if you don't have one, so that I can email you if I have questions.
-    Alternatively, post anonymously, and check the database often.</para>
+    url="http://www.germane-software.com/cgi-bin/roundup/svg-graph">bug and
+    feature request database</ulink>; use this, and please create a user
+    account if you don't have one, so that I can email you if I have
+    questions. Alternatively, post anonymously, and check the database
+    often.</para>
   </sect1>
 
   <sect1>
-  	<title>Repository</title>
+    <title>Repository</title>
 
     <para>The sourcecode repository is a <ulink
-    url='http://subversion.tigris.org'>Subversion</ulink> repository, located
+    url="http://subversion.tigris.org">Subversion</ulink> repository, located
     <ulink
-    url='http://www.germane-software.com/repositories/public/SVG'>here</ulink>.</para>
+    url="http://www.germane-software.com/repositories/public/SVG">here</ulink>.</para>
   </sect1>
 </article>

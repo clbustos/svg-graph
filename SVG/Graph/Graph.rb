@@ -116,6 +116,7 @@ module SVG
 
           :show_y_labels        => true,
           :rotate_y_labels      => false,
+          :stagger_y_labels     => false,
           :scale_integers       => false,
 
           :show_x_title         => false,
@@ -243,10 +244,14 @@ module SVG
       #   Whether to show labels on the X axis or not, defaults
       #   to true, set to false if you want to turn them off.
       attr_accessor :show_x_labels
-      #   This puts the labels at alternative levels so if they
+      #   This puts the X labels at alternative levels so if they
       #   are long field names they will not overlap so easily.
       #   Default it false, to turn on set to true.
       attr_accessor :stagger_x_labels
+      #   This puts the Y labels at alternative levels so if they
+      #   are long field names they will not overlap so easily.
+      #   Default it false, to turn on set to true.
+      attr_accessor :stagger_y_labels
       #   This turns the X axis labels by 90 degrees.
       #   Default it false, to turn on set to true.
       attr_accessor :rotate_x_labels
@@ -326,6 +331,10 @@ module SVG
 
       protected
 
+      def sort( *arrys )
+        sort_multiple( arrys )
+      end
+
       # Overwrite configuration options with supplied options.  Used
       # by subclasses.
       def init_with config
@@ -349,6 +358,7 @@ module SVG
             a.to_s.length<=>b.to_s.length
           }.to_s.length * y_label_font_size * 0.6
         @border_left += max_y_label_height_px if show_y_labels
+        @border_left += max_y_label_height_px + 10 if stagger_y_labels
         @border_left += y_title_font_size + 5 if show_y_title
       end
 
@@ -553,23 +563,34 @@ module SVG
 
       # Draws the Y axis labels
       def draw_y_labels
+        stagger = y_label_font_size + 5
         if show_y_labels
           label_height = field_height
 
           count = 0
-          y_offset = @graph_height + y_label_offset( label_height ) +
-                    (font_size)
+          y_offset = @graph_height + y_label_offset( label_height )
+          y_offset += font_size/1.2 unless rotate_y_labels
           for label in get_y_labels
             y = y_offset - (label_height * count)
+            x = rotate_y_labels ? 0 : -3
+
+            if stagger_y_labels and count % 2 == 1
+              x -= stagger
+              @graph.add_element( "path", {
+                "d" => "M#{x} #{y} h#{stagger}",
+                "class" => "staggerGuideLine"
+              })
+            end
+
             text = @graph.add_element( "text", {
-              "x" => "-3",
+              "x" => x.to_s,
               "y" => y.to_s,
               "class" => "yAxisLabels"
             })
             text.text = label.to_s
             if rotate_y_labels
               text.attributes["transform"] = "translate( -#{font_size} 0 ) "+
-                "rotate( 90 0 #{y} ) "
+                "rotate( 90 #{x} #{y} ) "
               text.attributes["style"] = "text-anchor: middle"
             else
               text.attributes["y"] = (y - (y_label_font_size/2)).to_s
@@ -709,6 +730,30 @@ module SVG
 
 
       private
+
+      def sort_multiple( arrys, lo=0, hi=arrys[0].length-1 )
+        if lo < hi
+          p = partition(arrys,lo,hi)
+          sort_multiple(arrys, lo, p-1)
+          sort_multiple(arrys, p+1, hi)
+        end
+        arrys 
+      end
+
+      def partition( arrys, lo, hi )
+        p = arrys[0][lo]
+        l = lo
+        z = lo+1
+        while z <= hi
+          if arrys[0][z] < p
+            l += 1
+            arrys.each { |arry| arry[z], arry[l] = arry[l], arry[z] }
+          end
+          z += 1
+        end
+        arrys.each { |arry| arry[lo], arry[l] = arry[l], arry[lo] }
+        l
+      end
 
       def style
         if no_css
