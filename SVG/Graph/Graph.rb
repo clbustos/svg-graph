@@ -309,6 +309,8 @@ module SVG
       # not using CSS can result in larger SVGs as well as making it impossible to
       # change colors after the chart is generated.  Defaults to false.
       attr_accessor :no_css
+      # Add popups for the data points on some graphs
+      attr_accessor :add_popups
 
 
       protected
@@ -359,6 +361,32 @@ module SVG
         @border_top += title_font_size if show_graph_title
         @border_top += 5
         @border_top += subtitle_font_size if show_graph_subtitle
+      end
+
+
+      # Adds pop-up point information to a graph.
+      def add_popup( canvas, x, y, label )
+        txt_width = label.length * font_size * 0.6 + 10
+        tx = (x+txt_width > width ? x-5 : x+5)
+        t = canvas.add_element( "text", {
+          "x" => tx,
+          "y" => y - font_size,
+          "visibility" => "hidden",
+        })
+        t.attributes["style"] = "fill: #000; "+
+          (x+txt_width > width ? "text-anchor: end;" : "text-anchor: start;")
+        t.text = label
+        t.attributes["id"] = t.id
+
+        canvas.add_element( "circle", {
+          "cx" => x,
+          "cy" => y,
+          "r" => 10,
+          "style" => "opacity: 0",
+          "onmouseover" => "document.getElementById(#{t.id}).setAttribute('visibility', 'visible' )",
+          "onmouseout" => "document.getElementById(#{t.id}).setAttribute('visibility', 'hidden' )",
+        })
+
       end
 
       

@@ -125,7 +125,12 @@ module SVG
         @data << data
       end
 
+
       protected
+      def format_x x
+        Time.at( x )
+      end
+
       def get_x_labels
         super.collect { |v| Time.at(v).strftime( x_label_format ) }
       end
