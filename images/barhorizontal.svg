@@ -6,221 +6,54 @@
   -->  <!-- Sean Russell 
   -->  <!-- Based on SVG::TT::Graph for Perl by Leo Lapworth & Stephan Morgan 
   -->  <!-- //////////////////////////////////////////////////////////////////
-  -->  <!-- include default stylesheet if none specified 
   --><defs
-    ><style type='text/css'><![CDATA[/* Copy from here for external style sheet */
-.svgBackground{
-	fill:#ffffff;
-}
-.graphBackground{
-	fill:#f0f0f0;
-}
-
-/* graphs titles */
-.mainTitle{
-	text-anchor: middle;
-	fill: #000000;
-	font-size: 16px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-.subTitle{
-	text-anchor: middle;
-	fill: #999999;
-	font-size: 14px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-
-.axis{
-	stroke: #000000;
-	stroke-width: 1px;
-}
-
-.guideLines{
-	stroke: #666666;
-	stroke-width: 1px;
-	stroke-dasharray: 5 5;
-}
-
-.xAxisLabels{
-	text-anchor: middle;
-	fill: #000000;
-	font-size: 12px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-
-.yAxisLabels{
-	text-anchor: end;
-	fill: #000000;
-	font-size: 12px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-
-.xAxisTitle{
-	text-anchor: middle;
-	fill: #ff0000;
-	font-size: 14px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-
-.yAxisTitle{
-	fill: #ff0000;
-	text-anchor: middle;
-	font-size: 14px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-
-.dataPointLabel{
-	fill: #000000;
-	text-anchor:middle;
-	font-size: 10px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-
-.staggerGuideLine{
-	fill: none;
-	stroke: #000000;
-	stroke-width: 0.5px;	
-}
-
-/* default fill styles for multiple datasets (probably only use a single dataset on this graph though) */
-.key1,.fill1{
-	fill: #ff0000;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 0.5px;	
-}
-.key2,.fill2{
-	fill: #0000ff;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key3,.fill3{
-	fill: #00ff00;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key4,.fill4{
-	fill: #ffcc00;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key5,.fill5{
-	fill: #00ccff;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key6,.fill6{
-	fill: #ff00ff;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key7,.fill7{
-	fill: #00ffff;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key8,.fill8{
-	fill: #ffff00;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key9,.fill9{
-	fill: #cc6666;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key10,.fill10{
-	fill: #663399;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key11,.fill11{
-	fill: #339900;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-.key12,.fill12{
-	fill: #9966FF;
-	fill-opacity: 0.5;
-	stroke: none;
-	stroke-width: 1px;	
-}
-
-
-.keyText{
-	fill: #000000;
-	text-anchor:start;
-	font-size: 10px;
-	font-family: "Arial", sans-serif;
-	font-weight: normal;
-}
-/* End copy for external style sheet */
-]]></style
-  ></defs
-  >  <!--SVG Background
-  --><rect x='0' class='svgBackground' y='0' height='480' width='640'
+  />  <!--SVG Background
+  --><rect x='0' class='svgBackground' y='0' height='480' style='fill:#ffffff;' width='640'
   /><g transform='translate( 19 26 )'
-    ><rect x='0' class='graphBackground' y='0' height='435' width='556.0'
-    /><path class='axis' d='M 0 0 v435' id='xAxis'
-    /><path class='axis' d='M 0 435 h556.0' id='yAxis'
-    /><text x='0.0' class='xAxisLabels' y='450' style='text-anchor: middle'>0</text
-    ><text x='177.333333333333' class='xAxisLabels' y='450' style='text-anchor: middle'>1</text
-    ><path class='guideLines' d='M177.333333333333 0 v435'
-    /><text x='354.666666666667' class='xAxisLabels' y='450' style='text-anchor: middle'>2</text
-    ><path class='guideLines' d='M354.666666666667 0 v435'
-    /><text x='532.0' class='xAxisLabels' y='450' style='text-anchor: middle'>3</text
-    ><path class='guideLines' d='M532.0 0 v435'
-    /><text transform='translate( -12 0 ) rotate( 90 0 397.5 ) ' x='-3' class='yAxisLabels' y='397.5' style='text-anchor: middle'>Internet</text
-    ><text transform='translate( -12 0 ) rotate( 90 0 310.5 ) ' x='-3' class='yAxisLabels' y='310.5' style='text-anchor: middle'>TV</text
-    ><text transform='translate( -12 0 ) rotate( 90 0 223.5 ) ' x='-3' class='yAxisLabels' y='223.5' style='text-anchor: middle'>Newspaper</text
-    ><text transform='translate( -12 0 ) rotate( 90 0 136.5 ) ' x='-3' class='yAxisLabels' y='136.5' style='text-anchor: middle'>Magazine</text
-    ><text transform='translate( -12 0 ) rotate( 90 0 49.5 ) ' x='-3' class='yAxisLabels' y='49.5' style='text-anchor: middle'>Radio
+    ><rect x='0' class='graphBackground' y='0' height='435' style='fill:#f0f0f0;' width='556.0'
+    /><path class='axis' d='M 0 0 v435' id='xAxis' style='stroke: #000000; stroke-width: 1px;'
+    /><path class='axis' d='M 0 435 h556.0' id='yAxis' style='stroke: #000000; stroke-width: 1px;'
+    /><text x='0.0' class='xAxisLabels' y='450' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>0</text
+    ><text x='177.333333333333' class='xAxisLabels' y='450' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>1</text
+    ><path class='guideLines' d='M177.333333333333 0 v435' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='354.666666666667' class='xAxisLabels' y='450' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>2</text
+    ><path class='guideLines' d='M354.666666666667 0 v435' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text x='532.0' class='xAxisLabels' y='450' style='text-anchor: middle; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>3</text
+    ><path class='guideLines' d='M532.0 0 v435' style='stroke: #666666; stroke-width: 1px; stroke-dasharray: 5 5;'
+    /><text transform='translate( -12 0 ) rotate( 90 0 397.5 ) ' x='-3' class='yAxisLabels' y='397.5' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Internet</text
+    ><text transform='translate( -12 0 ) rotate( 90 0 310.5 ) ' x='-3' class='yAxisLabels' y='310.5' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>TV</text
+    ><text transform='translate( -12 0 ) rotate( 90 0 223.5 ) ' x='-3' class='yAxisLabels' y='223.5' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Newspaper</text
+    ><text transform='translate( -12 0 ) rotate( 90 0 136.5 ) ' x='-3' class='yAxisLabels' y='136.5' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Magazine</text
+    ><text transform='translate( -12 0 ) rotate( 90 0 49.5 ) ' x='-3' class='yAxisLabels' y='49.5' style='text-anchor: end; fill: #000000; font-size: 12px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: middle'>Radio
 </text
-    ><path class='fill1' d='M0 348 H354.666666666667 v38 H0 Z'
-    /><text x='359.666666666667' class='dataPointLabel' y='373' style='text-anchor: start;'>2</text
-    ><path class='fill2' d='M0 386 H177.333333333333 v38 H0 Z'
-    /><text x='182.333333333333' class='dataPointLabel' y='411' style='text-anchor: start;'>1</text
-    ><path class='fill1' d='M0 261 H354.666666666667 v38 H0 Z'
-    /><text x='359.666666666667' class='dataPointLabel' y='286' style='text-anchor: start;'>2</text
-    ><path class='fill2' d='M0 299 H177.333333333333 v38 H0 Z'
-    /><text x='182.333333333333' class='dataPointLabel' y='324' style='text-anchor: start;'>1</text
-    ><path class='fill1' d='M0 174 H0.0 v38 H0 Z'
-    /><text x='5.0' class='dataPointLabel' y='199' style='text-anchor: start;'>0</text
-    ><path class='fill2' d='M0 212 H0.0 v38 H0 Z'
-    /><text x='5.0' class='dataPointLabel' y='237' style='text-anchor: start;'>0</text
-    ><path class='fill1' d='M0 87 H532.0 v38 H0 Z'
-    /><text x='537.0' class='dataPointLabel' y='112' style='text-anchor: start;'>3</text
-    ><path class='fill2' d='M0 125 H532.0 v38 H0 Z'
-    /><text x='537.0' class='dataPointLabel' y='150' style='text-anchor: start;'>3</text
-    ><path class='fill1' d='M0 0 H0.0 v38 H0 Z'
-    /><text x='5.0' class='dataPointLabel' y='25' style='text-anchor: start;'>0</text
-    ><path class='fill2' d='M0 38 H177.333333333333 v38 H0 Z'
-    /><text x='182.333333333333' class='dataPointLabel' y='63' style='text-anchor: start;'>1</text
+    ><path class='fill1' d='M0 348 H354.666666666667 v38 H0 Z' style='fill: #ff0000; fill-opacity: 0.5; stroke: none; stroke-width: 0.5px;'
+    /><text x='359.666666666667' class='dataPointLabel' y='373' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>2</text
+    ><path class='fill2' d='M0 386 H177.333333333333 v38 H0 Z' style='fill: #0000ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;'
+    /><text x='182.333333333333' class='dataPointLabel' y='411' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>1</text
+    ><path class='fill1' d='M0 261 H354.666666666667 v38 H0 Z' style='fill: #ff0000; fill-opacity: 0.5; stroke: none; stroke-width: 0.5px;'
+    /><text x='359.666666666667' class='dataPointLabel' y='286' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>2</text
+    ><path class='fill2' d='M0 299 H177.333333333333 v38 H0 Z' style='fill: #0000ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;'
+    /><text x='182.333333333333' class='dataPointLabel' y='324' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>1</text
+    ><path class='fill1' d='M0 174 H0.0 v38 H0 Z' style='fill: #ff0000; fill-opacity: 0.5; stroke: none; stroke-width: 0.5px;'
+    /><text x='5.0' class='dataPointLabel' y='199' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>0</text
+    ><path class='fill2' d='M0 212 H0.0 v38 H0 Z' style='fill: #0000ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;'
+    /><text x='5.0' class='dataPointLabel' y='237' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>0</text
+    ><path class='fill1' d='M0 87 H532.0 v38 H0 Z' style='fill: #ff0000; fill-opacity: 0.5; stroke: none; stroke-width: 0.5px;'
+    /><text x='537.0' class='dataPointLabel' y='112' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>3</text
+    ><path class='fill2' d='M0 125 H532.0 v38 H0 Z' style='fill: #0000ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;'
+    /><text x='537.0' class='dataPointLabel' y='150' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>3</text
+    ><path class='fill1' d='M0 0 H0.0 v38 H0 Z' style='fill: #ff0000; fill-opacity: 0.5; stroke: none; stroke-width: 0.5px;'
+    /><text x='5.0' class='dataPointLabel' y='25' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>0</text
+    ><path class='fill2' d='M0 38 H177.333333333333 v38 H0 Z' style='fill: #0000ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;'
+    /><text x='182.333333333333' class='dataPointLabel' y='63' style='fill: #000000; text-anchor:middle; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;text-anchor: start;'>1</text
   ></g
-  ><text x='320' class='mainTitle' y='16'>Question 7
+  ><text x='320' class='mainTitle' y='16' style='text-anchor: middle; fill: #000000; font-size: 16px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Question 7
 </text
   ><g transform='translate(585.0 46)'
-    ><rect x='0' class='key1' y='0' height='12' width='12'
-    /><text x='17' class='keyText' y='12'>Female</text
-    ><rect x='0' class='key2' y='17' height='12' width='12'
-    /><text x='17' class='keyText' y='29'>Male</text
+    ><rect x='0' class='key1' y='0' height='12' style='fill: #ff0000; fill-opacity: 0.5; stroke: none; stroke-width: 0.5px;' width='12'
+    /><text x='17' class='keyText' y='12' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Female</text
+    ><rect x='0' class='key2' y='17' height='12' style='fill: #0000ff; fill-opacity: 0.5; stroke: none; stroke-width: 1px;' width='12'
+    /><text x='17' class='keyText' y='29' style='fill: #000000; text-anchor:start; font-size: 10px; font-family: &quot;Arial&quot;, sans-serif; font-weight: normal;'>Male</text
   ></g
 ></svg
 >
