@@ -4,8 +4,10 @@
 <article>
   <title>SVG::Graph</title>
 
+  <subtitle>@ANT_VERSION@</subtitle>
+
   <articleinfo>
-    <date>@@ANT_DATE@@</date>
+    <date>@ANT_DATE@</date>
 
     <author>
       <firstname>Sean</firstname>
@@ -73,10 +75,32 @@
   <sect1>
     <title>Getting it</title>
 
-    <para>Links to the current distribution and to pre-packaged documentation
-    can be found on <ulink
-    url="http://www.germane-software.com/cgi-bin/software/SVG">this
-    page</ulink>.</para>
+    <para>The source archives contain the example script(s) and an install
+    script. Documentation must be downloaded separately.<itemizedlist>
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_@ANT_VERSION@.tgz">Gzipped
+          sources</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_api_@ANT_VERSION@.tgz">Gzipped
+          documentation</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_@ANT_VERSION@.zip">Zipped
+          sources</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_api_@ANT_VERSION@.zip">Zipped
+          documentation</ulink></para>
+        </listitem>
+      </itemizedlist></para>
   </sect1>
 
   <sect1>
@@ -99,21 +123,29 @@
     SVG::TT::Graph, so at least the first few versions of SVG::Graph borrowed
     heavily from the Perl version.</para>
 
+    <para>In fact i version 0.2.0 I completely refactored the code to make it
+    more modularized. As a result, the core Graph class contains most of the
+    graph drawing primatives, and the specializations only draw the plot
+    itself. This results in many fewer lines of code, and that code is more
+    robust.</para>
+
     <para>I intend SVG::Graph to have more features than SVG::TT::Graph, which
     is the main reason for the re-implementation. One such feature is the
     ability to change the stacking of the data sets. For instance, SVG::Graph
     allows you to place the data bars from multiple data sets on the same
     graph side-by-side, rather than overlapping.</para>
 
-    <para>SVG::Graph is probably incomplete. In fact, the first release only
-    contains two graph styles: Bar, and BarHorizontal. The number of styles
-    will grow.</para>
+    <para>SVG::Graph is probably incomplete. In fact, the first release
+    contained two graph styles: Bar, and BarHorizontal. Version 0.2.0 added a
+    Line graph, and the number of styles will grow.</para>
   </sect1>
 
   <sect1>
     <title>Dependancies</title>
 
-    <para>REXML 3.0+, or Ruby 1.8+</para>
+    <para>REXML 3.0+, or Ruby 1.8+. If you want to use the SVG compression
+    feature, which generates zlib compressed SVGs, you must also have the Ruby
+    zlib library installed.</para>
   </sect1>
 
   <sect1>
