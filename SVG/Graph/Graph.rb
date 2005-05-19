@@ -110,7 +110,7 @@ module SVG
           :show_y_guidelines    => true,
           :show_data_values     => true,
 
-          :min_scale_value      => 0,
+#          :min_scale_value      => 0,
 
           :show_x_labels        => true,
           :stagger_x_labels     => false,
@@ -421,7 +421,7 @@ module SVG
         t.attributes["style"] = "fill: #000; "+
           (x+txt_width > width ? "text-anchor: end;" : "text-anchor: start;")
         t.text = label.to_s
-        t.attributes["id"] = t.id.to_s
+        t.attributes["id"] = t.object_id.to_s
 
         @foreground.add_element( "circle", {
           "cx" => x.to_s,
@@ -429,9 +429,9 @@ module SVG
           "r" => "10",
           "style" => "opacity: 0",
           "onmouseover" => 
-            "document.getElementById(#{t.id}).setAttribute('visibility', 'visible' )",
+            "document.getElementById(#{t.object_id}).setAttribute('visibility', 'visible' )",
           "onmouseout" => 
-            "document.getElementById(#{t.id}).setAttribute('visibility', 'hidden' )",
+            "document.getElementById(#{t.object_id}).setAttribute('visibility', 'hidden' )",
         })
 
       end
@@ -446,11 +446,11 @@ module SVG
           @border_bottom += 10
         end
         if show_x_labels
-          max_x_label_height_px = rotate_x_labels ? 
+		  max_x_label_height_px = (not rotate_x_labels) ? 
+            x_label_font_size :
             get_x_labels.max{|a,b| 
-              a.length<=>b.length
-            }.length * x_label_font_size * 0.6 :
-            x_label_font_size
+              a.to_s.length<=>b.to_s.length
+            }.to_s.length * x_label_font_size * 0.6
           @border_bottom += max_x_label_height_px
           @border_bottom += max_x_label_height_px + 10 if stagger_x_labels
         end
@@ -737,10 +737,11 @@ module SVG
             x_offset = @border_left + 20
             y_offset = @border_top + @graph_height + 5
             if show_x_labels
-              max_x_label_height_px = rotate_x_labels ? 
-                get_x_labels.max{|a,b| 
-                  a.length<=>b.length
-                }.length * x_label_font_size :
+			  max_x_label_height_px = (not rotate_x_labels) ? 
+				x_label_font_size :
+				get_x_labels.max{|a,b| 
+				  a.to_s.length<=>b.to_s.length
+				}.to_s.length * x_label_font_size * 0.6
                 x_label_font_size
               y_offset += max_x_label_height_px
               y_offset += max_x_label_height_px + 5 if stagger_x_labels

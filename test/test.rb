@@ -32,13 +32,19 @@ File.open( "data.txt" ) { |fin|
 
   for file, klass, args in [
     [ "bar", SVG::Graph::Bar,
-      { :scale_integers => true, :stack => :side } ],
+      { :scale_integers => true, 
+	      :stack => :side } ],
     [ "barhorizontal",SVG::Graph::BarHorizontal,
-      {:scale_integers=> true,:stack=>:side} ],
+      {:scale_integers=> true,
+	     :stack=>:side,
+	     :rotate_x_labels => true
+      }],
     [ "line", SVG::Graph::Line, 
-      { :scale_integers => true, :area_fill => true, } ],
+      { :scale_integers => true, 
+	    :area_fill => true, } ],
     [ "pie", SVG::Graph::Pie, 
-      { :expand_greatest => true, :show_data_labels => true,} ],
+      { :expand_greatest => true, 
+	    :show_data_labels => true, } ],
     ]
     File.open("#{file}.svg", "w") {|fout| 
       fout.print( gen(klass, args, title, fields, female_data, male_data ) )
