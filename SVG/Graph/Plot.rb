@@ -95,7 +95,8 @@ module SVG
         init_with(
           :show_data_points  => true,
           :area_fill         => false,
-          :stacked           => false
+          :stacked           => false,
+          :show_data_labels  => true
         )
         self.top_align = self.right_align = self.top_font = self.right_font = 1
       end
@@ -127,6 +128,8 @@ module SVG
       attr_accessor :min_x_value 
       # Set the minimum value of the Y axis
       attr_accessor :min_y_value
+      # If true, display the data labels on the chart
+      attr_accessor :show_data_labels 
 
       
       # Adds data to the plot.  The data must be in X,Y pairs; EG
@@ -229,6 +232,7 @@ module SVG
 
       def get_y_values
         min_value, max_value, scale_division = y_range
+        scale_division /= 10.0 if (max_value - min_value) < scale_division
         rv = []
         min_value.step( max_value, scale_division ) {|v| rv << v}
         return rv
@@ -290,7 +294,7 @@ module SVG
                 })
                 add_popup(x, y, format( x_points[idx], y_points[idx] )) if add_popups
               end
-              make_datapoint_text( x, y-6, y_points[idx] )
+              make_datapoint_text( x, y-6, y_points[idx] ) if show_data_labels
             }
           end
           line += 1
