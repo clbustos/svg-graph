@@ -232,9 +232,14 @@ module SVG
 
       def get_y_values
         min_value, max_value, scale_division = y_range
-        scale_division /= 10.0 if (max_value - min_value) < scale_division
+        if max_value != min_value
+          while (max_value - min_value) < scale_division
+            scale_division /= 10.0
+          end
+        end
         rv = []
         min_value.step( max_value, scale_division ) {|v| rv << v}
+        rv << rv[0] + 1 if rv.length == 1
         return rv
       end
       alias :get_y_labels :get_y_values
