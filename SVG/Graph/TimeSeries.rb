@@ -7,15 +7,17 @@ module SVG
     # 
     # = Synopsis
     # 
-    #   require 'SVG/Graph/TimeSeriess'
-    # 
+    #   require 'SVG/Graph/TimeSeries'
+    #   
     #   # Data sets are x,y pairs
-    #   data1 = ["6/17/72", 11,    "1/11/72", 7,    "4/13/04 17:31", 11, 
-    #           "9/11/01", 9,    "9/1/85", 2,    "9/1/88", 1,    "1/15/95", 13]
-    #   data2 = ["8/1/73", 18,    "3/1/77", 15,    "10/1/98", 4, 
-    #           "5/1/02", 14,    "3/1/95", 6,    "8/1/91", 12,    "12/1/87", 6, 
-    #           "5/1/84", 17,    "10/1/80", 12]
-    #
+    #   projection = ["6/17/72", 11,    "1/11/72", 7,    "4/13/04 17:31", 11,
+    #                "9/11/01", 9,    "9/1/85", 2,    "9/1/88", 1,    "1/15/95", 13]
+    #   actual = ["8/1/73", 18,    "3/1/77", 15,    "10/1/98", 4,
+    #             "5/1/02", 14,    "3/1/95", 6,    "8/1/91", 12,    "12/1/87", 6,
+    #             "5/1/84", 17,    "10/1/80", 12]
+    #   
+    #   title = "Ice Cream Cone Consumption"
+    #   
     #   graph = SVG::Graph::TimeSeries.new( {
     #     :width => 640,
     #     :height => 480,
@@ -25,7 +27,7 @@ module SVG
     #     :key => true,
     #     :scale_x_integers => true,
     #     :scale_y_integers => true,
-    #     :min_x_value => 0,
+    #     :min_x_value => "6/17/72",
     #     :min_y_value => 0,
     #     :show_data_labels => true,
     #     :show_x_guidelines => true,
@@ -39,13 +41,13 @@ module SVG
     #   })
     #   
     #   graph.add_data({
-    #   	:data => projection
-    # 	  :title => 'Projected',
+    #           :data => projection,
+    #     :title => 'Projected',
     #   })
-    # 
+    #   
     #   graph.add_data({
-    #   	:data => actual,
-    # 	  :title => 'Actual',
+    #           :data => actual,
+    #     :title => 'Actual',
     #   })
     #   
     #   print graph.burn()
