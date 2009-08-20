@@ -1,0 +1,17 @@
+GPL.txt
+History.txt
+LICENSE.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/svggraph.rb
+lib/SVG/Graph/Bar.rb
+lib/SVG/Graph/BarBase.rb
+lib/SVG/Graph/BarHorizontal.rb
+lib/SVG/Graph/Graph.rb
+lib/SVG/Graph/Line.rb
+lib/SVG/Graph/Pie.rb
+lib/SVG/Graph/Plot.rb
+lib/SVG/Graph/Schedule.rb
+lib/SVG/Graph/TimeSeries.rb
+test/test_svg_graph.rb
