@@ -99,6 +99,7 @@ module SVG
       # [add_popups] false
       def initialize( config )
         @config = config
+        @data = nil
         self.top_align = self.top_font = self.right_align = self.right_font = 0
 
         init_with({
@@ -147,9 +148,7 @@ module SVG
           :no_css               =>false,
           :add_popups           =>false,
         })
-
-				set_defaults if methods.include? "set_defaults"
-
+        set_defaults if self.respond_to? :set_defaults
         init_with config
       end
 
@@ -164,7 +163,7 @@ module SVG
       #     :title => 'Sales 2002'
       #   })
       def add_data conf
-        @data = [] unless defined? @data
+          @data = [] unless (defined? @data and !@data.nil?) 
 
         if conf[:data] and conf[:data].kind_of? Array
           @data << conf
@@ -353,7 +352,7 @@ module SVG
       # by subclasses.
       def init_with config
         config.each { |key, value|
-          self.send( key.to_s+"=", value ) if methods.include? key.to_s
+            self.send( key.to_s+"=", value ) if self.respond_to?  key
         }
       end
 

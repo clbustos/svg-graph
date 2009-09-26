@@ -78,54 +78,54 @@ module SVG
       # Fill in the area under the plot if true
       attr_accessor :area_fill
 
-      # The constructor takes a hash reference, fields (the names for each
-      # field on the X axis) MUST be set, all other values are defaulted to 
-      # those shown above - with the exception of style_sheet which defaults
-      # to using the internal style sheet.
-      def initialize config
-        raise "fields was not supplied or is empty" unless config[:fields] &&
-        config[:fields].kind_of?(Array) &&
-        config[:fields].length > 0
-				super
-			end
+        # The constructor takes a hash reference, fields (the names for each
+        # field on the X axis) MUST be set, all other values are defaulted to 
+        # those shown above - with the exception of style_sheet which defaults
+        # to using the internal style sheet.
+        def initialize config
+            raise "fields was not supplied or is empty" unless config[:fields] &&
+            config[:fields].kind_of?(Array) &&
+            config[:fields].length > 0
+            super
+        end
 
       # In addition to the defaults set in Graph::initialize, sets
       # [show_data_points] true
       # [show_data_values] true
       # [stacked] false
       # [area_fill] false
-			def set_defaults
+        def set_defaults
         init_with(
-          :show_data_points   => true,
-          :show_data_values   => true,
-          :stacked            => false,
-          :area_fill          => false
+        :show_data_points   => true,
+        :show_data_values   => true,
+        :stacked            => false,
+        :area_fill          => false
         )
-
+        
         self.top_align = self.top_font = self.right_align = self.right_font = 1
-      end
+        end
 
       protected
 
-      def max_value
-        max = 0
-        
-        if (stacked == true) then
-          sums = Array.new(@config[:fields].length).fill(0)
-
-          @data.each do |data|
-            sums.each_index do |i|
-              sums[i] += data[:data][i].to_f
+        def max_value
+            max = 0
+            
+            if (stacked == true) then
+              sums = Array.new(@config[:fields].length).fill(0)
+            
+              @data.each do |data|
+                sums.each_index do |i|
+                  sums[i] += data[:data][i].to_f
+                end
+              end
+              
+              max = sums.max
+            else
+              max = @data.collect{|x| x[:data].max}.max
             end
-          end
-          
-          max = sums.max
-        else
-          max = @data.collect{|x| x[:data].max}.max
+            
+            return max
         end
-
-        return max
-      end
 
       def min_value
         min = 0

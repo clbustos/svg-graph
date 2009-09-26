@@ -1,6 +1,7 @@
+=== 1.0.1 / 2009-09-26
+
+* Work for Ruby version 1.8.6, 1.8.7 and 1.9
+
 === 1.0.0 / 2009-08-01
 
-* 1 major enhancement
-
-  * Birthday!
-
+* First version

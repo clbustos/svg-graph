@@ -17,34 +17,32 @@ module SVG
     #
     class BarBase < SVG::Graph::Graph
 			# Ensures that :fields are provided in the configuration.
-      def initialize config
-        raise "fields was not supplied or is empty" unless config[:fields] &&
-        config[:fields].kind_of?(Array) &&
-        config[:fields].length > 0
-				super
-			end
+        def initialize config
+            raise "fields was not supplied or is empty" unless config[:fields] &&
+            config[:fields].kind_of?(Array) &&
+            config[:fields].length > 0
+            super
+        end
 
-			# In addition to the defaults set in Graph::initialize, sets
-			# [bar_gap] true
-			# [stack] :overlap
-			def set_defaults
-        init_with( :bar_gap => true, :stack => :overlap )
-      end
+        # In addition to the defaults set in Graph::initialize, sets
+        # [bar_gap] true
+        # [stack] :overlap
+        def set_defaults
+            init_with( :bar_gap => true, :stack => :overlap )
+        end
 
-      #   Whether to have a gap between the bars or not, default
-      #   is true, set to false if you don't want gaps.
-      attr_accessor :bar_gap
-      #   How to stack data sets.  :overlap overlaps bars with
-      #   transparent colors, :top stacks bars on top of one another,
-      #   :side stacks the bars side-by-side. Defaults to :overlap.
-      attr_accessor :stack
-
-
-			protected
-
-      def max_value
+        #   Whether to have a gap between the bars or not, default
+        #   is true, set to false if you don't want gaps.
+        attr_accessor :bar_gap
+        #   How to stack data sets.  :overlap overlaps bars with
+        #   transparent colors, :top stacks bars on top of one another,
+        #   :side stacks the bars side-by-side. Defaults to :overlap.
+        attr_accessor :stack
+        protected
+        
+        def max_value
         @data.collect{|x| x[:data].max}.max
-      end
+        end
 
       def min_value
         min = 0
