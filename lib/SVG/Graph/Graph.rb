@@ -141,6 +141,7 @@ module SVG
           :title_font_size      =>16,
           :subtitle_font_size   =>14,
           :x_label_font_size    =>12,
+          :y_label_font_size    =>12,
           :x_title_font_size    =>14,
           :y_label_font_size    =>12,
           :y_title_font_size    =>14,
@@ -153,6 +154,8 @@ module SVG
 				set_defaults if methods.include? "set_defaults"
 
         init_with config
+        puts "ylfs: #{self.x_label_font_size}"
+        puts "ylfs: #{@x_label_font_size}"
       end
 
       
@@ -355,7 +358,9 @@ module SVG
       # by subclasses.
       def init_with config
         config.each { |key, value|
-          self.send( key.to_s+"=", value ) if methods.include? key.to_s
+          if self.respond_to? key.to_s
+            self.send( key.to_s+"=", value ) 
+          end
         }
       end
 
@@ -368,14 +373,14 @@ module SVG
       def calculate_left_margin
         @border_left = 7
         # Check for Y labels
-        max_y_label_height_px = rotate_y_labels ? 
-          y_label_font_size :
+        max_y_label_height_px = @rotate_y_labels ? 
+          @y_label_font_size :
           get_y_labels.max{|a,b| 
             a.to_s.length<=>b.to_s.length
-          }.to_s.length * y_label_font_size * 0.6
-        @border_left += max_y_label_height_px if show_y_labels
-        @border_left += max_y_label_height_px + 10 if stagger_y_labels
-        @border_left += y_title_font_size + 5 if show_y_title
+          }.to_s.length * @y_label_font_size * 0.6
+        @border_left += max_y_label_height_px if @show_y_labels
+        @border_left += max_y_label_height_px + 10 if @stagger_y_labels
+        @border_left += y_title_font_size + 5 if @show_y_title
       end
 
 

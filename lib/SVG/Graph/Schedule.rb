@@ -163,11 +163,12 @@ module SVG
             y << data[:data][i]
           else
             if TIME_PARSE_AVAIL then
-              arr = Time.parse(data[:data][i])
+              arr = DateTime.parse(data[:data][i])
+              t = arr.to_time
             else
               arr = ParseDate.parsedate( data[:data][i] )
+              t = Time.local( *arr[0,6].compact )
             end
-            t = Time.local( *arr[0,6].compact )
             (im3 == 1 ? x_start : x_end) << t.to_i
           end
         }
@@ -181,10 +182,12 @@ module SVG
       def min_x_value=(value)
         if TIME_PARSE_AVAIL then
           arr = Time.parse(value)
+          t = arr.to_time
         else
           arr = ParseDate.parsedate( value )
+          t = Time.local( *arr[0,6].compact )
         end
-        @min_x_value = Time.local( *arr[0,6].compact ).to_i
+        @min_x_value = t.to_i
       end
 
 
