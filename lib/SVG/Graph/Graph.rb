@@ -708,7 +708,8 @@ module SVG
       end
 
       def keys 
-        return @data.collect{ |d| d[:title] }
+        i = 0
+        return @data.collect{ |d| i+=1; d[:title] || "Serie #{i}" }
       end
 
       # Draws the legend on the graph
