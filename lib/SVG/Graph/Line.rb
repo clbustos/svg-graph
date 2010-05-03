@@ -102,6 +102,7 @@ module SVG
         :area_fill          => false
         )
         
+
         self.top_align = self.top_font = self.right_align = self.right_font = 1
         end
 

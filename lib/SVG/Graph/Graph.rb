@@ -140,6 +140,7 @@ module SVG
           :title_font_size      =>16,
           :subtitle_font_size   =>14,
           :x_label_font_size    =>12,
+          :y_label_font_size    =>12,
           :x_title_font_size    =>14,
           :y_label_font_size    =>12,
           :y_title_font_size    =>14,
@@ -365,14 +366,14 @@ module SVG
       def calculate_left_margin
         @border_left = 7
         # Check for Y labels
-        max_y_label_height_px = rotate_y_labels ? 
-          y_label_font_size :
+        max_y_label_height_px = @rotate_y_labels ? 
+          @y_label_font_size :
           get_y_labels.max{|a,b| 
             a.to_s.length<=>b.to_s.length
-          }.to_s.length * y_label_font_size * 0.6
-        @border_left += max_y_label_height_px if show_y_labels
-        @border_left += max_y_label_height_px + 10 if stagger_y_labels
-        @border_left += y_title_font_size + 5 if show_y_title
+          }.to_s.length * @y_label_font_size * 0.6
+        @border_left += max_y_label_height_px if @show_y_labels
+        @border_left += max_y_label_height_px + 10 if @stagger_y_labels
+        @border_left += y_title_font_size + 5 if @show_y_title
       end
 
 
@@ -700,7 +701,8 @@ module SVG
       end
 
       def keys 
-        return @data.collect{ |d| d[:title] }
+        i = 0
+        return @data.collect{ |d| i+=1; d[:title] || "Serie #{i}" }
       end
 
       # Draws the legend on the graph

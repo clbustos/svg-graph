@@ -1,5 +1,8 @@
 require 'SVG/Graph/Plot'
-require 'parsedate'
+TIME_PARSE_AVAIL = (RUBY_VERSION =~ /1\.9\./) ? true : false
+if not TIME_PARSE_AVAIL then
+  require 'parsedate'
+end
 
 module SVG
   module Graph
@@ -159,8 +162,13 @@ module SVG
           if im3 == 0
             y << data[:data][i]
           else
-            arr = ParseDate.parsedate( data[:data][i] )
-            t = Time.local( *arr[0,6].compact )
+            if TIME_PARSE_AVAIL then
+              arr = DateTime.parse(data[:data][i])
+              t = arr.to_time
+            else
+              arr = ParseDate.parsedate( data[:data][i] )
+              t = Time.local( *arr[0,6].compact )
+            end
             (im3 == 1 ? x_start : x_end) << t.to_i
           end
         }
@@ -172,8 +180,14 @@ module SVG
       protected
 
       def min_x_value=(value)
-        arr = ParseDate.parsedate( value )
-        @min_x_value = Time.local( *arr[0,6].compact ).to_i
+        if TIME_PARSE_AVAIL then
+          arr = Time.parse(value)
+          t = arr.to_time
+        else
+          arr = ParseDate.parsedate( value )
+          t = Time.local( *arr[0,6].compact )
+        end
+        @min_x_value = t.to_i
       end
 
 

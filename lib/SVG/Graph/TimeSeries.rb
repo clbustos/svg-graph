@@ -1,5 +1,8 @@
 require 'SVG/Graph/Plot'
-require 'parsedate'
+TIME_PARSE_AVAIL = (RUBY_VERSION =~ /1\.9\./) ? true : false
+if not TIME_PARSE_AVAIL then
+  require 'parsedate'
+end
 
 module SVG
   module Graph
@@ -7,15 +10,17 @@ module SVG
     # 
     # = Synopsis
     # 
-    #   require 'SVG/Graph/TimeSeriess'
-    # 
+    #   require 'SVG/Graph/TimeSeries'
+    #   
     #   # Data sets are x,y pairs
-    #   data1 = ["6/17/72", 11,    "1/11/72", 7,    "4/13/04 17:31", 11, 
-    #           "9/11/01", 9,    "9/1/85", 2,    "9/1/88", 1,    "1/15/95", 13]
-    #   data2 = ["8/1/73", 18,    "3/1/77", 15,    "10/1/98", 4, 
-    #           "5/1/02", 14,    "3/1/95", 6,    "8/1/91", 12,    "12/1/87", 6, 
-    #           "5/1/84", 17,    "10/1/80", 12]
-    #
+    #   projection = ["6/17/72", 11,    "1/11/72", 7,    "4/13/04 17:31", 11,
+    #                "9/11/01", 9,    "9/1/85", 2,    "9/1/88", 1,    "1/15/95", 13]
+    #   actual = ["8/1/73", 18,    "3/1/77", 15,    "10/1/98", 4,
+    #             "5/1/02", 14,    "3/1/95", 6,    "8/1/91", 12,    "12/1/87", 6,
+    #             "5/1/84", 17,    "10/1/80", 12]
+    #   
+    #   title = "Ice Cream Cone Consumption"
+    #   
     #   graph = SVG::Graph::TimeSeries.new( {
     #     :width => 640,
     #     :height => 480,
@@ -39,13 +44,13 @@ module SVG
     #   })
     #   
     #   graph.add_data({
-    #   	:data => projection
-    # 	  :title => 'Projected',
+    #           :data => projection,
+    #     :title => 'Projected',
     #   })
-    # 
+    #   
     #   graph.add_data({
-    #   	:data => actual,
-    # 	  :title => 'Actual',
+    #           :data => actual,
+    #     :title => 'Actual',
     #   })
     #   
     #   print graph.burn()
@@ -157,8 +162,13 @@ module SVG
         y = []
         data[:data].each_index {|i|
           if i%2 == 0
-            arr = ParseDate.parsedate( data[:data][i] )
-            t = Time.local( *arr[0,6].compact )
+            if TIME_PARSE_AVAIL then
+              arr = DateTime.parse(data[:data][i])
+              t = arr.to_time
+            else
+              arr = ParseDate.parsedate( data[:data][i] )
+              t = Time.local( *arr[0,6].compact )
+            end
             x << t.to_i
           else
             y << data[:data][i]
@@ -173,8 +183,14 @@ module SVG
       protected
 
       def min_x_value=(value)
-        arr = ParseDate.parsedate( value )
-        @min_x_value = Time.local( *arr[0,6].compact ).to_i
+        if TIME_PARSE_AVAIL then
+          arr = Time.parse(value)
+          t = arr.to_time
+        else
+          arr = ParseDate.parsedate( value )
+          t = Time.local( *arr[0,6].compact )
+        end
+        @min_x_value = t.to_i
       end
 
 
