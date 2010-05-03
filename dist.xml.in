@@ -1,0 +1,46 @@
+<!-- 
+- The project must have a 'name', 'version', and 'date'.
+- It must also have either a 'url' or a <documentation> entry. The 'url'
+- attribute overrides the <documentation> entry.
+-->
+<project name='SVG::Graph' version='@ANT_VERSION@' date='@ANT_DATE@'>
+
+	<!-- The language the project is in -->
+	<language name='ruby'/>
+
+	<!-- 
+	- The project category.  Multiple categories are allowed, but only the
+	- first one is (currently) used.
+	-->
+	<category>SVG</category>
+	<category>Ruby</category>
+	<category>Libraries</category>
+	
+	<!-- A short description for the index page. Can contain HTML -->
+	<description>
+		<p>
+      SVG:::Graph is a pure Ruby library for generating charts, which are a type of graph 
+      where the values of one axis are not scalar.  SVG::Graph has a verry similar API
+      to the Perl library SVG::TT::Graph, and the resulting charts also look the same.
+		</p>
+
+		<p>This software is distribute under the Ruby license.</p>
+	</description>
+
+	<!-- 
+	- If documentation attributes exist, the files referenced will be
+	- untarred into <web path>/<category>/<name>, and the index link will
+	- point to this directory.  If the <project> 'name' attribute exists,
+	- it will be used as the link instead.
+	-->
+	<documentation file='web.tgz'/>
+
+	<!-- 
+	- A list of archive files.  These files will be copied to the archive
+	- directory.
+	-->
+	<archive	title='API docs (tgz)' file='svg_graph_api_@ANT_VERSION@.tgz'/>
+	<archive	title='API docs (zip)' file='svg_graph_api_@ANT_VERSION@.zip'/>
+	<archive	title='Source (tgz)' file='svg_graph_@ANT_VERSION@.tgz'/>
+	<archive	title='Source (zip)' file='svg_graph_@ANT_VERSION@.zip'/>
+</project>

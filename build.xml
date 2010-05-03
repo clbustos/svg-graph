@@ -1,0 +1,143 @@
+<project name='SVG::Graph' default='build-dist' basedir='.'>
+	<property name='date' value='+2005/058'/>
+	<property name='release' value='0.6.1'/>
+  <property name='version' value='$Rev$'/>
+	
+	<!-- Build the API docs -->
+  <target name='api'>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+		<delete dir='doc'/>
+    <mkdir dir='temp'/>
+    <copy todir='temp' filtering='true'> <fileset dir='SVG'/> </copy>
+		<exec executable='rdoc'>
+      <arg line='--main SVG::Graph::Graph --op doc --exclude .svn temp'/>
+		</exec>
+    <delete dir='temp'/>
+	</target>
+
+
+	<!-- Build the API doc archives -->
+	<target name='api-dist' depends='api'>
+		<!-- Make a distribution directory and copy the docs to it -->
+		<mkdir dir='dist'/>
+    <mkdir dir='dist/svg_graph_${release}'/>
+		<mkdir dir='dist/svg_graph_${release}/doc'/>
+		<copy todir='dist/svg_graph_${release}/doc'> <fileset dir='doc'/> </copy>
+		<tar tarfile='svg_graph_api_${release}.tar' basedir='dist'/>
+		<gzip zipfile='svg_graph_api_${release}.tgz' src='svg_graph_api_${release}.tar'/>
+    <zip zipfile='svg_graph_api_${release}.zip' basedir='dist'/>
+		<delete dir='dist'/>
+		<delete> <fileset dir='.' includes='*.tar'/> </delete>
+	</target>
+
+
+	<!-- Builds the distribution archive -->
+  <target name='dist'>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+
+    <copy file="dist.xml.in" tofile="dist.xml" filtering="true"/>
+
+    <delete dir='dist'/>
+
+    <antcall target='docs'>
+      <param name='destdir' value='dist/svg_graph_${release}'/>
+    </antcall>
+
+		<copy todir='dist/svg_graph_${release}' filtering='true'>
+			<fileset dir='.' excludes='**/.svn/**,*~'
+				includes='README.txt,test.rb,test2.rb,data.txt'/>
+		</copy>
+    <copy filtering='true'
+      tofile='dist/svg_graph_${release}/install.rb' file='install.rb'/>
+		<copy todir='dist/svg_graph_${release}'> 
+      <fileset dir='.' includes='SVG/**'/> 
+		</copy>
+
+		<tar tarfile='svg_graph_${release}.tar' basedir='dist'/>
+		<gzip zipfile='svg_graph_${release}.tgz' src='svg_graph_${release}.tar'/>
+		<zip zipfile='svg_graph_${release}.zip' basedir='dist'/>
+
+    <!-- clean up -->
+		<delete dir='dist'/>
+		<delete>
+			<fileset dir='.' includes='*.tar'/>
+		</delete>
+	</target>
+
+
+	<target name='web' depends='api,logs'>
+		<delete dir='dist'/>
+		<mkdir dir='dist'/>
+
+    <antcall target='docs'>
+      <param name='destdir' value='dist'/>
+    </antcall>
+
+    <copy file='release.html' tofile='dist/changelog.html'/>
+
+    <copy file="dist.xml.in" tofile="dist/dist.xml" filtering="true"/>
+    <copy todir='dist/doc'> <fileset dir='doc'/> </copy>
+		<tar tarfile='web.tar' basedir='dist'/>
+		<gzip zipfile='web.tgz' src='web.tar'/>
+
+		<delete dir='dist'/>
+		<delete file='web.tar'/>
+    <delete file='index.xsl'/>
+	</target>
+
+
+  <target name='docs'>
+		<filter token='ANT_VERSION' value='${release}'/>
+		<filter token='ANT_DATE' value='${date}'/>
+    <filter token='ANT_PROJECT' value='SVG::Graph'/>
+
+    <copy tofile='${destdir}/index.xml' file='index.xml' filtering='true'/>
+    <copy tofile='${destdir}/screenshots.xml' file='screenshots.xml'/>
+    <copy todir='${destdir}' overwrite='yes' filtering='true'>
+      <fileset dir='.' includes='screenshot.svg,LICENSE.txt,GPL.txt'/>
+		</copy>
+    <copy todir='${destdir}/images'><fileset dir='images'/></copy>
+
+    <get dest='index.xsl'
+      src='http://www.germane-software.com/~ser/styles/common.xsl'/>
+    <style in='${destdir}/index.xml' out='${destdir}/index.html' 
+      style='index.xsl'/>
+    <style in='${destdir}/screenshots.xml' out='${destdir}/screenshots.html' 
+      style='index.xsl'/>
+
+    <delete file='${destdir}/index.xml'/>
+    <delete file='${destdir}/screenshots.xml'/>
+  </target>
+
+
+	<target name='logs'>
+		<echo>Generating logs...</echo>	
+		<echo file='log.xml'><![CDATA[<log><previous>]]></echo>
+		<exec executable='svn' output='log.xml' append='true'>
+			<arg line='log --xml --incremental -r HEAD:1 .'/>
+		</exec>
+    <echo file='log.xml' append='true'><![CDATA[</previous></log>]]></echo>
+
+		<echo>Creating release document...</echo>
+		<style in='log.xml' out='release.html' style='style/release_html.xsl'>
+			<param name='release' expression='${release}'/>
+		</style>
+
+		<echo>Cleaning up...</echo>
+		<delete><fileset dir='.' includes='log.xml'/></delete>
+	</target>
+
+
+	<target name='clean'>
+		<delete>
+      <fileset dir='.' includes='dist.xml,*.tgz,*.zip,*~,index.html,release.html'/>
+      <fileset dir='doc'/>
+		</delete>
+	</target>
+
+  <!-- The main task.  We don't have to compile anything, so we just build a 
+       bunch of documentation and some distribution archives. -->
+	<target name='build-dist' depends='api-dist,dist,web'/>
+</project>

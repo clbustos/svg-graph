@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<article>
+  <title>SVG::Graph</title>
+
+  <subtitle>@ANT_VERSION@</subtitle>
+
+  <articleinfo>
+    <date>@ANT_DATE@</date>
+
+    <author>
+      <firstname>Sean</firstname>
+
+      <surname>Russell</surname>
+
+      <email>serATgermaneHYPHENsoftwareDOTcom</email>
+    </author>
+  </articleinfo>
+
+  <sect1>
+    <title>What is it?</title>
+
+    <para>SVG:::Graph is a pure Ruby library for generating charts, which are
+    a type of graph where the values of one axis are not scalar. SVG::Graph
+    has a verry similar API to the Perl library SVG::TT::Graph, and the
+    resulting charts also look the same. This isn't surprising, because
+    SVG::Graph started as a loose port of SVG::TT::Graph, although the
+    internal code no longer resembles the Perl original at all.</para>
+
+    <para>SVG::Graph isn't only for charts. With version 0.4.0, support for
+    Plot charts was added, so scalar data may now be charted.</para>
+  </sect1>
+
+  <sect1>
+    <title>What's new?</title>
+    <para>You can find that out in the <ulink 
+        url='changelog.html'>change log.</ulink></para>
+  </sect1>
+
+  <sect1>
+    <title>Screenshot</title>
+
+    <para>Gotta have one.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/pie.svg" format="SVG" />
+      </imageobject>
+    </mediaobject>
+
+    <para>Here's a PNG version of the above image for the
+    SVG-challenged:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/pie.png" format="PNG" />
+      </imageobject>
+    </mediaobject>
+
+    <para>The SVG version is <emphasis>much</emphasis> cooler. <ulink
+    url="screenshots.html">More screenshots are available</ulink>.</para>
+  </sect1>
+
+  <sect1>
+    <title>Why use it?</title>
+
+    <para>If you're a Ruby programmer, you can't use SVG::TT::Graph directly.
+    This package is for you.</para>
+
+    <para>If you want one of the features that this package has that the Perl
+    version doesn't, and you don't mind doing your graph code in Ruby, then
+    this package is for you.</para>
+
+    <para>If you want to generate SVGs that aren't CSS styled (and work with
+    more SVG renderers), use this package.</para>
+
+    <para>If you're a Perl wienie or you have something against Ruby, use
+    SVG::TT::Graph. If it doesn't provide you with the features you want, hack
+    it yourself.</para>
+  </sect1>
+
+  <sect1>
+    <title>Getting it</title>
+
+    <para>The source archives contain the example script(s) and an install
+    script. Documentation must be downloaded separately.<itemizedlist>
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_@ANT_VERSION@.tgz">Gzipped
+          sources</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_api_@ANT_VERSION@.tgz">Gzipped
+          documentation</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_@ANT_VERSION@.zip">Zipped
+          sources</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink
+          url="http://www.germane-software.com/archives/svg_graph_api_@ANT_VERSION@.zip">Zipped
+          documentation</ulink></para>
+        </listitem>
+      </itemizedlist></para>
+  </sect1>
+
+  <sect1>
+    <title>Why?</title>
+
+    <para>The SVG::TT:Graph package is just fine. It lacked a couple of
+    features that I wanted, and it was in Perl<footnote>
+        <para>Perl is from Hell. The language is bad enough, but working with
+        the package system -- CPAN, etc. -- is an exercize in masochism. I'd
+        rather chew on glass.</para>
+      </footnote>, so I re-implemented it.</para>
+
+    <para>SVG::Graph is not a straight port of SVG::TT::Graph, because the
+    Perl version uses templates, and I don't believe that this is a job for
+    templates. Templates are great when you have lots of context containing a
+    little bit of evaluated code, but the Graph classes are mostly code with a
+    little SVG; therefore, it makes more sense (and is a hell of a lot more
+    readable) to have the SVG embedded in the code rather than vice versa.
+    However, some of the logic was directly cut and paste out of
+    SVG::TT::Graph, as was the entire CSS code and chunks of the
+    documentation, and the part of the API that the user sees is almost
+    identical to the original.</para>
+
+    <para>In version 0.2.0 I completely refactored the code to make it more
+    modular. As a result, the core Graph class contains most of the graph
+    drawing primatives, and the specializations (Bar, BarHorizontal, Line,
+    Pie, etc.) only draw the plot itself. This results in many fewer lines of
+    code, and that code is more robust. SVG::TT::Graph re-implemented most of
+    the code for every plot type, whereas SVG::Graph reuses most of the
+    code.</para>
+
+    <para>I intend SVG::Graph to have more features than SVG::TT::Graph, which
+    is the main reason for the re-implementation. One such feature is the
+    ability to change the stacking of the data sets. For instance, SVG::Graph
+    allows you to place the data bars from multiple data sets on the same
+    graph side-by-side, rather than overlapping.</para>
+
+    <para>SVG::Graph also has an option to disable CSS styling of the graphs.
+    This has a number of consequences, both positive and negative. The SVGs
+    generated can be larger without CSS, and they are harder to dynamically
+    style (you can't use your own styles with CSS disabled). However, a number
+    of SVG renderers do not support or do not fully support CSS in SVG (KSVG
+    in Konqueror and librsvg, for instance). Adobe and Batik both support CSS,
+    so if those are your targets, you can use CSS. For maximum compatability,
+    disable CSS with the :no_css attriibute.</para>
+
+    <para>The currently supported graph types are:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Bar</para>
+      </listitem>
+
+      <listitem>
+        <para>BarHorizontal</para>
+      </listitem>
+
+      <listitem>
+        <para>Line</para>
+      </listitem>
+
+      <listitem>
+        <para>Pie</para>
+      </listitem>
+
+      <listitem>
+        <para>Plot (this is scalar data)</para>
+      </listitem>
+
+      <listitem>
+        <para>TimeSeries (also scalar data, with one axis being dates)</para>
+      </listitem>
+
+      <listitem>
+        <para>Schedule (scalar time range data, with non-scalar Y axis)</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1>
+    <title>Dependancies</title>
+
+    <para>REXML 3.0+, or Ruby 1.8+. If you want to use the SVG compression
+    feature, which generates zlib compressed SVGs, you must also have the Ruby
+    zlib library installed.</para>
+  </sect1>
+
+  <sect1>
+    <title>Usage</title>
+
+    <para>There's API documentation available, either <ulink
+    url="http://www.germane-software.com/software/SVG/SVG::Graph/doc">online</ulink>
+    or for <ulink
+    url="http://www.germane-software.com/archive/svg_graph_api_@ANT_VERSION@.tgz">download</ulink>.
+    Or, you can use rdoc to generate it yourself. The API documentation is
+    pretty comprehensive (Leo Lapworth did a really good job on the docs, and
+    I stole most of them), and there's an example application in the main
+    directory.</para>
+  </sect1>
+
+  <sect1>
+    <title>Notes</title>
+
+    <sect2>
+      <title>SVG feature support</title>
+
+      <para>Some SVG renderers (librsvg) do not understand CSS. This is a
+      problem with Perl's SVG::TT::Graph, because <emphasis>all</emphasis> of
+      the styling of the charts it generates is done with CSS. SVG::Graph is
+      able to inline the styles, rendering graphs that are compatible with
+      more viewers.</para>
+
+      <para>The Pie chart uses the feGaussianBlur filter to generate the
+      shadow, whiich is also unsupperted by some renderers (librsvg). The
+      shadow will not look as smooth on those displays, although it will
+      render.</para>
+    </sect2>
+
+    <sect2>
+      <title>Sizes</title>
+
+      <para>The bar charts PNGs tend to be smaller than the uncompressed SVGs.
+      In the best case (for PNG), the PNG is 66% of the size of the
+      uncompressed SVG.</para>
+
+      <para>For line and pie charts, which are a little more visually complex,
+      the SVGs are smaller than the PNGs. In the best case, the PNG is 130%
+      the size of the SVG. In the worst case, the PNG is 220% the size of the
+      uncompressed SVG.</para>
+
+      <para>The compressed SVGs are always much smaller than the PNGs. In the
+      best case (a vertical bar chart), the PNG is 4.4 times the size of the
+      compressed SVG, and in the worst case (for a pie chart), it is over 12
+      times the size of the compressed SVG.</para>
+
+      <para>These values were measured with inline styled SVGs, and the PNGs
+      were reduced to 8-bit, indexed images, and were crushed with
+      pngcrush.</para>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Bugs</title>
+
+    <para>SVG::Graph probably contains bugs. In fact, it is probably mostly
+    bugs, held together with some working code around them. In particular,
+    SVG::Graph is probably really intolerant of *your* bugs, and is likely
+    entirely unhelpful in helping you track down problems. We can only pray
+    that this situation improves<footnote>
+        <para>Prayer is much more effective when accompanied by sums of cash
+        sent to the author.</para>
+      </footnote>.</para>
+
+    <para>There is a <ulink
+    url="http://www.germane-software.com/cgi-bin/roundup/svg-graph">bug and
+    feature request database</ulink>; use this, and please create a user
+    account if you don't have one, so that I can email you if I have
+    questions. Alternatively, post anonymously, and check the database
+    often.</para>
+  </sect1>
+
+  <sect1>
+    <title>Repository</title>
+
+    <para>The sourcecode repository is a <ulink
+    url="http://subversion.tigris.org">Subversion</ulink> repository, located
+    <ulink
+    url="http://www.germane-software.com/repositories/public/SVG">here</ulink>.</para>
+  </sect1>
+</article>
