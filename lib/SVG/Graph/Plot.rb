@@ -97,7 +97,9 @@ module SVG
                   :show_data_values  => true,
                   :show_data_points  => true,
                   :area_fill         => false,
-                  :stacked           => false
+                  :stacked           => false,
+                  :show_lines        => true,
+                  :round_popups      => true
                  )
                  self.top_align = self.right_align = self.top_font = self.right_font = 1
       end
@@ -129,6 +131,10 @@ module SVG
       attr_accessor :min_x_value 
       # Set the minimum value of the Y axis
       attr_accessor :min_y_value
+      # Show lines connecting data points
+      attr_accessor :show_lines
+      # Round value of data points in popups to integer
+      attr_accessor :round_popups
 
 
       # Adds data to the plot.  The data must be in X,Y pairs; EG
@@ -145,16 +151,20 @@ module SVG
           "data points" unless data[:data].length % 2 == 0
         return if data[:data].length == 0
 
+        data[:description] ||= Array.new(data[:data].size/2)
+        if data[:description].size != data[:data].size/2
+          raise "Description for popups does not have same size as provided data: #{data[:description].size} vs #{data[:data].size/2}"
+        end
+
         x = []
         y = []
         data[:data].each_index {|i|
           (i%2 == 0 ? x : y) << data[:data][i]
         }
-        sort( x, y )
+        sort( x, y, data[:description] )
         data[:data] = [x,y]
         @data << data
       end
-
 
       protected
 
@@ -285,10 +295,12 @@ module SVG
             })
           end
 
-          @graph.add_element( "path", {
-            "d" => "M#{x_start} #{y_start} #{lpath}",
-            "class" => "line#{line}"
-          })
+          if show_lines
+            @graph.add_element( "path", {
+              "d" => "M#{x_start} #{y_start} #{lpath}",
+              "class" => "line#{line}"
+            })
+          end
 
           if show_data_points || show_data_values
             x_points.each_index { |idx|
@@ -301,7 +313,7 @@ module SVG
                   "r" => "2.5",
                   "class" => "dataPoint#{line}"
                 })
-                add_popup(x, y, format( x_points[idx], y_points[idx] )) if add_popups
+                add_popup(x, y, format( x_points[idx], y_points[idx], data[:description][idx])) if add_popups
               end
               make_datapoint_text( x, y-6, y_points[idx] ) if show_data_values
             }
@@ -310,8 +322,12 @@ module SVG
         end
       end
 
-      def format x, y
-        "(#{(x * 100).to_i / 100}, #{(y * 100).to_i / 100})"
+      def format x, y, desc
+        info = []
+        info << (round_popups ? (x * 100).to_i / 100 : x)
+        info << (round_popups ? (y * 100).to_i / 100 : y)
+        info << desc
+        "(#{info.compact.join(', ')})"
       end
       
       def get_css

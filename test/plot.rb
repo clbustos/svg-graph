@@ -1,3 +1,4 @@
+$: << File.dirname(__FILE__) + '/../lib'
 require 'SVG/Graph/Plot'
 
 
@@ -7,7 +8,7 @@ title = "Plot"
 #  data1 << rand(20)
 #  data1 << rand(20)
 #}
-data1 = [6, 11, 0, 5, 18, 7, 1, 11, 13, 9, 11, 2, 19, 0, 3, 13, 7, 9]
+data1 = [6.1, 11.2, 0.3, 5.4, 18.5, 7.6, 1.7, 11.8, 13.9, 9.11, 11.22, 2.33, 19.44, 0.555, 3.6666, 13.77777, 7.888888, 9.9999999]
 #data2 = []
 #(rand(10)+5).times{
 #  data2 << rand(20)
@@ -24,7 +25,7 @@ graph = SVG::Graph::Plot.new( {
   :no_css => true,
   :key => true,
   :scale_x_integers => true,
-  :scale_y_integers => true,
+  :scale_y_integers => false,
   :min_x_value => 0,
   :min_y_value => 0,
   :show_data_labels => true,
@@ -34,6 +35,9 @@ graph = SVG::Graph::Plot.new( {
   :show_y_title => true,
   :y_title => "Ice Cream Cones",
   :y_title_text_direction => :bt,
+  :show_lines => false,
+  :add_popups => true,
+  :round_popups => false
 })
 graph.add_data( 
   :data => data1,
