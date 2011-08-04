@@ -105,7 +105,7 @@ module SVG
 
         bar_width = fieldwidth - bargap
         bar_width /= @data.length if stack == :side
-        x_mod = (@graph_width-bargap)/2 - (stack==:side ? bar_width/2 : 0)
+        #x_mod = (@graph_width-bargap)/2 - (stack==:side ? bar_width/2 : 0)
  
         bottom = @graph_height
 

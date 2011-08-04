@@ -144,7 +144,7 @@ module SVG
       # Adds data to the plot.  The data must be in X,Y pairs; EG
       #   [ 1, 2 ]    # A data set with 1 point: (1,2)
       #   [ 1,2, 5,6] # A data set with 2 points: (1,2) and (5,6)  
-      def add_data data
+      def add_data(data)
 	      
         @data = [] unless @data
 
@@ -296,8 +296,8 @@ module SVG
       def draw_data
         line = 1
         
-        x_min, x_max, x_div = x_range
-        y_min, y_max, y_div = y_range
+        x_min, x_max = x_range
+        y_min, y_max = y_range
         x_step = (@graph_width.to_f - font_size*2) / (x_max-x_min)
         y_step = (@graph_height.to_f -  font_size*2) / (y_max-y_min)
 
