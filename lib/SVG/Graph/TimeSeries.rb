@@ -32,7 +32,7 @@ module SVG
     #     :scale_y_integers => true,
     #     :min_x_value => 0,
     #     :min_y_value => 0,
-    #     :show_data_labels => true,
+    #     :show_data_values => true,
     #     :show_x_guidelines => true,
     #     :show_x_title => true,
     #     :x_title => "Time",
@@ -145,57 +145,35 @@ module SVG
       #     :title => 'Two'
       #   )
       #
-      # Note that the data must be in time,value pairs, and that the date format
-      # may be any date that is parseable by ParseDate.
+      # Note that the data must be in time,value pairs. The time may be any date in
+      # a format that is parseable by ParseDate, a Time object, or a number of seconds
+      # after the unix epoch.
       def add_data data
-        @data = [] unless @data
-       
-        raise "No data provided by #{@data.inspect}" unless data[:data] and
-                                                    data[:data].kind_of? Array
-        raise "Data supplied must be x,y pairs!  "+
-          "The data provided contained an odd set of "+
-          "data points" unless data[:data].length % 2 == 0
-        return if data[:data].length == 0
-
-
-        x = []
-        y = []
-        data[:data].each_index {|i|
-          if i%2 == 0
-            if TIME_PARSE_AVAIL then
-              arr = DateTime.parse(data[:data][i])
-              t = arr.to_time
-            else
-              arr = ParseDate.parsedate( data[:data][i] )
-              t = Time.local( *arr[0,6].compact )
-            end
-            x << t.to_i
-          else
-            y << data[:data][i]
-          end
-        }
-        sort( x, y )
-        data[:data] = [x,y]
-        @data << data
+        data[:data].each_index do |i|
+          data[:data][i] = parse_time(data[:data][i]).to_i if i % 2 == 0
+        end
+        super(data)
       end
 
 
       protected
 
       def min_x_value=(value)
-        if TIME_PARSE_AVAIL then
-          arr = Time.parse(value)
-          t = arr.to_time
-        else
-          arr = ParseDate.parsedate( value )
-          t = Time.local( *arr[0,6].compact )
-        end
+        t = parse_time(value)
         @min_x_value = t.to_i
       end
 
+      def max_x_value=(value)
+        t = parse_time(value)
+        @max_x_value = t.to_i
+      end
 
-      def format x, y
-        Time.at( x ).strftime( popup_format )
+      def format x, y, description
+        info = [
+          Time.at(x).strftime(popup_format),
+          round_popups ? (y * 100).to_i / 100 : y,
+          description
+        ].compact.join(', ')
       end
 
       def get_x_labels
@@ -203,6 +181,29 @@ module SVG
       end
       
       private
+
+      # Accepts date time as a string, number of seconds since the epoch, or Time 
+      # object and returns a Time object. Raises an error if not a valid date time
+      # representation.
+      def parse_time(time)
+        case time
+        when Time
+          return time
+        when String
+          if TIME_PARSE_AVAIL then
+            arr = DateTime.parse(time)
+            return arr.to_time
+          else
+            arr = ParseDate.parsedate(time)
+            return Time.local( *arr[0,6].compact )
+          end
+        when Integer
+          return Time.at(time)
+        else
+          raise "Can not parse time #{time.inspect}"
+        end
+      end
+
       def get_x_values
         rv = []
         min, max, scale_division = x_range

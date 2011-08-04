@@ -129,8 +129,12 @@ module SVG
       attr_accessor :show_data_points
       # Set the minimum value of the X axis
       attr_accessor :min_x_value 
+      # Set the maximum value of the X axis
+      attr_accessor :max_x_value 
       # Set the minimum value of the Y axis
       attr_accessor :min_y_value
+      # Set the maximum value of the Y axis
+      attr_accessor :max_y_value
       # Show lines connecting data points
       attr_accessor :show_lines
       # Round value of data points in popups to integer
@@ -187,10 +191,22 @@ module SVG
 
       X = 0
       Y = 1
-      def x_range
+
+      def max_x_range
         max_value = @data.collect{|x| x[:data][X][-1] }.max
+        max_value = max_value > max_x_value ? max_value : max_x_value if max_x_value
+        max_value
+      end
+
+      def min_x_range
         min_value = @data.collect{|x| x[:data][X][0] }.min
-        min_value = min_value<min_x_value ? min_value : min_x_value if min_x_value
+        min_value = min_value < min_x_value ? min_value : min_x_value if min_x_value
+        min_value
+      end
+
+      def x_range
+        max_value = max_x_range
+        min_value = min_x_range
 
         range = max_value - min_value
         right_pad = range == 0 ? 10 : range / 20.0
@@ -215,17 +231,28 @@ module SVG
 
       def field_width
         values = get_x_values
-        max = @data.collect{|x| x[:data][X][-1]}.max
+        max = max_x_range
         dx = (max - values[-1]).to_f / (values[-1] - values[-2])
         (@graph_width.to_f - font_size*2*right_font) /
           (values.length + dx - right_align)
       end
 
 
-      def y_range
+      def max_y_range
         max_value = @data.collect{|x| x[:data][Y].max }.max
+        max_value = max_value > max_y_value ? max_value : max_y_value if max_y_value
+        max_value
+      end
+
+      def min_y_range
         min_value = @data.collect{|x| x[:data][Y].min }.min
-        min_value = min_value<min_y_value ? min_value : min_y_value if min_y_value
+        min_value = min_value < min_y_value ? min_value : min_y_value if min_y_value
+        min_value
+      end
+
+      def y_range
+        max_value = max_y_range
+        min_value = min_y_range
 
         range = max_value - min_value
         top_pad = range == 0 ? 10 : range / 20.0
@@ -256,7 +283,7 @@ module SVG
 
       def field_height
         values = get_y_values
-        max = @data.collect{|x| x[:data][Y].max }.max
+        max = max_y_range
         if values.length == 1
           dx = values[-1]
         else
