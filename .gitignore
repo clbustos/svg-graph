@@ -5,5 +5,7 @@ test.rb
 images/
 Gemfile.lock
 pkg/
+pkg/*
+*~
 *.swp
 *.swo

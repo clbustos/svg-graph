@@ -1,7 +1,9 @@
-=== 1.0.1 / 2009-09-26
+=== 1.0.3 / 2011-08-04
+* Removed unused variables which raises warnings on ruby head
+* Bug fix: Test raises error on different order of xml attribute
+* Merge pull request #2 from liehann/master
+* Max values and improved Time data handling.
+* Merge pull request #1 from thinkingbox/master
+* Adding scattered plot support with :show_lines =>false Rounding values to integers in popups can be disabled with :round_popups => false Optional description gets shown in popup
 
-* Work for Ruby version 1.8.6, 1.8.7 and 1.9
 
-=== 1.0.0 / 2009-08-01
-
-* First version

@@ -1,4 +1,6 @@
 # -*- ruby -*-
+# -*- coding: utf-8 -*-
+$:.unshift(File.dirname(__FILE__)+"/lib/")
 
 require 'rubygems'
 require 'rake'
@@ -19,7 +21,7 @@ Jeweler::Tasks.new do |gem|
 
   gem.email = [
     'ser_AT_germane-software.com',
-    'clbustos_AT_gmail.com'
+    'clbustos_AT_gmail.com',
     'liehannl_AT_gmail_DOT_com',
     'pgbossi_AT_gmail_DOT_com',
   ]

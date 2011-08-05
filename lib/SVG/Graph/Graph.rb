@@ -534,7 +534,7 @@ module SVG
 
               x = count * label_width + x_label_offset( label_width )
               y = @graph_height + x_label_font_size + 3
-              t = 0 - (font_size / 2)
+              #t = 0 - (font_size / 2)
 
               if stagger_x_labels and count % 2 == 1
                 y += stagger
@@ -794,7 +794,7 @@ module SVG
         css = get_style
         rv = {}
         while css =~ /^(\.(\w+)(?:\s*,\s*\.\w+)*)\s*\{/m
-          names_orig = names = $1
+          names = $1
           css = $'
           css =~ /([^}]+)\}/m
           content = $1
