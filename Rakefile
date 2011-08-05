@@ -1,15 +1,36 @@
 # -*- ruby -*-
 
 require 'rubygems'
-require 'hoe'
+require 'rake'
 $:.unshift("./lib")
 require 'svggraph'
-Hoe.spec 'svg-graph' do
-	self.version=SVG::Graph::VERSION
-	self.developer('Sean Russell', 'ser_AT_germane-software.com')
-	self.developer('Claudio Bustos', 'clbustos_AT_gmail.com')
-	self.rubyforge_name = 'ruby-statsample' # if different than 'svg_graph'
-        self.remote_rdoc_dir = 'svg-graph'
+
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "svg-graph"
+
+  gem.license = 'GPL'
+
+  gem.homepage = "http://www.germane-software.com/software/SVG/SVG::Graph/"
+  gem.summary = "SVG:::Graph is a pure Ruby library for generating charts, which are a type of graph where the values of one axis are not scalar."
+  gem.description = %Q{Gem version of SVG:::Graph. SVG:::Graph is a pure Ruby library for generating charts, which are a type of graph where the values of one axis are not scalar. SVG::Graph has a verry similar API to the Perl library SVG::TT::Graph, and the resulting charts also look the same. This isn't surprising, because SVG::Graph started as a loose port of SVG::TT::Graph, although the internal code no longer resembles the Perl original at all.
+  }
+  gem.email = ['ser_AT_germane-software.com', 'clbustos_AT_gmail.com']
+  gem.authors = ['Sean Russell', 'Claudio Bustos']
+  gem.rubyforge_project = 'ruby-statsample'
+
+  gem.files = FileList[
+    'lib/**/*.rb',
+    'test/test_svg_graph.rb',
+    'GPL.txt',
+    'History.txt',
+    'LICENSE.txt',
+    'Rakefile',
+    'README.txt'
+  ]
+  # dependencies defined in Gemfile
 end
+
 
 # vim: syntax=ruby

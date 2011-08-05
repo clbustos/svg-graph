@@ -3,3 +3,5 @@ install.rb
 test.rb
 *.gem
 images/
+Gemfile.lock
+pkg/

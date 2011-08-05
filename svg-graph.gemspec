@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
     "GPL.txt",
     "History.txt",
     "LICENSE.txt",
-    "Manifest.txt",
     "README.txt",
     "Rakefile",
     "lib/SVG/Graph/Bar.rb",
