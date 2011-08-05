@@ -3,7 +3,7 @@ require "test/unit"
 require "svggraph"
 
 class TestSvgGraphPlot < Test::Unit::TestCase
-  def _test_plot
+  def test_plot
     projection = [
       6, 11,    0, 5,   18, 7,   1, 11,   13, 9,   1, 2,   19, 0,   3, 13,
       7, 9 
@@ -57,7 +57,7 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     assert_match(/path.*class='line1'/, out)
   end
 
-  def _test_disabling_show_lines_does_not_emit_polyline_connecting_data_points
+  def test_disabling_show_lines_does_not_emit_polyline_connecting_data_points
     actual = [
       0, 18,    8, 15,    9, 4,   18, 14,   10, 2,   11, 6,  14, 12,
       15, 6,   4, 17,   2, 12
@@ -81,7 +81,7 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     assert_no_match(/path class='line1' d='M.* L.*'/, out)
   end
 
-  def _test_popup_values_round_to_integer_by_default_in_popups
+  def test_popup_values_round_to_integer_by_default_in_popups
     actual = [
       0.1, 18,    8.55, 15.1234,    9.09876765, 4,
     ]
@@ -109,7 +109,7 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     assert_match(/\(9, 4\)/, out)
   end
 
-  def _test_do_not_round_popup_values_shows_decimal_values_in_popups
+  def test_do_not_round_popup_values_shows_decimal_values_in_popups
     actual = [
       0.1, 18,    8.55, 15.1234,    9.09876765, 4,
     ]
@@ -138,7 +138,7 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     assert_no_match(/\(9, 4\)/, out)
   end
 
-  def _test_description_is_shown_in_popups_if_provided
+  def test_description_is_shown_in_popups_if_provided
     actual = [
       8.55, 15.1234,    9.09876765, 4,     0.1, 18,
     ]

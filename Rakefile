@@ -4,6 +4,7 @@ $:.unshift(File.dirname(__FILE__)+"/lib/")
 
 require 'rubygems'
 require 'rake'
+require 'rake/testtask'
 $:.unshift("./lib")
 require 'svggraph'
 
@@ -43,6 +44,11 @@ Jeweler::Tasks.new do |gem|
     'README.txt'
   ]
   # dependencies defined in Gemfile
+end
+
+Rake::TestTask.new do |t|
+  t.test_files = FileList['test/test_*.rb']
+  t.verbose = true
 end
 
 
