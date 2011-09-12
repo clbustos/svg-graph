@@ -170,11 +170,11 @@ module SVG
 
       def keys
         total = 0
-        max_value = 0
+        #max_value = 0
         @data.each {|x| total += x }
         percent_scale = 100.0 / total
         count = -1
-        a = @config[:fields].collect{ |x|
+        @config[:fields].collect{ |x|
           count += 1
           v = @data[count]
           perc = show_key_percent ? " "+(v * percent_scale).round.to_s+"%" : ""
@@ -275,7 +275,7 @@ module SVG
             msr = Math.sin(radians)
             mcr = Math.cos(radians)
             tx = radius + (msr * radius)
-            ty = radius -(mcr * radius)
+            ty = radius - (mcr * radius)
 
             if expanded or (expand_greatest && value == max_value)
               tx += (msr * expand_gap)
