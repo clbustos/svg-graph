@@ -4,10 +4,10 @@ require "svggraph"
 require "SVG/Graph/data_point"
 
 class TestSvgGraphPlot < Test::Unit::TestCase
-  def set_up
+  def setup
     DataPoint.reset_shape_criteria
   end
-  def tear_down
+  def teardown
     DataPoint.reset_shape_criteria
   end
   def test_plot
@@ -216,5 +216,60 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     out=graph.burn()
     assert_match(/polygon.*points/, out)
     assert_match(/line.*axis/, out)
+  end
+  def test_popup_radius_is_10_by_default
+    actual = [
+     1, 1,    5, 5,     10, 10,
+    ]
+    description = [
+     'first',    'second',          'third',
+    ]
+
+    graph = SVG::Graph::Plot.new({
+      :height => 500,
+      :width => 300,
+      :key => true,
+      :scale_x_integers => true,
+      :scale_y_integers => true,
+      :add_popups => true,
+      :round_popups => false,
+    })
+
+    graph.add_data({
+      :data => actual,
+      :title => 'Actual',
+      :description => description,
+    })
+
+    out=graph.burn()
+    assert_match(/circle .* onmouseover=.* r='10'/, out)
+  end
+  def test_popup_radius_is_overridable
+    actual = [
+     1, 1,    5, 5,     10, 10,
+    ]
+    description = [
+     'first',    'second',          'third',
+    ]
+
+    graph = SVG::Graph::Plot.new({
+      :height => 500,
+      :width => 300,
+      :key => true,
+      :scale_x_integers => true,
+      :scale_y_integers => true,
+      :add_popups => true,
+      :round_popups => false,
+      :popup_radius => 1.23
+    })
+
+    graph.add_data({
+      :data => actual,
+      :title => 'Actual',
+      :description => description,
+    })
+
+    out=graph.burn()
+    assert_match(/circle .* onmouseover=.* r='1.23'/, out)
   end
 end

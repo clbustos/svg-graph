@@ -341,6 +341,8 @@ module SVG
       attr_accessor :no_css
       # Add popups for the data points on some graphs
       attr_accessor :add_popups
+      # Customize popup radius
+      attr_accessor :popup_radius
 
 
       protected
@@ -355,6 +357,7 @@ module SVG
         config.each { |key, value|
             self.send( key.to_s+"=", value ) if self.respond_to?  key
         }
+        @popup_radius ||= 10
       end
 
       attr_accessor :top_align, :top_font, :right_align, :right_font
@@ -424,7 +427,7 @@ module SVG
         @foreground.add_element( "circle", {
           "cx" => x.to_s,
           "cy" => y.to_s,
-          "r" => "10",
+          "r" => "#{@popup_radius}",
           "style" => "opacity: 0",
           "onmouseover" => 
             "document.getElementById(#{t.object_id}).setAttribute('visibility', 'visible' )",

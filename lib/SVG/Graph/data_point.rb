@@ -1,4 +1,5 @@
 class DataPoint
+  OVERLAY = "OVERLAY" unless defined?(OVERLAY)
   DEFAULT_SHAPE = lambda{|x,y,line| ["circle", {
           "cx" => x,
           "cy" => y,
@@ -20,10 +21,19 @@ class DataPoint
     @line = line
   end
   def shape(description=nil)
-    shapes = CRITERIA.collect {|regexp, proc|
+    shapes = CRITERIA.select {|criteria|
+      criteria.size == 2
+    }.collect {|regexp, proc|
       proc.call(@x, @y, @line) if description =~ regexp
     }.compact
     shapes = [DEFAULT_SHAPE.call(@x, @y, @line)] if shapes.empty?
-    return shapes
+
+    overlays = CRITERIA.select { |criteria|
+      criteria.last == OVERLAY
+    }.collect { |regexp, proc|
+      proc.call(@x, @y, @line) if description =~ regexp
+    }.compact
+
+    return shapes + overlays
   end
 end

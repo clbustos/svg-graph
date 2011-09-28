@@ -3,10 +3,10 @@ require "test/unit"
 require "SVG/graph/data_point"
 
 class DataPointTest < Test::Unit::TestCase
-  def set_up
+  def setup
     DataPoint.reset_shape_criteria
   end
-  def tear_down
+  def teardown
     DataPoint.reset_shape_criteria
   end
   def test_default_shape_is_circle_with_2_point_5_radius
@@ -51,5 +51,17 @@ class DataPointTest < Test::Unit::TestCase
       [/1/, lambda{|x,y,line| "one" }]
     )
     assert_equal(["three", "two", "one"], DataPoint.new(100.0, 50.0, 2).shape("1 3 2"))
+  end
+  def test_overlay_match_is_last_and_does_not_prevent_default
+    DataPoint.configure_shape_criteria(
+      [/3/, lambda{|x,y,line| "three" }, DataPoint::OVERLAY]
+    )
+    default_circle = ['circle', {
+        "cx" => 100.0,
+        "cy" => 50.0,
+        "r" => "2.5",
+        "class" => "dataPoint2"
+    }]
+    assert_equal([default_circle, "three"], DataPoint.new(100.0, 50.0, 2).shape("1 3 2"))
   end
 end
