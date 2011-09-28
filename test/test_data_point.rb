@@ -1,8 +1,8 @@
 $: << File.dirname(__FILE__) + '/../lib'
 require "test/unit"
-require "SVG/graph/data_point"
+require "SVG/Graph/DataPoint"
 
-class DataPointTest < Test::Unit::TestCase
+class TestDataPoint < Test::Unit::TestCase
   def setup
     DataPoint.reset_shape_criteria
   end

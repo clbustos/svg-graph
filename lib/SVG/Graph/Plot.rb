@@ -1,5 +1,5 @@
 require 'SVG/Graph/Graph'
-require 'SVG/Graph/data_point'
+require 'SVG/Graph/DataPoint'
 
 module SVG
   module Graph

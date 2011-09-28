@@ -1,7 +1,7 @@
 $: << File.dirname(__FILE__) + '/../lib'
 require "test/unit"
 require "svggraph"
-require "SVG/Graph/data_point"
+require "SVG/Graph/DataPoint"
 
 class TestSvgGraphPlot < Test::Unit::TestCase
   def setup
