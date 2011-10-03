@@ -1,3 +1,6 @@
+=== 1.0.5 / 2011-09-03
+* enabled all svg_graph tests[liehann]
+
 === 1.0.4 / 2011-09-03
 * Data point shape is configurable based on rule matches on description. It defaults to usual circle with radius 2.5. [pgbossi]
 * New shapes can be specified through lambdas that accept parameters x,y (coordinates) and the dataset number.[pgbossi]
