@@ -16,7 +16,7 @@ This software is available under the Ruby license[LICENSE.txt]
 
 == DESCRIPTION:
 
-This is a minor revision of the [SVG::Graph library](http://www.germane-software.com/software/SVG/SVG::Graph/) by Sean Russell with few minor touch-ups to make it run on Ruby 1.9.x and to have it gem-installable
+This is a  revision of the [SVG::Graph library](http://www.germane-software.com/software/SVG/SVG::Graph/) by Sean Russell with touch-ups to make it run on Ruby 1.9.x and be gem-installable. See History.txt for other changes
 
 SVG:::Graph is a pure Ruby library for generating charts, which are a type of graph where the values of one axis are not scalar. SVG::Graph has a verry similar API to the Perl library SVG::TT::Graph, and the resulting charts also look the same. This isn't surprising, because SVG::Graph started as a loose port of SVG::TT::Graph, although the internal code no longer resembles the Perl original at all.
 

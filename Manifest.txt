@@ -32,6 +32,7 @@ install.rb
 lib/SVG/Graph/Bar.rb
 lib/SVG/Graph/BarBase.rb
 lib/SVG/Graph/BarHorizontal.rb
+lib/SVG/Graph/DataPoint.rb
 lib/SVG/Graph/Graph.rb
 lib/SVG/Graph/Line.rb
 lib/SVG/Graph/Pie.rb
@@ -49,5 +50,7 @@ test/plot.rb
 test/schedule.rb
 test/single.rb
 test/test.rb
+test/test_data_point.rb
+test/test_plot.rb
 test/test_svg_graph.rb
 test/timeseries.rb
