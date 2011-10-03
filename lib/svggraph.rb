@@ -9,5 +9,6 @@ module Graph
 	autoload(:Plot, 'SVG/Graph/Plot')
 	autoload(:Schedule, 'SVG/Graph/Schedule')
 	autoload(:TimeSeries, 'SVG/Graph/TimeSeries')
+  autoload(:DataPoint, 'SVG/Graph/DataPoint')
 end
 end

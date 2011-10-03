@@ -1,4 +1,5 @@
 require 'SVG/Graph/Graph'
+require 'SVG/Graph/DataPoint'
 
 module SVG
   module Graph
@@ -334,12 +335,9 @@ module SVG
               x = (x_points[idx] -  x_min) * x_step
               y = @graph_height - (y_points[idx] -  y_min) * y_step
               if show_data_points
-                @graph.add_element( "circle", {
-                  "cx" => x.to_s,
-                  "cy" => y.to_s,
-                  "r" => "2.5",
-                  "class" => "dataPoint#{line}"
-                })
+                DataPoint.new(x, y, line).shape(data[:description][idx]).each{|s|
+                  @graph.add_element( *s )
+                }
                 add_popup(x, y, format( x_points[idx], y_points[idx], data[:description][idx])) if add_popups
               end
               make_datapoint_text( x, y-6, y_points[idx] ) if show_data_values
