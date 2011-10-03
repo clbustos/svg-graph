@@ -44,8 +44,8 @@ class TestSvgGraphPlot < Test::Unit::TestCase
   end
   def test_default_plot_emits_polyline_connecting_data_points
     actual = [
-     0, 18,    8, 15,    9, 4,   18, 14,   10, 2,   11, 6,  14, 12,
-     15, 6,   4, 17,   2, 12
+      0, 18,    8, 15,    9, 4,   18, 14,   10, 2,   11, 6,  14, 12,
+      15, 6,   4, 17,   2, 12
     ]
 
     graph = SVG::Graph::Plot.new({
@@ -63,11 +63,11 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     out=graph.burn()
     assert_match(/path.*class='line1'/, out)
   end
-  
+
   def test_disabling_show_lines_does_not_emit_polyline_connecting_data_points
     actual = [
-     0, 18,    8, 15,    9, 4,   18, 14,   10, 2,   11, 6,  14, 12,
-     15, 6,   4, 17,   2, 12
+      0, 18,    8, 15,    9, 4,   18, 14,   10, 2,   11, 6,  14, 12,
+      15, 6,   4, 17,   2, 12
     ]
 
     graph = SVG::Graph::Plot.new({
@@ -87,9 +87,10 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     out=graph.burn()
     assert_no_match(/path class='line1' d='M.* L.*'/, out)
   end
+
   def test_popup_values_round_to_integer_by_default_in_popups
     actual = [
-     0.1, 18,    8.55, 15.1234,    9.09876765, 4,
+      0.1, 18,    8.55, 15.1234,    9.09876765, 4,
     ]
 
     graph = SVG::Graph::Plot.new({
@@ -114,9 +115,10 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     assert_no_match(/\(9.09876765, 4\)/, out)
     assert_match(/\(9, 4\)/, out)
   end
+
   def test_do_not_round_popup_values_shows_decimal_values_in_popups
     actual = [
-     0.1, 18,    8.55, 15.1234,    9.09876765, 4,
+      0.1, 18,    8.55, 15.1234,    9.09876765, 4,
     ]
 
     graph = SVG::Graph::Plot.new({
@@ -142,9 +144,10 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     assert_match(/\(9.09876765, 4\)/, out)
     assert_no_match(/\(9, 4\)/, out)
   end
+
   def test_description_is_shown_in_popups_if_provided
     actual = [
-     8.55, 15.1234,    9.09876765, 4,     0.1, 18,
+      8.55, 15.1234,    9.09876765, 4,     0.1, 18,
     ]
     description = [
      'first',    'second',          'third',

@@ -3,5 +3,9 @@ install.rb
 test.rb
 *.gem
 images/
-*~
+Gemfile.lock
+pkg/
 pkg/*
+*~
+*.swp
+*.swo
