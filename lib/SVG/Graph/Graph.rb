@@ -661,7 +661,7 @@ module SVG
 
         if show_graph_subtitle
           y_subtitle = show_graph_title ? 
-            title_font_size + 10 :
+            title_font_size + subtitle_font_size + 5 :
             subtitle_font_size
           @root.add_element("text", {
             "x" => (width / 2).to_s,
