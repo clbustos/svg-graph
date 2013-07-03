@@ -245,8 +245,8 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     })
 
     out=graph.burn()
-    assert_match(/circle .* r='10'/, out)
-    assert_match(/circle .* onmouseover=.*/, out)
+    assert_match(/circle .*r='10'/, out)
+    assert_match(/circle .*onmouseover=.*/, out)
     
   end
   def test_popup_radius_is_overridable
@@ -275,8 +275,8 @@ class TestSvgGraphPlot < Test::Unit::TestCase
     })
 
     out=graph.burn()
-    assert_match(/circle .* r='1.23'/, out)
-    assert_match(/circle .* onmouseover=.*/, out)
+    assert_match(/circle .*r='1.23'/, out)
+    assert_match(/circle .*onmouseover=.*/, out)
     
   end
 end
