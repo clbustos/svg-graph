@@ -1,8 +1,7 @@
 begin
   require 'zlib'
-  @@__have_zlib = true
 rescue
-  @@__have_zlib = false
+  # No Zlib.
 end
 
 require 'rexml/document'
@@ -11,7 +10,7 @@ module SVG
   module Graph
 
     # === Base object for generating SVG Graphs
-    # 
+    #
     # == Synopsis
     #
     # This class is only used as a superclass of specialized charts.  Do not
@@ -29,9 +28,9 @@ module SVG
     # * file:test/single.rb
     # * file:test/test.rb
     # * file:test/timeseries.rb
-    # 
+    #
     # == Description
-    # 
+    #
     # This package should be used as a base for creating SVG graphs.
     #
     # == Acknowledgements
@@ -40,7 +39,7 @@ module SVG
     # port is based on.
     #
     # Stephen Morgan for creating the TT template and SVG.
-    # 
+    #
     # == See
     #
     # * SVG::Graph::BarHorizontal
@@ -133,7 +132,7 @@ module SVG
           :graph_title          => 'Graph Title',
           :show_graph_subtitle  => false,
           :graph_subtitle        => 'Graph Sub Title',
-          :key                  => true, 
+          :key                  => true,
           :key_position          => :right, # bottom or right
 
           :font_size            =>12,
@@ -145,7 +144,7 @@ module SVG
           :y_label_font_size    =>12,
           :y_title_font_size    =>14,
           :key_font_size        =>10,
-          
+
           :no_css               =>false,
           :add_popups           =>false,
         })
@@ -153,18 +152,18 @@ module SVG
         init_with config
       end
 
-      
+
       # This method allows you do add data to the graph object.
       # It can be called several times to add more data sets in.
       #
       #   data_sales_02 = [12, 45, 21];
-      #   
+      #
       #   graph.add_data({
       #     :data => data_sales_02,
       #     :title => 'Sales 2002'
       #   })
       def add_data conf
-          @data = [] unless (defined? @data and !@data.nil?) 
+          @data = [] unless (defined? @data and !@data.nil?)
 
         if conf[:data] and conf[:data].kind_of? Array
           @data << conf
@@ -178,7 +177,7 @@ module SVG
       # reuse it to create a new graph but with the same config options.
       #
       #   graph.clear_data
-      def clear_data 
+      def clear_data
         @data = []
       end
 
@@ -192,7 +191,7 @@ module SVG
       #   print graph.burn
       def burn
         raise "No data available" unless @data.size > 0
-        
+
         calculations if methods.include? 'calculations'
 
         start_svg
@@ -209,7 +208,7 @@ module SVG
         @doc.write( data, 0 )
 
         if @config[:compress]
-          if @@__have_zlib
+          if Object.const_defined?(:Zlib)
             inp, out = IO.pipe
             gz = Zlib::GzipWriter.new( out )
             gz.write data
@@ -219,7 +218,7 @@ module SVG
             data << "<!-- Ruby Zlib not available for SVGZ -->";
           end
         end
-        
+
         return data
       end
 
@@ -267,7 +266,7 @@ module SVG
       #   a step of three results in every third label being displayed
       #   (label <gap> <gap> label <gap> <gap> label) and so on.
       attr_accessor :step_x_labels
-      #   Whether to (when taking "steps" between X axis labels) step from 
+      #   Whether to (when taking "steps" between X axis labels) step from
       #   the first label (i.e. always include the first label) or step from
       #   the X axis origin (i.e. start with a gap if step_x_labels is greater
       #   than one).
@@ -276,7 +275,7 @@ module SVG
       #   to true, set to false if you want to turn them off.
       attr_accessor :show_y_labels
       #   Ensures only whole numbers are used as the scale divisions.
-      #   Default it false, to turn on set to true. This has no effect if 
+      #   Default it false, to turn on set to true. This has no effect if
       #   scale divisions are less than 1.
       attr_accessor :scale_integers
       #   This defines the gap between markers on the Y axis,
@@ -293,7 +292,7 @@ module SVG
       #   Whether to show the title under the Y axis labels,
       #   default is false, set to true to show.
       attr_accessor :show_y_title
-      #   Aligns writing mode for Y axis label. 
+      #   Aligns writing mode for Y axis label.
       #   Defaults to :bt (Bottom to Top).
       #   Change to :tb (Top to Bottom) to reverse.
       attr_accessor :y_title_text_direction
@@ -369,9 +368,9 @@ module SVG
       def calculate_left_margin
         @border_left = 7
         # Check for Y labels
-        max_y_label_height_px = @rotate_y_labels ? 
+        max_y_label_height_px = @rotate_y_labels ?
           @y_label_font_size :
-          get_y_labels.max{|a,b| 
+          get_y_labels.max{|a,b|
             a.to_s.length<=>b.to_s.length
           }.to_s.length * @y_label_font_size * 0.6
         @border_left += max_y_label_height_px if @show_y_labels
@@ -393,7 +392,7 @@ module SVG
         @border_right = 7
         if key and key_position == :right
           val = keys.max { |a,b| a.length <=> b.length }
-          @border_right += val.length * key_font_size * 0.6 
+          @border_right += val.length * key_font_size * 0.6
           @border_right += KEY_BOX_SIZE
           @border_right += 10    # Some padding around the box
         end
@@ -429,15 +428,15 @@ module SVG
           "cy" => y.to_s,
           "r" => "#{@popup_radius}",
           "style" => "opacity: 0",
-          "onmouseover" => 
+          "onmouseover" =>
             "document.getElementById(#{t.object_id}).setAttribute('visibility', 'visible' )",
-          "onmouseout" => 
+          "onmouseout" =>
             "document.getElementById(#{t.object_id}).setAttribute('visibility', 'hidden' )",
         })
 
       end
 
-      
+
       # Override this (and call super) to change the margin to the bottom
       # of the plot area.  Results in @border_bottom being set.
       def calculate_bottom_margin
@@ -447,9 +446,9 @@ module SVG
           @border_bottom += 10
         end
         if show_x_labels
-		  max_x_label_height_px = (not rotate_x_labels) ? 
+		  max_x_label_height_px = (not rotate_x_labels) ?
             x_label_font_size :
-            get_x_labels.max{|a,b| 
+            get_x_labels.max{|a,b|
               a.to_s.length<=>b.to_s.length
             }.to_s.length * x_label_font_size * 0.6
           @border_bottom += max_x_label_height_px
@@ -550,7 +549,7 @@ module SVG
               text.attributes["x"] = x.to_s
               text.attributes["y"] = y.to_s
               if rotate_x_labels
-                text.attributes["transform"] = 
+                text.attributes["transform"] =
                   "rotate( 90 #{x} #{y-x_label_font_size} )"+
                   " translate( 0 -#{x_label_font_size/4} )"
                 text.attributes["style"] = "text-anchor: start"
@@ -660,7 +659,7 @@ module SVG
         end
 
         if show_graph_subtitle
-          y_subtitle = show_graph_title ? 
+          y_subtitle = show_graph_title ?
             title_font_size + subtitle_font_size + 5 :
             subtitle_font_size
           @root.add_element("text", {
@@ -703,7 +702,7 @@ module SVG
         end
       end
 
-      def keys 
+      def keys
         i = 0
         return @data.collect{ |d| i+=1; d[:title] || "Serie #{i}" }
       end
@@ -739,9 +738,9 @@ module SVG
             x_offset = @border_left + 20
             y_offset = @border_top + @graph_height + 5
             if show_x_labels
-			  max_x_label_height_px = (not rotate_x_labels) ? 
+			  max_x_label_height_px = (not rotate_x_labels) ?
 				x_label_font_size :
-				get_x_labels.max{|a,b| 
+				get_x_labels.max{|a,b|
 				  a.to_s.length<=>b.to_s.length
 				}.to_s.length * x_label_font_size * 0.6
                 x_label_font_size
@@ -763,7 +762,7 @@ module SVG
           sort_multiple(arrys, lo, p-1)
           sort_multiple(arrys, p+1, hi)
         end
-        arrys 
+        arrys
       end
 
       def partition( arrys, lo, hi )
@@ -959,7 +958,7 @@ module SVG
 .staggerGuideLine{
   fill: none;
   stroke: #000000;
-  stroke-width: 0.5px;  
+  stroke-width: 0.5px;
 }
 
 #{get_css}
