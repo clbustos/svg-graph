@@ -205,9 +205,9 @@ module SVG
 
         total = 0
         max_value = 0
-        @data.each {|x| 
+        @data.each {|x|
           max_value = max_value < x ? x : max_value
-          total += x 
+          total += x
         }
         percent_scale = 100.0 / total
 
@@ -216,56 +216,85 @@ module SVG
         @config[:fields].each_index { |count|
           value = @data[count]
           percent = percent_scale * value
-
           radians = prev_percent * rad_mult
-          x_start = radius+(Math.sin(radians) * radius)
-          y_start = radius-(Math.cos(radians) * radius)
-          radians = (prev_percent+percent) * rad_mult
-          x_end = radius+(Math.sin(radians) * radius)
-          x_end -= 0.00001 if @data.length == 1
-          y_end = radius-(Math.cos(radians) * radius)
-          path = "M#{radius},#{radius} L#{x_start},#{y_start} "+
-            "A#{radius},#{radius} "+
-            "0, #{percent >= 50 ? '1' : '0'},1, "+
-            "#{x_end} #{y_end} Z"
 
-
-          wedge = @foreground.add_element( "path", {
-            "d" => path,
-            "class" => "fill#{count+1}"
-          })
-
-          translate = nil
-          tx = 0
-          ty = 0
-          half_percent = prev_percent + percent / 2
-          radians = half_percent * rad_mult
-
-          if show_shadow
-            shadow = background.add_element( "path", {
-              "d" => path,
-              "filter" => "url(#dropshadow)",
-              "style" => "fill: #ccc; stroke: none;"
+          if percent == 100.0
+            @foreground.add_element( "circle", {
+              "cx" => radius.to_s,
+              "cy" => radius.to_s,
+              "r" => radius.to_s,
+              "class" => "fill1"
             })
-            clear = midground.add_element( "path", {
+
+            if show_shadow
+              shadow = background.add_element( "circle", {
+                "cx" => radius.to_s,
+                "cy" => radius.to_s,
+                "r" => radius.to_s,
+                "filter" => "url(#dropshadow)",
+                "style" => "fill: #ccc; stroke: none;"
+              })
+              clear = midground.add_element( "circle", {
+                "cx" => radius.to_s,
+                "cy" => radius.to_s,
+                "r" => radius.to_s,
+                "style" => "fill: #fff; stroke: none;"
+              })
+              shadow.attributes["transform"] =
+                "translate( #{shadow_offset} #{shadow_offset} )"
+            end
+          else
+            x_start = radius+(Math.sin(radians) * radius)
+            y_start = radius-(Math.cos(radians) * radius)
+            radians = (prev_percent+percent) * rad_mult
+            x_end = radius+(Math.sin(radians) * radius)
+            x_end -= 0.00001 if @data.length == 1
+            y_end = radius-(Math.cos(radians) * radius)
+            path = "M#{radius},#{radius} L#{x_start},#{y_start} "+
+              "A#{radius},#{radius} "+
+              "0, #{percent >= 50 ? '1' : '0'},1, "+
+              "#{x_end} #{y_end} Z"
+
+
+            wedge = @foreground.add_element( "path", {
               "d" => path,
-              "style" => "fill: #fff; stroke: none;"
+              "class" => "fill#{count+1}"
             })
+
+            translate = nil
+            tx = 0
+            ty = 0
+            half_percent = prev_percent + percent / 2
+            radians = half_percent * rad_mult
+
+            if show_shadow
+              shadow = background.add_element( "path", {
+                "d" => path,
+                "filter" => "url(#dropshadow)",
+                "style" => "fill: #ccc; stroke: none;"
+              })
+              clear = midground.add_element( "path", {
+                "d" => path,
+                "style" => "fill: #fff; stroke: none;"
+              })
+            end
+
+            if expanded or (expand_greatest && value == max_value)
+              tx = (Math.sin(radians) * expand_gap)
+              ty = -(Math.cos(radians) * expand_gap)
+              translate = "translate( #{tx} #{ty} )"
+              wedge.attributes["transform"] = translate
+              clear.attributes["transform"] = translate if clear
+            end
+
+            if show_shadow
+              shadow.attributes["transform"] =
+                "translate( #{tx+shadow_offset} #{ty+shadow_offset} )"
+            end
+
+            prev_percent += percent
           end
 
-          if expanded or (expand_greatest && value == max_value)
-            tx = (Math.sin(radians) * expand_gap)
-            ty = -(Math.cos(radians) * expand_gap)
-            translate = "translate( #{tx} #{ty} )"
-            wedge.attributes["transform"] = translate
-            clear.attributes["transform"] = translate if clear
-          end
-
-          if show_shadow
-            shadow.attributes["transform"] = 
-              "translate( #{tx+shadow_offset} #{ty+shadow_offset} )"
-          end
-          
           if show_data_labels and value != 0
             label = ""
             label += @config[:fields][count] if show_key_data_labels
@@ -293,11 +322,9 @@ module SVG
               "class" => "dataPointLabel",
             }).text = label.to_s
           end
-
-          prev_percent += percent
         }
       end
-      
+
 
       def round val, to
         up = 10**to.to_f
