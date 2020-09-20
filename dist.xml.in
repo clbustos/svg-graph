@@ -20,7 +20,7 @@
 	<description>
 		<p>
       SVG:::Graph is a pure Ruby library for generating charts, which are a type of graph 
-      where the values of one axis are not scalar.  SVG::Graph has a verry similar API
+      where the values of one axis are not scalar.  SVG::Graph has a very similar API
       to the Perl library SVG::TT::Graph, and the resulting charts also look the same.
 		</p>
 
