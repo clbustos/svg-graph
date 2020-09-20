@@ -37,7 +37,7 @@ module SVG
     #
     # = Notes
     #
-    # The default stylesheet handles upto 12 data sets, if you
+    # The default stylesheet handles up to 12 data sets, if you
     # use more you must create your own stylesheet and add the
     # additional settings for the extra data sets. You will know
     # if you go over 12 data sets as they will have no style and

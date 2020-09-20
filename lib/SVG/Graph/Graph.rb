@@ -233,7 +233,7 @@ module SVG
       #   scales to fix the space.
       attr_accessor :width
       #   Set the path to an external stylesheet, set to '' if
-      #   you want to revert back to using the defaut internal version.
+      #   you want to revert back to using the default internal version.
       #
       #   To create an external stylesheet create a graph using the
       #   default internal version and copy the stylesheet section to
@@ -847,7 +847,7 @@ module SVG
         @root << Comment.new( " "+"\\"*66 )
         @root << Comment.new( " Created with SVG::Graph " )
         @root << Comment.new( " SVG::Graph by Sean E. Russell " )
-        @root << Comment.new( " Losely based on SVG::TT::Graph for Perl by"+
+        @root << Comment.new( " Loosely based on SVG::TT::Graph for Perl by"+
         " Leo Lapworth & Stephan Morgan " )
         @root << Comment.new( " "+"/"*66 )
 
